@@ -70,7 +70,7 @@ exit
 
 #### Create the layer. CD into working dir.
 
-- EC2 Linux Instance: awspusdevlap01
+- EC2 Linux Instance
 
 ```
 sudo dockerd
