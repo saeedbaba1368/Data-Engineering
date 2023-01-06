@@ -1,0 +1,315 @@
+Confabulation
+Clustering illusion
+Insensitivity to sample size
+Neglect of probability
+Anecdotal fallacy
+Illusion of validity
+Masked-man fallacy
+Recency illusion
+Hot-hand fallacy
+Illusory correlation
+Pareidolia
+Anthropomorphism
+Berkson’s paradox
+Availability Cascade
+Ben Franklin Effect
+Form Function Attribution Bias
+Illicit Transference
+Law of Instrument
+Look-elsewhere Effect
+Placebo Effect
+Bandwagon Effect
+Automation Bias
+Authority Bias
+Argument from Fallacy
+Just-world Hypothesis
+Functional Fixedness
+Ultimate Attribution Error
+Group Attribution Error
+Essentialism
+Moral Credential Effect
+Out-group Homogeneity Bias
+Cross-race Effect
+In-group Favoritism
+Halo Effect
+Cheerleader Effect
+Positivity Effect
+Not-invented-here Syndrome
+Reactive Devaluation
+Well-traveled Road Effect
+Singularity Effect
+Groupthink
+Compassion Fade
+Mental Accounting
+Appeal to Probability Fallacy
+Normalcy Bias
+Murphy's Law
+Zero Sum Bias
+Survivorship Bias
+Subadditivity Effect
+Denomination Effect
+The Magical Number 7 ± 2
+Selection Bias
+Attribution Substitution
+Illusion of Transparency
+Curse of Knowledge
+Spotlight Effect
+Extrinsic Incentive Error
+Illusion of External Agency
+Illusion of Asymmetric Insight
+Sexual Over_Underperception Bias
+Hostile Attribution Bias
+Telescoping Effect
+Rosy Retrospection
+Hindsight Bias
+Outcome Bias
+Moral Luck
+Declinism
+Impact Bias
+Pessimism Bias
+Planning Fallacy
+Time-saving Bias
+Pro-innovation Bias
+Projection Bias
+Restraint Bias
+Self-consistency Bias
+Travis Syndrome
+Tachypsychia
+Availability heuristic
+Attentional bias
+Illusory truth effect
+Mere-exposure effect
+Context effect
+Cue-dependent forgetting
+Mood-congruent memory bias
+Frequency illusion
+Empathy gap
+Omission bias
+Base rate fallacy
+Interoceptive bias
+Bizarreness effect
+Humor effect
+Von Restorff effect
+Picture superiority effect
+Self-relevance effect
+Overchoice
+Salience bias
+Exaggerated expectation
+Contrast effect
+Distinction bias
+Focusing effect
+Framing effect
+Money illusion
+Weber-Fechner law
+Regressive bias
+Anchoring
+Conservatism
+Confirmation bias
+Congruence bias
+Post-purchase rationalization
+Choice-supportive bias
+Selective perception
+Observer-expectancy effect
+Ostrich effect
+Subjective validation
+Continued influence effect
+Semmelweis reflex
+Overjustification effect
+False uniqueness bias
+Default effect
+Bias blind spot
+Naïve cynicism
+Naïve realism
+End-of-history Illusion
+Overconfidence effect
+Social Desirability Bias
+Third-person Effect
+False Consensus Effect
+Hard-easy Effect
+Dunning-Kruger Effect
+Egocentric Bias
+Optimism Bias
+Self-serving Bias
+Actor-observer Bias
+Illusory Superiority
+Fundamental Attribution Error
+Defensive Attribution Error
+Trait Ascription Bias
+Effort Justification
+Risk Compensation
+Peltzman Effect
+Worse-than-average Effect
+Surrogation
+Tip of the Tongue Phenomenon
+Tip of the Tongue Phenomenon
+Google Effect
+Next-in-line Effect
+Testing Effect
+Absent-mindedness
+Levels-of-processing Effect
+Verbatim Effect
+Suffix Effect
+Serial-position Effect
+Part-set Cueing Effect
+Recency Effect
+Primacy Effect
+Memory Inhibition
+Modality Effect
+Duration Neglect
+List-length Effect
+Serial Recall Effect
+Misinformation Effect
+Leveling and Sharpening
+Peak-end Rule
+Women are Wonderful Effect
+Fading Affect Bias
+Negativity Bias
+Prejudice
+Stereotypical Bias
+Implicit Stereotypes
+Implicit Association
+Reminiscence Bump
+Spacing Effect
+Suggestibility
+False Memory
+Cryptomnesia
+Source Confusion
+Misattribution of Memory
+Appeal to Anonymous Authority
+Appeal to Authority
+Appeal to Common Practice
+Appeal to Ignorance
+Appeal to Incredulity
+Appeal to Money
+Appeal to Novelty
+Appeal to Popular Belief
+Appeal to Probability
+Appeal to Tradition
+Appeal to Consequence of a Belief
+Appeal to Fear
+Appeal to Flattery
+Appeal to Nature
+Appeal to Pity
+Appeal to Ridicule
+Appeal to Spite
+Division
+Appeal to Wishful Thinking
+Anecdotal Evidence
+Composition
+Design Fallacy
+Gambler's Fallacy
+Hasty Generalization
+Jumping to Conclusions
+Middle Ground
+Perfectionist Fallacy
+Relativist Fallacy
+Spotlight
+Sweeping Generalisation
+Undistributed Middle
+Ad Hoc Rescue
+Biased Generalizing
+Confirmation Bias
+False Dilemma
+Lie
+Misleading Vividness
+Red Herring
+Slippery Slope
+Suppressed Evidence
+Unfalsifiability
+Affirming The Consequent
+Circular Logic
+Cum Hoc Ergo Propter Hoc
+Denying The Antecedent
+Ignoring a Common Cause
+Post Hoc Ergo Propter Hoc
+Two Wrongs Make a Right
+Ad Hominem
+Burden of Proof
+Circumstance Ad Hominem
+Genetic Fallacy
+Guilt by Association
+Straw Man
+Omission Bias
+Framing Effect
+Contrast Effect
+Confirmation Bias
+Base Rate Fallacy
+Availability Heuristic
+Anchoring
+Sunk Cost Fallacy
+Social Comparison Bias
+Self-Serving Bias
+Loss Aversion
+Overconfidence Effect
+Information Bias
+Illusion of Control
+Hyperbolic Discounting
+Fundamental Attribution Error
+Endowment Effect
+Effort Justification
+Conjunction Fallacy
+Barnum Effect
+Survivorship Bias
+Planning Fallacy
+Outcome Bias
+Not-Invented-Here Syndrome
+Neglect of Probability
+Hindsight Bias
+Halo Effect
+Gambler’s Fallacy
+Clustering Illusion
+Authority Bias
+Appeal to Anonymous Authority
+Appeal to Authority
+Appeal to Common Practice
+Appeal to Ignorance
+Appeal to Incredulity
+Appeal to Money
+Appeal to Novelty
+Appeal to Popular Belief
+Appeal to Probability
+Appeal to Tradition
+Appeal to Consequence of a Belief
+Appeal to Fear
+Appeal to Flattery
+Appeal to Nature
+Appeal to Pity
+Appeal to Ridicule
+Appeal to Spite
+Division
+Appeal to Wishful Thinking
+Anecdotal Evidence
+Composition
+Design Fallacy
+Gambler's Fallacy
+Hasty Generalization
+Jumping to Conclusions
+Middle Ground
+Perfectionist Fallacy
+Relativist Fallacy
+Spotlight
+Sweeping Generalisation
+Undistributed Middle
+Ad Hoc Rescue
+Biased Generalizing
+Confirmation Bias
+False Dilemma
+Lie
+Misleading Vividness
+Red Herring
+Slippery Slope
+Suppressed Evidence
+Unfalsifiability
+Affirming The Consequent
+Circular Logic
+Cum Hoc Ergo Propter Hoc
+Denying The Antecedent
+Ignoring a Common Cause
+Post Hoc Ergo Propter Hoc
+Two Wrongs Make a Right
+Ad Hominem
+Burden of Proof
+Circumstance Ad Hominem
+Genetic Fallacy
+Guilt by Association
+Straw Man
