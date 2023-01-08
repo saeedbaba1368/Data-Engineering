@@ -214,6 +214,11 @@
 44. [RateLimiting](https://github.com/icecrime/RateLimiting)
 45. [DateTimeRange](https://github.com/thombashi/DateTimeRange)
 46. [tenacity](https://github.com/jd/tenacity)
+47. [mako](https://github.com/sqlalchemy/mako)
+48. [jinjasql](https://github.com/sripathikrishnan/jinjasql)
+49. [data engineering on gcp](https://github.com/Nunie123/data_engineering_on_gcp_book)
+50. [polars Dataframes](https://github.com/pola-rs/polars)
+51. [Vaex Dataframes](https://github.com/vaexio/vaex)
 
 </details>
 
@@ -251,6 +256,7 @@
 29. [Abixen Platform](https://github.com/abixen/abixen-platform)
 30. [d3](https://github.com/d3/d3)
 31. [Dash Examples](https://dash.gallery/Portal/)
+32. [sweetviz](https://github.com/fbdesignpro/sweetviz)
 
 </details>
 
@@ -274,6 +280,16 @@
 16. [pymssql](https://github.com/pymssql/pymssql)
 17. [sqleyes](https://github.com/leonardomathon/sqleyes)
 18. [data-diff](https://github.com/datafold/data-diff)
+19. [amazon-redshift-python-driver](https://github.com/aws/amazon-redshift-python-driver)
+20. [spyql](https://github.com/dcmoura/spyql)
+21. [awesome-sqlalchemy](https://github.com/dahlia/awesome-sqlalchemy)
+22. [ipython-sql](https://github.com/catherinedevlin/ipython-sql)
+23. [redshift-developer-guide](https://github.com/awsdocs/amazon-redshift-developer-guide)
+24. [cloud-sql-python-connector](https://github.com/GoogleCloudPlatform/cloud-sql-python-connector)
+25. [aiosql](https://github.com/nackjicholson/aiosql)
+26. [sqlfluff](https://github.com/sqlfluff/sqlfluff)
+27. [sqlmodel](https://github.com/tiangolo/sqlmodel)
+28. [pypika](https://github.com/kayak/pypika)
 
 </details>
 

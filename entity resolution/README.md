@@ -6,6 +6,16 @@ Objective: Find a scalable solution for real time entity resolution.
 
 ## Local Sensitivity Hashing
 
+### EXAMPLES
+
+- https://github.com/Jmkernes/Locality-sensitive-hashing-tutorial
+- https://github.com/arpitg91/FindingSimilarDocuments-LSH
+- https://github.com/tonymngo/entity-resolution-challenge
+- https://github.com/leihao1/MachineLearningAlgorithms
+- https://github.com/mattilyra/LSH
+- https://github.com/PiotrTa/Mining-Massive-Datasets
+- https://github.com/hushon/BigDataEssentials
+
 ## Python Difflib
 - https://docs.python.org/3/library/difflib.html
 
