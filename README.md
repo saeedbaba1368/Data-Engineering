@@ -1,3 +1,19 @@
+# Resource
+
+1. [Design Patterns in the Real World](https://holub.com/patterns/)
+2. [Design Patterns](https://sourcemaking.com/)
+3. [Refactoring Guru](https://refactoring.guru/)
+4. [Design PAtterns Book](https://wiki.c2.com/?DesignPatternsBook)
+5. [UI Design Patterns](https://ui-patterns.com/patterns)
+6. [OO Design](https://www.oodesign.com/)
+7. [martin fowler](https://martinfowler.com/)
+8. [Design Patterns Scala](https://pavelfatin.com/design-patterns-in-scala/)
+9. [Enterprise Application Patterns](https://www.enterpriseintegrationpatterns.com/index.html)
+10. [Practical Cryptography for Developers](https://cryptobook.nakov.com/)
+11. [Problem Solving with Algorithms and Data Structures using Python](http://www.openbookproject.net/books/pythonds/index.html#)
+12. [Computer Security](https://textbook.cs161.org/)
+13. [Open DSA Data Structures and Algorithms](https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/index.html)
+
 <details><summary><h1><a href="https://andrewrgoss.com/resources/">Resources for Data Engineering</a></h1></summary>
 
 - [Awesome](https://github.com/sindresorhus/awesome)
@@ -51,6 +67,7 @@
 43. [spylunking](https://github.com/jay-johnson/spylunking)
 44. [splunk-sdk-python](https://github.com/splunk/splunk-sdk-python)
 45. [opentelemetry-python](https://github.com/open-telemetry/opentelemetry-python)
+46. [Regex](https://www.regular-expressions.info/)
 
 </details>
 
@@ -117,6 +134,9 @@
 17. [Practical Networking](https://www.youtube.com/c/PracticalNetworking)
 18. [Artificial Intelligence Principles](https://www.youtube.com/playlist?list=PLoROMvodv4rO1NB9TD4iUZ3qghGEGtqNX)
 19. [Deep Learning](https://www.youtube.com/playlist?list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI)
+20. [Operating Systems](https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O)
+21. [Computer Networks](https://www.youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx)
+22. [Software Design Python](https://www.youtube.com/playlist?list=PLC0nd42SBTaNuP4iB4L6SJlMaHE71FG6N)
 
 ## Design Patterns
 1. [Abstract_factory_pattern](https://en.wikipedia.org/wiki/Abstract_factory_pattern)
