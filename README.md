@@ -13,6 +13,8 @@
 11. [Problem Solving with Algorithms and Data Structures using Python](http://www.openbookproject.net/books/pythonds/index.html#)
 12. [Computer Security](https://textbook.cs161.org/)
 13. [Open DSA Data Structures and Algorithms](https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/index.html)
+14. [Microservices.io](https://microservices.io/)
+15. [Scala Design Patterns](https://github.com/josephguan/scala-design-patterns)
 
 <details><summary><h1><a href="https://andrewrgoss.com/resources/">Resources for Data Engineering</a></h1></summary>
 
@@ -68,6 +70,11 @@
 44. [splunk-sdk-python](https://github.com/splunk/splunk-sdk-python)
 45. [opentelemetry-python](https://github.com/open-telemetry/opentelemetry-python)
 46. [Regex](https://www.regular-expressions.info/)
+47. [networkX](https://networkx.org/)
+48. [Aws Open Telemtry](https://aws-otel.github.io/)
+49. [opentelemetry.io](https://opentelemetry.io/)
+50. [Practitioners Guide to Graph Data](https://github.com/datastax/graph-book)
+51. [Graph Data Notebooks](https://github.com/aws/graph-notebook)
 
 </details>
 
@@ -239,6 +246,8 @@
 49. [data engineering on gcp](https://github.com/Nunie123/data_engineering_on_gcp_book)
 50. [polars Dataframes](https://github.com/pola-rs/polars)
 51. [Vaex Dataframes](https://github.com/vaexio/vaex)
+52. [Fugure: Distributed Computation](https://github.com/fugue-project/fugue)
+53. [Funcy](https://github.com/Suor/funcy)
 
 </details>
 
@@ -404,6 +413,27 @@
 
 </details>
 
+<details><summary><h2>Big Data and Cloud API's</h2></summary>
+
+- [AWS SDK Examples](https://github.com/awsdocs/aws-doc-sdk-examples)
+
+1. [AWS Encryption SDK](https://github.com/aws/aws-encryption-sdk-python)
+2. [AWS Xray SDK](https://github.com/aws/aws-xray-sdk-python)
+3. [AWS SDK Pandas](https://github.com/aws/aws-sdk-pandas)
+4. [Sagemaker SDK](https://github.com/aws/sagemaker-python-sdk)
+5. [GCP Data Validator](https://github.com/GoogleCloudPlatform/professional-services-data-validator)
+6. [AWS Redshift Driver](https://github.com/aws/amazon-redshift-python-driver)
+7. [Cloudwatch Logging](https://github.com/kislyuk/watchtower)
+8. [Former2](https://github.com/iann0036/former2)
+9. [Sagemaker Spark](https://github.com/aws/sagemaker-spark)
+10. [Secrets Manager Caching](https://github.com/aws/aws-secretsmanager-caching-python)
+11. [Spark With Python](https://github.com/tirthajyoti/Spark-with-Python)
+12. [Learning Pyspark](https://github.com/PacktPublishing/Learning-PySpark)
+13. [Spark Redshift](https://github.com/databricks/spark-redshift)
+14. [Sagemaker Graph ER](https://github.com/awslabs/sagemaker-graph-entity-resolution)
+
+</details>
+
 <details><summary><h2>Data Quality & Profiling & Business Rules</h2></summary>
 
 1. [Pandas Profiling](https://github.com/ydataai/pandas-profiling)
@@ -511,6 +541,9 @@
 49. [python-email-validator](https://github.com/JoshData/python-email-validator)
 50. [dataprep](https://github.com/sfu-db/dataprep)
 51. [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy)
+52. [Cerberus](https://github.com/pyeve/cerberus)
+53. [PolyFuzz](https://github.com/MaartenGr/PolyFuzz)
+54. [Fuzzy Search](https://github.com/taleinat/fuzzysearch)
 
 </details>
 
@@ -569,6 +602,11 @@
 3. [Hypothesis](https://github.com/HypothesisWorks/hypothesis)
 4. [Loguru](https://github.com/Delgan/loguru)
 5. [PySnooper](https://github.com/cool-RR/PySnooper)
+6. [PyGoGo](https://github.com/reubano/pygogo)
+7. [minilog](https://github.com/jacebrowning/minilog)
+8. [fluent logger](https://github.com/fluent/fluent-logger-python)
+9. [daiquiri](https://github.com/Mergifyio/daiquiri)
+10. [Locust](https://github.com/locustio/locust)
 
 </details>
 

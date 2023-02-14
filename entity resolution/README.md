@@ -15,6 +15,9 @@ Objective: Find a scalable solution for real time entity resolution.
 - https://github.com/mattilyra/LSH
 - https://github.com/PiotrTa/Mining-Massive-Datasets
 - https://github.com/hushon/BigDataEssentials
+- https://towardsdatascience.com/locality-sensitive-hashing-how-to-find-similar-items-in-a-large-set-with-precision-d907c52b05fc
+- https://towardsdatascience.com/locality-sensitive-hashing-for-music-search-f2f1940ace23
+- https://towardsdatascience.com/understanding-locality-sensitive-hashing-49f6d1f6134
 
 ## Python Difflib
 - https://docs.python.org/3/library/difflib.html
@@ -105,3 +108,5 @@ Objective: Find a scalable solution for real time entity resolution.
 35. [sourmash](https://github.com/sourmash-bio/sourmash)
 36. [Fingerprint and Similarity thresholding](https://github.com/stanford-futuredata/FAST)
 37. [BigDataEssentials](https://github.com/hushon/BigDataEssentials)
+38. [pyLSHash](https://github.com/guofei9987/pyLSHash)
+39. [SparkER](https://github.com/Gaglia88/sparker)
