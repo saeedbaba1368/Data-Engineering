@@ -15,6 +15,9 @@
 13. [Open DSA Data Structures and Algorithms](https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/index.html)
 14. [Microservices.io](https://microservices.io/)
 15. [Scala Design Patterns](https://github.com/josephguan/scala-design-patterns)
+16. [Goodreads ETL Pipeline](https://github.com/san089/goodreads_etl_pipeline)
+17. [Around Data Engineering](https://github.com/abhishek-ch/around-dataengineering)
+18. [Awesome Design Patterns](https://github.com/DovAmir/awesome-design-patterns)
 
 <details><summary><h1><a href="https://andrewrgoss.com/resources/">Resources for Data Engineering</a></h1></summary>
 
@@ -75,6 +78,12 @@
 49. [opentelemetry.io](https://opentelemetry.io/)
 50. [Practitioners Guide to Graph Data](https://github.com/datastax/graph-book)
 51. [Graph Data Notebooks](https://github.com/aws/graph-notebook)
+52. [Data Pipelines with Apache Airflow](https://github.com/BasPH/data-pipelines-with-apache-airflow)
+53. [Versatile Data Kit](https://github.com/vmware/versatile-data-kit)
+54. [Pyspark Project Example](https://github.com/AlexIoannides/pyspark-example-project)
+55. [Datalake ETL Pipeline Example](https://github.com/vim89/datalake-etl-pipeline)
+56. [Streamify](https://github.com/ankurchavda/streamify)
+57. [Data Algorithms with Spark](https://github.com/mahmoudparsian/data-algorithms-with-spark)
 
 </details>
 
@@ -177,6 +186,9 @@
 12. [Hash_collision](https://en.wikipedia.org/wiki/Hash_collision)
 13. [Lazy_evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation)
 14. [Relational_algebra](https://en.wikipedia.org/wiki/Category:Relational_algebra)
+15. [aiofiles](https://github.com/Tinche/aiofiles)
+16. [aiobotocore](https://github.com/aio-libs/aiobotocore)
+17. [aioboto3](https://github.com/terrycain/aioboto3)
 
 </details>
 
@@ -191,6 +203,7 @@
 7. [awesome ML Ops](https://github.com/visenger/awesome-mlops)
 8. [Evidently](https://github.com/evidentlyai/evidently)
 9. [Machine Learning version control](https://github.com/iterative/dvc)
+10. [Feast](https://github.com/feast-dev/feast)
 
 </details>
 
@@ -248,6 +261,11 @@
 51. [Vaex Dataframes](https://github.com/vaexio/vaex)
 52. [Fugure: Distributed Computation](https://github.com/fugue-project/fugue)
 53. [Funcy](https://github.com/Suor/funcy)
+54. [Singer](https://github.com/singer-io/getting-started)
+55. [Dateutil](https://github.com/dateutil/dateutil)
+56. [pyparsing](https://github.com/pyparsing/pyparsing)
+57. [psutil](https://github.com/giampaolo/psutil)
+58. [ray](https://github.com/ray-project/ray)
 
 </details>
 
@@ -319,6 +337,7 @@
 26. [sqlfluff](https://github.com/sqlfluff/sqlfluff)
 27. [sqlmodel](https://github.com/tiangolo/sqlmodel)
 28. [pypika](https://github.com/kayak/pypika)
+29. [Amazon Redshift Utils](https://github.com/awslabs/amazon-redshift-utils)
 
 </details>
 
@@ -410,6 +429,17 @@
 23. [Processing (I/O and Piplines)](https://github.com/pditommaso/awesome-pipeline)
 24. [stream unzip](https://github.com/uktrade/stream-unzip)
 25. [pypyr](https://github.com/pypyr/pypyr)
+26. [Data Flow Ops](https://github.com/anna-geller/dataflow-ops)
+27. [Apache Spark Guide](https://github.com/mikeroyal/Apache-Spark-Guide)
+28. [Orchest](https://github.com/orchest/orchest)
+29. [Mage AI](https://github.com/mage-ai/mage-ai)
+30. [Meltano](https://github.com/meltano/meltano)
+31. [DataJoint Python](https://github.com/datajoint/datajoint-python)
+32. [Hamilton](https://github.com/stitchfix/hamilton)
+33. [Kombu](https://github.com/celery/kombu)
+34. [airbyte](https://github.com/airbytehq/airbyte)
+35. [ploomber](https://github.com/ploomber/ploomber)
+36. [data-diff](https://github.com/datafold/data-diff)
 
 </details>
 
@@ -595,7 +625,7 @@
 
 </details>
 
-<details><summary><h2>Logging and Testing</h2></summary>
+<details><summary><h2>Logging and Testing and Monitoring</h2></summary>
 
 1. [structlog](https://github.com/hynek/structlog)
 2. [Local Stack](https://github.com/localstack/localstack)
@@ -607,6 +637,7 @@
 8. [fluent logger](https://github.com/fluent/fluent-logger-python)
 9. [daiquiri](https://github.com/Mergifyio/daiquiri)
 10. [Locust](https://github.com/locustio/locust)
+11. [Soda Core](https://github.com/sodadata/soda-core)
 
 </details>
 
