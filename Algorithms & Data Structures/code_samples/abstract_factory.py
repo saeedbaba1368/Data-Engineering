@@ -1,180 +1,154 @@
 from abc import ABC, abstractmethod
 
 
-class AbstractMobileUIFactory(ABC):
-    """
-    Class representing app UI and the supported features
-    """
-
+class AbstractClass(ABC):
     @abstractmethod
-    def create_story(self):
-        pass
-
-    @abstractmethod
-    def upload_photo(self):
+    def func(self):
         pass
 
 
-class AndroidFactory(AbstractMobileUIFactory):
+class ChildClass(AbstractClass):
+    def func(self):
+        out = "This is an output"
+        return out
+
+
+class Browser(ABC):
     """
-    Class for Android related features
-    """
-
-    def create_story(self):
-        print("Inside AndroidFactory class")
-        AndroidCreateStory().story()
-
-    def upload_photo(self):
-        print("Inside AndroidFactory class")
-        AndroidUploadPhoto().photo()
-
-
-class IosFactory(AbstractMobileUIFactory):
-    """
-    Class for iOS related features
+    Creates "Abstract Product A"
     """
 
-    def create_story(self):
-        print("Inside IosFactory class")
-        IosCreateStory().story()
-
-    def upload_photo(self):
-        print("Inside IosFactory class")
-        IosUploadPhoto().photo()
-
-
-class SymbianFactory(AbstractMobileUIFactory):
-    """
-    Class for Symbian related features
-    """
-
-    def create_story(self):
-        print("Inside SymbianFactory class")
-        SymbianCreateStory().story()
-
-    def upload_photo(self):
-        print("Inside SymbianFactory class")
-        SymbianUploadPhoto().photo()
-
-
-class AbstractCreateStory(ABC):
-    """
-    Class to provide create story feature
-    """
-
+    # Interface - Create Search Toolbar
     @abstractmethod
-    def story(self):
+    def create_search_toolbar(self):
+        pass
+
+    # Interface - Create Browser Window
+    @abstractmethod
+    def create_browser_window(self):
         pass
 
 
-class AndroidCreateStory(AbstractCreateStory):
+class Messenger(ABC):
     """
-    Class to create story on Android platform
-    """
-
-    def story(self):
-        print("[Android] Creating story on android platform.")
-
-
-class IosCreateStory(AbstractCreateStory):
-    """
-    Class to create story on iOS platform
-    """
-
-    def story(self):
-        print("[IOS] Creating story on IOS platform.")
-
-
-class SymbianCreateStory(AbstractCreateStory):
-    """
-    Class to create story on Symbian platform
-    """
-
-    def story(self):
-        print("[Symbian] Ok boomer! Creating story on Symbian platform, while we can!!")
-
-
-class AbstractUploadPhoto(ABC):
-    """
-    Class to provide upload photo feature
+    Creates "Abstract Product B"
     """
 
     @abstractmethod
-    def photo(self):
+    # Interface - Create Messenger Window
+    def create_messenger_window(self):
         pass
 
 
-class AndroidUploadPhoto(AbstractUploadPhoto):
+class VanillaBrowser(Browser):
     """
-    Class to upload photo on Android platform
-    """
-
-    def photo(self):
-        print("[Android] Uploading photo on android platform.")
-
-
-class IosUploadPhoto(AbstractUploadPhoto):
-    """
-    Class to upload photo on iOS platform
+    Type: Concrete Product
+    Abstract methods of the Browser base class are implemented.
     """
 
-    def photo(self):
-        print("[IOS] Uploading photo on IOS platform.")
+    # Interface - Create Search Toolbar
+    def create_search_toolbar(self):
+        print("Search Toolbar Created")
+
+    # Interface - Create Browser Window]
+    def create_browser_window(self):
+        print("Browser Window Created")
 
 
-class SymbianUploadPhoto(AbstractUploadPhoto):
+class VanillaMessenger(Messenger):
     """
-    Class to upload photo on Symbian platform
+    Type: Concrete Product
+    Abstract methods of the Messenger base class are implemented.
     """
 
-    def photo(self):
-        print(
-            "[Symbian] So you want us to upload petroglyph? Since we are backward compatible, why not! Uploading photo on Symbian platform"
-        )
+    # Interface - Create Messenger Window
+    def create_messenger_window(self):
+        print("Messenger Window Created")
 
 
-class Application:
-    def get_factory(self, platform_type):
-        factory = None
-        if platform_type == "Android":
-            factory = AndroidFactory()
-        elif platform_type == "IOS":
-            factory = IosFactory()
-        elif platform_type == "Symbian":
-            factory = SymbianFactory()
-        else:
-            print("ERROR: unknown platform type.")
-        return factory
+class SecureBrowser(Browser):
+    """
+    Type: Concrete Product
+    Abstract methods of the Browser base class are implemented.
+    """
 
-    def create_story(self, factory=None):
-        if not factory:
-            print("factory object not passed")
-        factory.create_story()
+    # Abstract Method of the Browser base class
+    def create_search_toolbar(self):
+        print("Secure Browser - Search Toolbar Created")
 
-    def upload_photo(self, factory=None):
-        if not factory:
-            print("factory object not passed")
-        factory.upload_photo()
+    # Abstract Method of the Browser base class
+    def create_browser_window(self):
+        print("Secure Browser - Browser Window Created")
+
+    def create_incognito_mode(self):
+        print("Secure Browser - Incognito Mode Created")
+
+
+class SecureMessenger(Messenger):
+    """
+    Type: Concrete Product
+    Abstract methods of the Messenger base class are implemented.
+    """
+
+    # Abstract Method of the Messenger base class
+    def create_messenger_window(self):
+        print("Secure Messenger - Messenger Window Created")
+
+    def create_privacy_filter(self):
+        print("Secure Messenger - Privacy Filter Created")
+
+    def disappearing_messages(self):
+        print("Secure Messenger - Disappearing Messages Feature Enabled")
+
+
+class AbstractFactory(ABC):
+    """
+    The Abstract Factory
+    """
+
+    @abstractmethod
+    def create_browser(self):
+        pass
+
+    @abstractmethod
+    def create_messenger(self):
+        pass
+
+
+class VanillaProductsFactory(AbstractFactory):
+    """
+    Type: Concrete Factory
+    Implement the operations to create concrete product objects.
+    """
+
+    def create_browser(self):
+        return VanillaBrowser()
+
+    def create_messenger(self):
+        return VanillaMessenger()
+
+
+class SecureProductsFactory(AbstractFactory):
+    """
+    Type: Concrete Factory
+    Implement the operations to create concrete product objects.
+    """
+
+    def create_browser(self):
+        return SecureBrowser()
+
+    def create_messenger(self):
+        return SecureMessenger()
+
+
+def main():
+    for factory in (VanillaProductsFactory(), SecureProductsFactory()):
+        product_a = factory.create_browser()
+        product_b = factory.create_messenger()
+        product_a.create_browser_window()
+        product_a.create_search_toolbar()
+        product_b.create_messenger_window()
 
 
 if __name__ == "__main__":
-    app_object = Application()
-
-    # in real world scenarios, instead of pass hardcoded platform type we can read platform type from config file.
-    print("Running for Android platform...")
-    factory_object = app_object.get_factory("Android")
-    factory_object.create_story()
-    factory_object.upload_photo()
-    print("\n")
-
-    print("Running for IOS platform...")
-    factory_object = app_object.get_factory("IOS")
-    factory_object.create_story()
-    factory_object.upload_photo()
-    print("\n")
-
-    print("Running for Symbian platform...")
-    factory_object = app_object.get_factory("Symbian")
-    factory_object.create_story()
-    factory_object.upload_photo()
-    print("\n")
+    main()

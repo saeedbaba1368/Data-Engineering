@@ -9,19 +9,20 @@ import boto3
 import botocore
 
 client_config = botocore.config.Config(
-   max_pool_connections = 25,
+    max_pool_connections=25,
 )
 
 
 def get_from_s3_parralell(record: dict):
     """Get from S3"""
-    s3_client = boto3.client('s3', **boto3_config)
-    k = record.get('Key')
+    s3_client = boto3.client("s3", **boto3_config)
+    k = record.get("Key")
     if not k.split("/")[-1]:
         return
     data = s3_client.get_object(Bucket=BUCKET, Key=k)
-    contents = json.loads(data['Body'].read())
+    contents = json.loads(data["Body"].read())
     return contents
+
 
 def timer(func):
     """Print the runtime of the decorated function"""
@@ -37,6 +38,7 @@ def timer(func):
 
     return wrapper_timer
 
+
 @timer
 def main(entities):
     """
@@ -44,15 +46,21 @@ def main(entities):
     """
     results = []
     with ThreadPoolExecutor(max_workers=6) as executor:
-        future_data = {executor.submit(get_from_s3_parralell, record): record for record in entities}
+        future_data = {
+            executor.submit(get_from_s3_parralell, record): record
+            for record in entities
+        }
         for future in as_completed(future_data):
             try:
                 data = future.result()
-                #logger.info('%r page is %d bytes' % (future_data[future], len(website_data)))
+                # logger.info('%r page is %d bytes' % (future_data[future], len(website_data)))
                 results.append(data)
             except Exception as exc:
-                logger.info('%r generated an exception: %s' % (future_data[future], exc))
+                logger.info(
+                    "%r generated an exception: %s" % (future_data[future], exc)
+                )
     return results
+
 
 @timer
 def concurrent_main(entities):
@@ -61,7 +69,9 @@ def concurrent_main(entities):
     """
     data = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        futures = [executor.submit(get_from_s3_parralell, record) for record in entities]
+        futures = [
+            executor.submit(get_from_s3_parralell, record) for record in entities
+        ]
         for future in futures:
             data.append(future.result())
     return data

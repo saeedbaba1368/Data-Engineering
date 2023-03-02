@@ -20,7 +20,7 @@ def timer(func):
 @timer
 def waste_some_time(num_times):
     for _ in range(num_times):
-        sum([i ** 2 for i in range(10000)])
+        sum([i**2 for i in range(10000)])
 
 
 waste_some_time(5000)
@@ -33,7 +33,7 @@ class Power(object):
 
     def __call__(self, a, b):
         retval = self._arg(a, b)
-        return retval ** 2
+        return retval**2
 
 
 @Power
@@ -61,13 +61,13 @@ class Power(object):
 
             def wrapper(a, b):
                 retval = param_arg[0](a, b)
-                return retval ** self._arg
+                return retval**self._arg
 
             return wrapper
         else:
             expo = 2
             retval = self._arg(param_arg[0], param_arg[1])
-            return retval ** expo
+            return retval**expo
 
 
 @Power(3)

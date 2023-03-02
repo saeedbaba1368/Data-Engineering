@@ -91,3 +91,53 @@ with AnotherExample(content="Some thing ") as an_example:
     print(an_example)
     for thing in an_example:
         print(thing)
+
+
+import uuid
+
+# list is iterable
+names = ["Elon", "Guido", "Bjern"]
+for name in names:
+    print(name)
+    # Elon
+    # Guido
+    # Bjern
+
+
+class UUIDIterator:
+    """
+    Iterator for generating UUID.
+    """
+
+    def __init__(self, limit):
+        self._limit = limit
+        self._index = 0
+
+    def __next__(self):
+        if self._index < self._limit:
+            self._index += 1
+            return uuid.uuid1()
+        raise StopIteration
+
+
+class UUIDRange:
+    """
+    Iterable object that uses Iterator.
+    """
+
+    def __init__(self, count=1):
+        self.count = count
+
+    def __iter__(self):
+        """
+        Return iterator object.
+        :return: iterator-object (UUIDIterator)
+        """
+        return UUIDIterator(self.count)
+
+
+for uuid_ in UUIDRange(3):
+    print(uuid_)
+    # 67e56182-d3fb-11e9-bca0-701ce791b04a
+    # 67e56402-d3fb-11e9-bca0-701ce791b04a
+    # 67e564e8-d3fb-11e9-bca0-701ce791b04a

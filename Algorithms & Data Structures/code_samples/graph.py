@@ -117,7 +117,6 @@ def BFS(graph, start, visited, target=None):
             # Explores every edge leaving the vertex 'v'.
             print(f"Searching from vertex: {v.entity()}...")
             for edge in graph.adjacent_edges(v):
-
                 # Gets the second endpoint.
                 v_2nd_endpoint = edge.opposite(v)
 

@@ -36,7 +36,6 @@ class LocalCache(CacheInterface):
     def __post_init__(self):
         self.cache = {}
         if os.path.isfile(self.path):
-
             self.load_cache()
 
     def __enter__(self):
