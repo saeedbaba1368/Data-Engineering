@@ -18,6 +18,10 @@
 16. [Goodreads ETL Pipeline](https://github.com/san089/goodreads_etl_pipeline)
 17. [Around Data Engineering](https://github.com/abhishek-ch/around-dataengineering)
 18. [Awesome Design Patterns](https://github.com/DovAmir/awesome-design-patterns)
+19. [Python Patterns](https://python-patterns.guide/)
+20. [Start Data Engineering](https://www.startdataengineering.com/)
+21. [Formal Ontology](http://ontology.buffalo.edu/smith/)
+22. [6.005 Software Construction](https://ocw.mit.edu/courses/6-005-software-construction-spring-2016/)
 
 <details><summary><h1><a href="https://andrewrgoss.com/resources/">Resources for Data Engineering</a></h1></summary>
 
