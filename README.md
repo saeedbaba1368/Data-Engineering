@@ -22,6 +22,7 @@
 20. [Start Data Engineering](https://www.startdataengineering.com/)
 21. [Formal Ontology](http://ontology.buffalo.edu/smith/)
 22. [6.005 Software Construction](https://ocw.mit.edu/courses/6-005-software-construction-spring-2016/)
+23. [Google Site Reliability Engineering](https://sre.google/sre-book/table-of-contents/)
 
 <details><summary><h1><a href="https://andrewrgoss.com/resources/">Resources for Data Engineering</a></h1></summary>
 
@@ -88,6 +89,11 @@
 55. [Datalake ETL Pipeline Example](https://github.com/vim89/datalake-etl-pipeline)
 56. [Streamify](https://github.com/ankurchavda/streamify)
 57. [Data Algorithms with Spark](https://github.com/mahmoudparsian/data-algorithms-with-spark)
+58. [Distributed-Statistical-Computing](https://github.com/feng-li/Distributed-Statistical-Computing)
+59. [Spark with Python](https://github.com/tirthajyoti/Spark-with-Python)
+60. [Former2](https://github.com/iann0036/former2)
+61. [applied-ml](https://github.com/eugeneyan/applied-ml)
+62. [tomodachi](https://github.com/kalaspuff/tomodachi)
 
 </details>
 
@@ -208,6 +214,7 @@
 8. [Evidently](https://github.com/evidentlyai/evidently)
 9. [Machine Learning version control](https://github.com/iterative/dvc)
 10. [Feast](https://github.com/feast-dev/feast)
+11. [CleanLab](https://github.com/cleanlab/cleanlab)
 
 </details>
 
@@ -444,6 +451,7 @@
 34. [airbyte](https://github.com/airbytehq/airbyte)
 35. [ploomber](https://github.com/ploomber/ploomber)
 36. [data-diff](https://github.com/datafold/data-diff)
+37. [Amazon Apache Airflow Managed Workflow](https://github.com/aws-samples/amazon-mwaa-examples)
 
 </details>
 
@@ -465,6 +473,11 @@
 12. [Learning Pyspark](https://github.com/PacktPublishing/Learning-PySpark)
 13. [Spark Redshift](https://github.com/databricks/spark-redshift)
 14. [Sagemaker Graph ER](https://github.com/awslabs/sagemaker-graph-entity-resolution)
+15. [aws-glue-developer-guide](https://github.com/awsdocs/aws-glue-developer-guide)
+16. [pyspark examples](https://github.com/spark-examples/pyspark-examples)
+17. [pyspark cheatsheet](https://github.com/kevinschaich/pyspark-cheatsheet)
+18. [aws-scheduler](https://github.com/bahrmichael/aws-scheduler)
+19. [emr-serverless-samples](https://github.com/aws-samples/emr-serverless-samples)
 
 </details>
 
@@ -501,6 +514,7 @@
 29. [flatten-dict](https://github.com/ianlini/flatten-dict)
 30. [pytesseract](https://github.com/madmaze/pytesseract)
 31. [deequ](https://github.com/awslabs/python-deequ)
+32. [ydata-profiling](https://github.com/ydataai/ydata-profiling)
 
 </details>
 
@@ -642,6 +656,7 @@
 9. [daiquiri](https://github.com/Mergifyio/daiquiri)
 10. [Locust](https://github.com/locustio/locust)
 11. [Soda Core](https://github.com/sodadata/soda-core)
+12. [WhyLogs](https://github.com/whylabs/whylogs)
 
 </details>
 
@@ -705,6 +720,7 @@
 * [DataCleaner](https://github.com/datacleaner/DataCleaner)
 * [GridCal](https://github.com/SanPen/GridCal)
 * [airbyte](https://github.com/airbytehq/airbyte)
+* [Awesome Data Catalogues](https://github.com/opendatadiscovery/awesome-data-catalogs)
 
 </details>
 
