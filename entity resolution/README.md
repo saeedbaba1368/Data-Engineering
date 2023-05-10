@@ -110,3 +110,4 @@ Objective: Find a scalable solution for real time entity resolution.
 37. [BigDataEssentials](https://github.com/hushon/BigDataEssentials)
 38. [pyLSHash](https://github.com/guofei9987/pyLSHash)
 39. [SparkER](https://github.com/Gaglia88/sparker)
+40. [AWS Admartech Samples](https://github.com/aws-samples/aws-admartech-samples)

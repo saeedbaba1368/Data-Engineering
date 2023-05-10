@@ -23,6 +23,16 @@
 21. [Formal Ontology](http://ontology.buffalo.edu/smith/)
 22. [6.005 Software Construction](https://ocw.mit.edu/courses/6-005-software-construction-spring-2016/)
 23. [Google Site Reliability Engineering](https://sre.google/sre-book/table-of-contents/)
+24. [Calm Code](https://calmcode.io/)
+25. [Cosmic Python](https://www.cosmicpython.com/book/preface.html)
+26. [Python for Data Analysis](https://wesmckinney.com/book/)
+27. [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)
+28. [Operating Systems](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/index.html)
+29. [Distributed Computing](https://distributed-computing-musings.com/)
+30. [Data Integration](https://en.wikipedia.org/wiki/Category:Data_integration)
+31. [Data Tools](https://github.com/victorcouste/data-tools)
+32. [Awesome Big Data](https://github.com/newTendermint/awesome-bigdata)
+33. [data oriented design](https://github.com/dbartolini/data-oriented-design)
 
 <details><summary><h1><a href="https://andrewrgoss.com/resources/">Resources for Data Engineering</a></h1></summary>
 
@@ -92,8 +102,14 @@
 58. [Distributed-Statistical-Computing](https://github.com/feng-li/Distributed-Statistical-Computing)
 59. [Spark with Python](https://github.com/tirthajyoti/Spark-with-Python)
 60. [Former2](https://github.com/iann0036/former2)
-61. [applied-ml](https://github.com/eugeneyan/applied-ml)
+61. [vaex](https://github.com/vaexio/vaex)
 62. [tomodachi](https://github.com/kalaspuff/tomodachi)
+63. [duckdb](https://github.com/duckdb/duckdb)
+64. [python-project-blueprint](https://github.com/MartinHeinz/python-project-blueprint)
+65. [python blueprint](https://github.com/johnthagen/python-blueprint)
+66. [Data Analysis With Polars](https://github.com/braaannigan/data-analysis-with-polars)
+67. [rust by example](https://github.com/rust-lang/rust-by-example)
+68. [Graph Notebook](https://github.com/aws/graph-notebook)
 
 </details>
 
@@ -215,6 +231,23 @@
 9. [Machine Learning version control](https://github.com/iterative/dvc)
 10. [Feast](https://github.com/feast-dev/feast)
 11. [CleanLab](https://github.com/cleanlab/cleanlab)
+12. [ML Version Control](https://github.com/iterative/dvc)
+13. [WanDB](https://github.com/wandb/wandb)
+14. [Metaflow](https://github.com/Netflix/metaflow)
+
+</details>
+
+<details><summary><h2>Serverless Frameworks</h2></summary>
+
+1. [Architect](https://github.com/architect/architect)
+2. [Webiny-JS](https://github.com/webiny/webiny-js)
+3. [Midway](https://github.com/midwayjs/midway)
+4. [Amplify-JS](https://github.com/aws-amplify/amplify-js)
+5. [Serverless Express](https://github.com/vendia/serverless-express)
+6. [Claudia](https://github.com/claudiajs/claudia)
+7. [Apex](https://github.com/NVIDIA/apex)
+8. [Zappa](https://github.com/zappa/Zappa)
+9. [Serverless](https://github.com/serverless/serverless)
 
 </details>
 
@@ -349,6 +382,7 @@
 27. [sqlmodel](https://github.com/tiangolo/sqlmodel)
 28. [pypika](https://github.com/kayak/pypika)
 29. [Amazon Redshift Utils](https://github.com/awslabs/amazon-redshift-utils)
+30. [connector-x](https://github.com/sfu-db/connector-x)
 
 </details>
 
@@ -413,7 +447,7 @@
 
 </details>
 
-<details><summary><h2>Data Flow and Processing</h2></summary>
+<details><summary><h2>Data Flow, Processing, Pipelines</h2></summary>
 
 1. [dataflow](https://github.com/tensorpack/dataflow)
 2. [pyfi](https://github.com/radiantone/pyfi)
@@ -452,6 +486,9 @@
 35. [ploomber](https://github.com/ploomber/ploomber)
 36. [data-diff](https://github.com/datafold/data-diff)
 37. [Amazon Apache Airflow Managed Workflow](https://github.com/aws-samples/amazon-mwaa-examples)
+38. [Airbyte](https://github.com/airbytehq/airbyte)
+39. [mage-ai](https://github.com/mage-ai/mage-ai)
+40. [Dagster](https://github.com/dagster-io/dagster)
 
 </details>
 
@@ -518,7 +555,7 @@
 
 </details>
 
-<details><summary><h2>Data lineage & Discovery</h2></summary>
+<details><summary><h2>Data lineage & Discovery & Observability</h2></summary>
 
 1. [bigquery-data-lineage](https://github.com/marcin-kolda/bigquery-data-lineage)
 2. [multi-data-lineage-capture-py](https://github.com/IBM/multi-data-lineage-capture-py)
@@ -533,6 +570,18 @@
 11. [sqllineage](https://github.com/reata/sqllineage)
 12. [Spline](https://github.com/AbsaOSS/spline)
 13. [grafana](https://github.com/grafana/grafana)
+14. [awesome observability](https://github.com/adriannovegil/awesome-observability)
+15. [Signoz](https://github.com/SigNoz/signoz)
+16. [zipkin](https://github.com/openzipkin/zipkin)
+17. [kibana](https://github.com/elastic/kibana)
+18. [vector](https://github.com/vectordotdev/vector)
+19. [netdata](https://github.com/netdata/netdata)
+20. [odd platform](https://github.com/opendatadiscovery/odd-platform)
+21. [Data Observability in Practice](https://github.com/monte-carlo-data/data-observability-in-practice)
+22. [Monosi](https://github.com/monosidev/monosi)
+23. [Swiple](https://github.com/Swiple/swiple)
+24. [Elementary](https://github.com/elementary-data/elementary)
+25. [awesome-opentelemetry](https://github.com/magsther/awesome-opentelemetry)
 
 </details>
 
@@ -592,6 +641,8 @@
 52. [Cerberus](https://github.com/pyeve/cerberus)
 53. [PolyFuzz](https://github.com/MaartenGr/PolyFuzz)
 54. [Fuzzy Search](https://github.com/taleinat/fuzzysearch)
+55. [Pachyderm](https://github.com/pachyderm/pachyderm)
+56. [CleanLab](https://github.com/cleanlab/cleanlab)
 
 </details>
 
@@ -678,6 +729,7 @@
 1. [Business_process](https://en.wikipedia.org/wiki/Category:Business_process)
 2. [Evaluation_methods](https://en.wikipedia.org/wiki/Category:Evaluation_methods)
 3. [Systems_analysis](https://en.wikipedia.org/wiki/Systems_analysis)
+4. [Awesome Data Catalogs](https://github.com/opendatadiscovery/awesome-data-catalogs)
 
 <details><summary><h3>Concepts</h3></summary>
 
