@@ -33,6 +33,8 @@
 31. [Data Tools](https://github.com/victorcouste/data-tools)
 32. [Awesome Big Data](https://github.com/newTendermint/awesome-bigdata)
 33. [data oriented design](https://github.com/dbartolini/data-oriented-design)
+34. [Patterns of Distributed Systems](https://martinfowler.com/articles/patterns-of-distributed-systems/)
+35. [Data Mesh Principles](https://martinfowler.com/articles/data-mesh-principles.html)
 
 <details><summary><h1><a href="https://andrewrgoss.com/resources/">Resources for Data Engineering</a></h1></summary>
 
