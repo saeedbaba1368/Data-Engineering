@@ -47,7 +47,7 @@
 5. [Python Resources](https://github.com/vinta/awesome-python)
 6. [Jupyter](https://github.com/markusschanta/awesome-jupyter)
 7. [System Design](https://github.com/donnemartin/system-design-primer)
-8. [Data Engineering](https://github.com/igorbarinov/awesome-data-engineering)
+8. [Awesome Data Engineering](https://github.com/igorbarinov/awesome-data-engineering)
 9. [Chaos Engineering](https://github.com/dastergon/awesome-chaos-engineering)
 10. [Data Engineering Project Example](https://github.com/damklis/DataEngineeringProject)
 11. [Data Engineering Cookbook](https://cookbook.learndataengineering.com/docs/01-Introduction/)
@@ -112,6 +112,7 @@
 66. [Data Analysis With Polars](https://github.com/braaannigan/data-analysis-with-polars)
 67. [rust by example](https://github.com/rust-lang/rust-by-example)
 68. [Graph Notebook](https://github.com/aws/graph-notebook)
+69. [Goodreads ETL Pipeline](https://github.com/san089/goodreads_etl_pipeline)
 
 </details>
 
@@ -236,6 +237,8 @@
 12. [ML Version Control](https://github.com/iterative/dvc)
 13. [WanDB](https://github.com/wandb/wandb)
 14. [Metaflow](https://github.com/Netflix/metaflow)
+15. [River](https://github.com/online-ml/river)
+16. [Bytewax](https://github.com/bytewax/bytewax)
 
 </details>
 
@@ -491,6 +494,26 @@
 38. [Airbyte](https://github.com/airbytehq/airbyte)
 39. [mage-ai](https://github.com/mage-ai/mage-ai)
 40. [Dagster](https://github.com/dagster-io/dagster)
+41. [Data All](https://github.com/awslabs/aws-dataall)
+42. [awesome-flink](https://github.com/wuchong/awesome-flink) and [Examples](https://github.com/streaming-with-flink/examples-scala)
+43. [flink](https://github.com/apache/flink)
+44. [RedPanda](https://github.com/redpanda-data/redpanda)
+45. [Materialize](https://github.com/MaterializeInc/materialize)
+46. [Hazelcast](https://github.com/hazelcast/hazelcast)
+47. [Watermill](https://github.com/ThreeDotsLabs/watermill)
+48. [Amazon Kinesis Client Python](https://github.com/awslabs/amazon-kinesis-client-python)
+49. [Faust](https://github.com/robinhood/faust)
+50. [Stream Processing](https://github.com/raycad/stream-processing)
+51. [Spark Streaming in Python](https://github.com/LearningJournal/Spark-Streaming-In-Python)
+52. [Kestra](https://github.com/kestra-io/kestra)
+53. [Hamilton](https://github.com/DAGWorks-Inc/hamilton)
+54. [CloudQuery](https://github.com/cloudquery/cloudquery)
+55. [Nifi](https://github.com/apache/nifi)
+56. [Pentaho-Kettle](https://github.com/pentaho/pentaho-kettle)
+57. [Camel](https://github.com/apache/camel)
+58. [Riko](https://github.com/nerevu/riko)
+59. [Bonobo](https://github.com/python-bonobo/bonobo)
+60. [Petl](https://github.com/petl-developers/petl)
 
 </details>
 
@@ -552,8 +575,12 @@
 28. [python-email-validator](https://github.com/JoshData/python-email-validator)
 29. [flatten-dict](https://github.com/ianlini/flatten-dict)
 30. [pytesseract](https://github.com/madmaze/pytesseract)
-31. [deequ](https://github.com/awslabs/python-deequ)
+31. [python deequ](https://github.com/awslabs/python-deequ)
 32. [ydata-profiling](https://github.com/ydataai/ydata-profiling)
+33. [Memphis](https://github.com/memphisdev/memphis)
+34. [Benthos](https://github.com/benthosdev/benthos)
+35. [Awesome Streaming](https://github.com/manuzhang/awesome-streaming)
+36. [Storm](https://github.com/apache/storm)
 
 </details>
 
@@ -584,6 +611,7 @@
 23. [Swiple](https://github.com/Swiple/swiple)
 24. [Elementary](https://github.com/elementary-data/elementary)
 25. [awesome-opentelemetry](https://github.com/magsther/awesome-opentelemetry)
+26. [dd-trace-py](https://github.com/DataDog/dd-trace-py)
 
 </details>
 
@@ -710,6 +738,7 @@
 10. [Locust](https://github.com/locustio/locust)
 11. [Soda Core](https://github.com/sodadata/soda-core)
 12. [WhyLogs](https://github.com/whylabs/whylogs)
+13. [Logstash](https://github.com/elastic/logstash)
 
 </details>
 
