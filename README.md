@@ -440,7 +440,7 @@
 11. [Needle](https://github.com/BitTheByte/Needle)
 12. [atasker](https://github.com/alttch/atasker)
 13. [asgiref](https://github.com/django/asgiref)
-14. [Dask](https://github.com/dask/dask)
+14. 
 16. [concurrency-in-python-with-asyncio](https://github.com/concurrency-in-python-with-asyncio/concurrency-in-python-with-asyncio)
 17. [Async & Multitasking](https://github.com/timofurrer/awesome-asyncio)
 18. [fast_map](https://github.com/michalmonday/fast_map)
@@ -540,6 +540,9 @@
 17. [pyspark cheatsheet](https://github.com/kevinschaich/pyspark-cheatsheet)
 18. [aws-scheduler](https://github.com/bahrmichael/aws-scheduler)
 19. [emr-serverless-samples](https://github.com/aws-samples/emr-serverless-samples)
+20. [Polars](https://www.pola.rs/)
+21. [duckDB](https://duckdb.org/)
+22. [Dask](https://github.com/dask/dask)
 
 </details>
 
