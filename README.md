@@ -267,6 +267,16 @@
 18. [infosec-reference](https://github.com/rmusser01/Infosec_Reference)
 19. [Web Security Testing Guide](https://github.com/OWASP/wstg)
 20. [Infection Monkey](https://github.com/guardicore/monkey)
+21. [awesome-web-security](https://github.com/qazbnm456/awesome-web-security)
+22. [awesome-hacking-resources](https://github.com/vitalysim/Awesome-Hacking-Resources)
+23. [h4cker](https://github.com/The-Art-of-Hacking/h4cker)
+24. [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
+25. [threat-model-cookbook](https://github.com/OWASP/threat-model-cookbook)
+26. [Awesome Threat Modeling](https://github.com/hysnsec/awesome-threat-modelling)
+27. [awesome-hacking](https://github.com/Hack-with-Github/Awesome-Hacking)
+28. [penetration testing](https://github.com/wtsxDev/Penetration-Testing)
+29. [awesome-pentest](https://github.com/enaqx/awesome-pentest)
+30. [chaos-toolkit](https://github.com/chaostoolkit/chaostoolkit)
 
 </details>
 
@@ -416,6 +426,7 @@
 28. [pypika](https://github.com/kayak/pypika)
 29. [Amazon Redshift Utils](https://github.com/awslabs/amazon-redshift-utils)
 30. [connector-x](https://github.com/sfu-db/connector-x)
+31. [psycopg2](https://github.com/psycopg/psycopg2)
 
 </details>
 
@@ -705,6 +716,9 @@
 54. [Fuzzy Search](https://github.com/taleinat/fuzzysearch)
 55. [Pachyderm](https://github.com/pachyderm/pachyderm)
 56. [CleanLab](https://github.com/cleanlab/cleanlab)
+57. [awesome-jsonschema](https://github.com/sourcemeta/awesome-jsonschema)
+58. [dateparser](https://github.com/scrapinghub/dateparser)
+59. [dateutil](https://github.com/dateutil/dateutil)
 
 </details>
 
@@ -771,6 +785,7 @@
 11. [Soda Core](https://github.com/sodadata/soda-core)
 12. [WhyLogs](https://github.com/whylabs/whylogs)
 13. [Logstash](https://github.com/elastic/logstash)
+14. [Hypothesis](https://github.com/HypothesisWorks/hypothesis)
 
 </details>
 
