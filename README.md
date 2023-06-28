@@ -116,6 +116,7 @@
 67. [rust by example](https://github.com/rust-lang/rust-by-example)
 68. [Graph Notebook](https://github.com/aws/graph-notebook)
 69. [Goodreads ETL Pipeline](https://github.com/san089/goodreads_etl_pipeline)
+70. [awesome-ddd](https://github.com/heynickc/awesome-ddd)
 
 </details>
 
@@ -719,6 +720,18 @@
 57. [awesome-jsonschema](https://github.com/sourcemeta/awesome-jsonschema)
 58. [dateparser](https://github.com/scrapinghub/dateparser)
 59. [dateutil](https://github.com/dateutil/dateutil)
+60. [Cerebrus](https://github.com/pyeve/cerberus)
+61. [validators](https://github.com/python-validators/validators)
+62. [Valideer](https://github.com/podio/valideer)
+63. [Pandera](https://github.com/unionai-oss/pandera)
+64. [Typical](https://github.com/seandstewart/typical)
+65. [kdatapackage](https://github.com/frictionlessdata/datapackage-py)
+66. [PandasSchema](https://github.com/multimeric/PandasSchema)
+67. [TypedFrame](https://github.com/areshytko/typedframe)
+68. [tableschema](https://github.com/frictionlessdata/tableschema-py)
+69. [validator-collection](https://github.com/insightindustry/validator-collection)
+70. [deepchecks](https://github.com/deepchecks/deepchecks)
+71. [awesome-validation-python](https://github.com/mahmoudimus/awesome-validation-python)
 
 </details>
 
@@ -786,6 +799,7 @@
 12. [WhyLogs](https://github.com/whylabs/whylogs)
 13. [Logstash](https://github.com/elastic/logstash)
 14. [Hypothesis](https://github.com/HypothesisWorks/hypothesis)
+15. [awesome-pytest](https://github.com/augustogoulart/awesome-pytest)
 
 </details>
 
