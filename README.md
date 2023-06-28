@@ -6,7 +6,7 @@
 4. [Design PAtterns Book](https://wiki.c2.com/?DesignPatternsBook)
 5. [UI Design Patterns](https://ui-patterns.com/patterns)
 6. [OO Design](https://www.oodesign.com/)
-7. [martin fowler](https://martinfowler.com/)
+7. [martin fowler](https://martinfowler.com/) and [Gregor Hohpe](https://architectelevator.com/)
 8. [Design Patterns Scala](https://pavelfatin.com/design-patterns-in-scala/)
 9. [Enterprise Application Patterns](https://www.enterpriseintegrationpatterns.com/index.html)
 10. [Practical Cryptography for Developers](https://cryptobook.nakov.com/)
@@ -35,6 +35,9 @@
 33. [data oriented design](https://github.com/dbartolini/data-oriented-design)
 34. [Patterns of Distributed Systems](https://martinfowler.com/articles/patterns-of-distributed-systems/)
 35. [Data Mesh Principles](https://martinfowler.com/articles/data-mesh-principles.html) and [Architecture](https://www.datamesh-architecture.com/)
+36. [mCodingLLC](https://github.com/mCodingLLC)
+37. [ArjanCodes](https://github.com/ArjanCodes)
+38. [Data Centric Design](https://delftdesignlabs.org/dcd-lab/)
 
 <details><summary><h1><a href="https://andrewrgoss.com/resources/">Resources for Data Engineering</a></h1></summary>
 
@@ -239,6 +242,31 @@
 14. [Metaflow](https://github.com/Netflix/metaflow)
 15. [River](https://github.com/online-ml/river)
 16. [Bytewax](https://github.com/bytewax/bytewax)
+
+</details>
+
+<details><summary><h2>Data and System Security</h2></summary>
+
+1. [ThreatDragon](https://threatdragon.github.io/)
+2. [Kotlin Faker](https://github.com/serpro69/kotlin-faker)
+3. [DataBunker](https://github.com/securitybunker/databunker)
+4. [awesome-IAM](https://github.com/kdeldycke/awesome-iam)
+5. [open-data-anonymizer](https://github.com/ArtLabss/open-data-anonymizer)
+6. [Presidio](https://github.com/microsoft/presidio)
+7. [Penetration Testing Tools](https://github.com/mgeeky/Penetration-Testing-Tools)
+8. [Public Pentesting Reports](https://github.com/juliocesarfort/public-pentesting-reports)
+9. [Nettacker](https://github.com/OWASP/Nettacker)
+10. [Kubesploit](https://github.com/cyberark/kubesploit)
+11. [Hackerpro](https://github.com/jaykali/hackerpro)
+12. [RapidScan](https://github.com/skavngr/rapidscan)
+13. [Astra](https://github.com/flipkart-incubator/Astra)
+14. [awesome-pentest-cheat-sheets](https://github.com/coreb1t/awesome-pentest-cheat-sheets)
+15. [Hacking Security Ebooks](https://github.com/yeahhub/Hacking-Security-Ebooks)
+16. [awesome-infosec](https://github.com/onlurking/awesome-infosec)
+17. [awesome-web-hacking](https://github.com/infoslack/awesome-web-hacking)
+18. [infosec-reference](https://github.com/rmusser01/Infosec_Reference)
+19. [Web Security Testing Guide](https://github.com/OWASP/wstg)
+20. [Infection Monkey](https://github.com/guardicore/monkey)
 
 </details>
 
@@ -543,6 +571,7 @@
 20. [Polars](https://www.pola.rs/)
 21. [duckDB](https://duckdb.org/)
 22. [Dask](https://github.com/dask/dask)
+23. [SparkSQL](https://spark.apache.org/docs/2.2.0/sql-programming-guide.html)
 
 </details>
 
@@ -786,6 +815,8 @@
 6. [Data Ops](https://www.dataopsmanifesto.org/)
 7. [Metadata](https://en.wikipedia.org/wiki/Category:Metadata)
 8. [Data Management](https://en.wikipedia.org/wiki/Category:Data_management)
+9. [SQL](https://en.wikipedia.org/wiki/Category:SQL)
+10. [Data_modeling_languages](https://en.wikipedia.org/wiki/Category:Data_modeling_languages)
 
 </details>
 
