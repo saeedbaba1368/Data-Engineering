@@ -120,6 +120,22 @@
 
 </details>
 
+<details><summary><h2>Development Guides and Examples</h2></summary>
+
+1. [Glue ETL Locally](https://aws.amazon.com/blogs/big-data/developing-aws-glue-etl-jobs-locally-using-a-container/)
+2. [Deploy FastAPI on AWS](https://www.eliasbrange.dev/posts/deploy-fastapi-on-aws-part-1-lambda-api-gateway/)
+3. [FastAPI App Deployment Using AWS Lambda And API Gateway](https://blog.searce.com/fastapi-container-app-deployment-using-aws-lambda-and-api-gateway-6721904531d0)
+4. [Serverless AWS Lambda + DynamoDB + FastAPI + Github Actions](https://medium.com/geekculture/serverless-aws-lambda-dynamodb-fastapi-github-actions-a41c1df2a92a)
+5. [Simple Serverless FastAPI with AWS Lambda](https://www.deadbear.io/simple-serverless-fastapi-with-aws-lambda/)
+6. [Query data from S3 files using Amazon Athena](https://towardsdatascience.com/query-data-from-s3-files-using-aws-athena-686a5b28e943)
+7. [https://dagster.io/blog/duckdb-data-lake](https://dagster.io/blog/duckdb-data-lake)
+8. [Cool Things You Can Do With Pydantic](https://medium.com/swlh/cool-things-you-can-do-with-pydantic-fc1c948fbde0)
+9. [Dictionary Dispatch Pattern](https://betterprogramming.pub/dictionary-dispatch-pattern-in-python-706189d4fd16)
+10. [Multithreading/Parallel Jobs in AWS Glue](https://medium.com/analytics-vidhya/multithreading-parallel-job-in-aws-glue-a291219123fb)
+11. [SOLID Principles in Data Engineering](https://medium.com/data-engineer-things/solid-principles-in-data-engineering-part-1-49d6025fe0c9)
+
+</details>
+
 <details><summary><h2>Software Engineering Resources</h2></summary>
 
 # Reading
