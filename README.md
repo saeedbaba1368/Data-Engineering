@@ -1,4 +1,4 @@
-# Resource
+# Resource: [Data-Engineering-HowTo](https://github.com/adilkhash/Data-Engineering-HowTo)
 
 1. [Design Patterns in the Real World](https://holub.com/patterns/)
 2. [Design Patterns](https://sourcemaking.com/)
@@ -117,6 +117,7 @@
 68. [Graph Notebook](https://github.com/aws/graph-notebook)
 69. [Goodreads ETL Pipeline](https://github.com/san089/goodreads_etl_pipeline)
 70. [awesome-ddd](https://github.com/heynickc/awesome-ddd)
+71. [Factory Boy](https://github.com/FactoryBoy/factory_boy)
 
 </details>
 
@@ -408,6 +409,13 @@
 30. [d3](https://github.com/d3/d3)
 31. [Dash Examples](https://dash.gallery/Portal/)
 32. [sweetviz](https://github.com/fbdesignpro/sweetviz)
+33. [Awesome Web Viz Frameworks](https://github.com/olavtenbosch/awesome-web-visualization-frameworks)
+34. [Echarts](https://github.com/apache/echarts)
+35. [Grafana](https://github.com/grafana/grafana)
+36. [awesome-dataviz](https://github.com/javierluraschi/awesome-dataviz)
+37. [python-data-visualization](https://github.com/javedali99/python-data-visualization)
+38. [The-Python-Graph-Gallery](https://github.com/holtzy/The-Python-Graph-Gallery)
+39. [rustworkx](https://github.com/Qiskit/rustworkx)
 
 </details>
 
@@ -478,6 +486,9 @@
 28. [requests-oauth2](https://github.com/maraujop/requests-oauth2)
 29. [redo](https://github.com/mozilla-releng/redo)
 30. [backoff](https://github.com/litl/backoff)
+31. [Directus Data Stack](https://github.com/directus/directus)
+32. [StreamLit](https://github.com/streamlit/streamlit)
+33. [Pybossa](https://github.com/Scifabric/pybossa)
 
 </details>
 
@@ -570,6 +581,10 @@
 58. [Riko](https://github.com/nerevu/riko)
 59. [Bonobo](https://github.com/python-bonobo/bonobo)
 60. [Petl](https://github.com/petl-developers/petl)
+61. [awesome-apache-airflow](https://github.com/jghoman/awesome-apache-airflow)
+62. [airflow provider sample](https://github.com/astronomer/airflow-provider-sample)
+63. [metabase](https://github.com/metabase/metabase)
+64. [Flowman](https://github.com/dimajix/flowman)
 
 </details>
 
@@ -748,6 +763,7 @@
 69. [validator-collection](https://github.com/insightindustry/validator-collection)
 70. [deepchecks](https://github.com/deepchecks/deepchecks)
 71. [awesome-validation-python](https://github.com/mahmoudimus/awesome-validation-python)
+72. [attrs-strict](https://github.com/bloomberg/attrs-strict)
 
 </details>
 
