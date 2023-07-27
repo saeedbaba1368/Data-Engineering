@@ -18,6 +18,17 @@ Objective: Find a scalable solution for real time entity resolution.
 - https://towardsdatascience.com/locality-sensitive-hashing-how-to-find-similar-items-in-a-large-set-with-precision-d907c52b05fc
 - https://towardsdatascience.com/locality-sensitive-hashing-for-music-search-f2f1940ace23
 - https://towardsdatascience.com/understanding-locality-sensitive-hashing-49f6d1f6134
+- https://nbviewer.org/github/mattilyra/LSH/blob/master/examples/Introduction.ipynb
+- https://towardsdatascience.com/is-this-you-entity-matching-in-the-modern-data-stack-with-large-language-models-19a730373b26
+- https://www.pinecone.io/learn/series/faiss/locality-sensitive-hashing/
+- https://towardsai.net/p/l/text-similarity-using-k-shingling-minhashing-and-lshlocality-sensitive-hashing
+- https://spotintelligence.com/2023/01/16/local-sensitive-hashing/
+- https://www.codemotion.com/magazine/backend/fast-document-similarity-in-python-minhashlsh/
+- https://tylerneylon.com/a/lsh1/
+- https://www.robots.ox.ac.uk/~vedaldi/assets/teach/2022/b16/notes/7-locality-sensitive-hashing.html
+- https://randorithms.com/2019/09/19/Visual-LSH.html
+- http://ethen8181.github.io/machine-learning/clustering_old/text_similarity/text_similarity.html
+
 
 ## Python Difflib
 - https://docs.python.org/3/library/difflib.html
@@ -51,6 +62,15 @@ Objective: Find a scalable solution for real time entity resolution.
 20. [Near-duplicates and shingling](https://nlp.stanford.edu/IR-book/html/htmledition/near-duplicates-and-shingling-1.html)
 21. [Document deduplication using Locality Sensitive Hashing (LSH) with minhash](https://github.com/mattilyra/LSH/blob/master/examples/Introduction.ipynb)
 22. [Document deduplication using Locality Sensitive Hashing (LSH) with minhash](https://notebook.community/mbatchkarov/LSH/lsh_minhash)
+23. [An overview of end-to-end entity resolution for big data](https://blog.acolyer.org/2020/12/14/entity-resolution/)
+24. [https://www.researchgate.net/publication/349363125_A_multiclass_classification_approach_for_incremental_entity_resolution_on_short_textual_data](https://www.researchgate.net/publication/349363125_A_multiclass_classification_approach_for_incremental_entity_resolution_on_short_textual_data)
+25. [An Entity Resolution Primer](https://agkn.wordpress.com/2016/05/17/an-entity-resolution-primer/)
+26. [Parallel Sorted Neighborhood Blocking with MapReduce](https://www.researchgate.net/publication/47436652_Parallel_Sorted_Neighborhood_Blocking_with_MapReduce)
+27. [Cloud-Scale Entity Resolution: Current State and Open Challenges](https://www.semanticscholar.org/paper/Cloud-Scale-Entity-Resolution%3A-Current-State-and-Chen-Schallehn/4775e6973c478df50efad42dd96a5ae5d5bfe339)
+28. [Entity Resolution Tutorial](https://linqs.org/assets/resources/getoor-asonam12-slides.pdf)
+29. [Near-duplicates and shingling](https://nlp.stanford.edu/IR-book/html/htmledition/near-duplicates-and-shingling-1.html)
+30. [(Almost) All of Entity Resolution](https://arxiv.org/abs/2008.04443)
+31. [A Survey on Locality Sensitive Hashing Algorithms and their Applications](https://arxiv.org/abs/2102.0894)
 
 
 ### Videos
@@ -118,3 +138,4 @@ Objective: Find a scalable solution for real time entity resolution.
 45. [Splinks](https://github.com/moj-analytical-services/splink)
 46. [DbLink](https://github.com/cleanzr/dblink)
 47. [Zingg](https://github.com/zinggAI/zingg)
+48. [ditto](https://github.com/megagonlabs/ditto)
