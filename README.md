@@ -118,6 +118,7 @@
 69. [Goodreads ETL Pipeline](https://github.com/san089/goodreads_etl_pipeline)
 70. [awesome-ddd](https://github.com/heynickc/awesome-ddd)
 71. [Factory Boy](https://github.com/FactoryBoy/factory_boy)
+72. [awesome-network-automation](https://github.com/networktocode/awesome-network-automation)
 
 </details>
 
@@ -416,6 +417,7 @@
 37. [python-data-visualization](https://github.com/javedali99/python-data-visualization)
 38. [The-Python-Graph-Gallery](https://github.com/holtzy/The-Python-Graph-Gallery)
 39. [rustworkx](https://github.com/Qiskit/rustworkx)
+40. [solara](https://github.com/widgetti/solara)
 
 </details>
 
@@ -452,6 +454,8 @@
 29. [Amazon Redshift Utils](https://github.com/awslabs/amazon-redshift-utils)
 30. [connector-x](https://github.com/sfu-db/connector-x)
 31. [psycopg2](https://github.com/psycopg/psycopg2)
+32. [pg_simple](https://github.com/masroore/pg_simple)
+33. [databases](https://github.com/encode/databases)
 
 </details>
 
@@ -687,6 +691,11 @@
 24. [Elementary](https://github.com/elementary-data/elementary)
 25. [awesome-opentelemetry](https://github.com/magsther/awesome-opentelemetry)
 26. [dd-trace-py](https://github.com/DataDog/dd-trace-py)
+27. [signoz](https://github.com/SigNoz/signoz)
+28. [vector](https://github.com/vectordotdev/vector)
+29. [netdata](https://github.com/netdata/netdata)
+30. [awesome-observability](https://github.com/adriannovegil/awesome-observability)
+31. [malloy](https://github.com/malloydata/malloy)
 
 </details>
 
@@ -764,6 +773,7 @@
 70. [deepchecks](https://github.com/deepchecks/deepchecks)
 71. [awesome-validation-python](https://github.com/mahmoudimus/awesome-validation-python)
 72. [attrs-strict](https://github.com/bloomberg/attrs-strict)
+73. [pydantic-core](https://github.com/pydantic/pydantic-core)
 
 </details>
 
@@ -846,6 +856,8 @@
 7. [portia](https://github.com/scrapinghub/portia)
 8. [scrapyd](https://github.com/scrapy/scrapyd)
 9. [scrapy](https://github.com/scrapy/scrapy)
+10. [puppeteer](https://github.com/puppeteer/puppeteer)
+
 </details>
 
 <details><summary><h2>Data Governance</h2></summary>

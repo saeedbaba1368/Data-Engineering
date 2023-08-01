@@ -71,6 +71,7 @@ Objective: Find a scalable solution for real time entity resolution.
 29. [Near-duplicates and shingling](https://nlp.stanford.edu/IR-book/html/htmledition/near-duplicates-and-shingling-1.html)
 30. [(Almost) All of Entity Resolution](https://arxiv.org/abs/2008.04443)
 31. [A Survey on Locality Sensitive Hashing Algorithms and their Applications](https://arxiv.org/abs/2102.0894)
+32. [SetSimilaritySearch](https://github.com/ekzhu/SetSimilaritySearch)
 
 
 ### Videos
