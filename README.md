@@ -38,6 +38,8 @@
 36. [mCodingLLC](https://github.com/mCodingLLC)
 37. [ArjanCodes](https://github.com/ArjanCodes)
 38. [Data Centric Design](https://delftdesignlabs.org/dcd-lab/)
+39. [open-data-fabric](https://github.com/open-data-fabric/open-data-fabric)
+40. [serverlessland](https://serverlessland.com/)
 
 <details><summary><h1><a href="https://andrewrgoss.com/resources/">Resources for Data Engineering</a></h1></summary>
 
@@ -135,6 +137,16 @@
 9. [Dictionary Dispatch Pattern](https://betterprogramming.pub/dictionary-dispatch-pattern-in-python-706189d4fd16)
 10. [Multithreading/Parallel Jobs in AWS Glue](https://medium.com/analytics-vidhya/multithreading-parallel-job-in-aws-glue-a291219123fb)
 11. [SOLID Principles in Data Engineering](https://medium.com/data-engineer-things/solid-principles-in-data-engineering-part-1-49d6025fe0c9)
+12. [Deploying a Python Model to AWS Lambda Using Jenkins: A Comprehensive Guide](https://www.linkedin.com/pulse/deploying-python-model-aws-lambda-using-jenkins-guide-lalit-moharana/)
+13. [Deploy Web App on EKS](https://anuragmittal115.medium.com/deploy-a-webapp-on-aws-eks-6f4aa77aaeb2)
+14. [Accessing Amazon RDS From AWS EKS](https://dev.to/bensooraj/accessing-amazon-rds-from-aws-eks-2pc3)
+15. [how-to-monitor-lambda-functions](https://www.datadoghq.com/blog/how-to-monitor-lambda-functions/)
+16. [DevOps for DataOps: Building a CI/CD Pipeline for Apache Airflow DAGs](https://programmaticponderings.com/2021/12/14/devops-for-dataops-building-a-ci-cd-pipeline-for-apache-airflow-dags/)
+17. [Transaction Handling with Psycopg2](https://bbengfort.github.io/2017/12/psycopg2-transactions/)
+18. [How to deploy a Python app to AWS Lambda using Jenkins pipeline](https://awstip.com/how-to-deploy-a-python-app-to-aws-lambda-using-jenkins-pipeline-ec045b4d8e92)
+19. [Deploy AWS Lambda Functions to Local/Cloud Environments with Jenkins and Terraform](https://anthony-f-tannous.medium.com/deploy-aws-lambda-functions-to-local-cloud-environments-with-jenkins-and-terraform-2085ceb23763)
+20. [Jenkins Build Python App](https://www.jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller/)
+21. [JQ Tutorial](https://maximaavem.medium.com/getting-started-with-jq-to-manipulating-outputs-from-the-aws-cli-notes-70ad6757a44a)
 
 </details>
 
@@ -296,6 +308,7 @@
 28. [penetration testing](https://github.com/wtsxDev/Penetration-Testing)
 29. [awesome-pentest](https://github.com/enaqx/awesome-pentest)
 30. [chaos-toolkit](https://github.com/chaostoolkit/chaostoolkit)
+31. [Python for Network Engineers](https://pyneng.readthedocs.io/en/latest/index.html#)
 
 </details>
 
@@ -372,6 +385,7 @@
 56. [pyparsing](https://github.com/pyparsing/pyparsing)
 57. [psutil](https://github.com/giampaolo/psutil)
 58. [ray](https://github.com/ray-project/ray)
+59. [click](https://github.com/pallets/click)
 
 </details>
 
@@ -418,6 +432,8 @@
 38. [The-Python-Graph-Gallery](https://github.com/holtzy/The-Python-Graph-Gallery)
 39. [rustworkx](https://github.com/Qiskit/rustworkx)
 40. [solara](https://github.com/widgetti/solara)
+41. [pygwalker](https://github.com/Kanaries/pygwalker)
+42. [graphic-walker](https://github.com/Kanaries/graphic-walker)
 
 </details>
 
@@ -456,6 +472,7 @@
 31. [psycopg2](https://github.com/psycopg/psycopg2)
 32. [pg_simple](https://github.com/masroore/pg_simple)
 33. [databases](https://github.com/encode/databases)
+34. [sqlmesh](https://github.com/TobikoData/sqlmesh)
 
 </details>
 
