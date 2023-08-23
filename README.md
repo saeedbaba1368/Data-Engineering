@@ -1,4 +1,6 @@
-# Resource: [Data-Engineering-HowTo](https://github.com/adilkhash/Data-Engineering-HowTo)
+# Resources
+
+<details><summary><h1>Design Guides</h1></summary>
 
 1. [Design Patterns in the Real World](https://holub.com/patterns/)
 2. [Design Patterns](https://sourcemaking.com/)
@@ -40,87 +42,60 @@
 38. [Data Centric Design](https://delftdesignlabs.org/dcd-lab/)
 39. [open-data-fabric](https://github.com/open-data-fabric/open-data-fabric)
 40. [serverlessland](https://serverlessland.com/)
+41. [Data Oriented Design](https://github.com/dbartolini/data-oriented-design)
+42. [Python Patterns](https://github.com/faif/python-patterns)
+43. [Diagrams](https://github.com/mingrammer/diagrams)
+44. [python-anti-patterns](https://github.com/quantifiedcode/python-anti-patterns)
+45. [Python 3 Patterns, Recipes and Idioms](https://python-3-patterns-idioms-test.readthedocs.io/en/latest/index.html)
+46. [awesome-ddd](https://github.com/heynickc/awesome-ddd)
+47. [designing-data-intensive-applications](https://github.com/ResidentMario/designing-data-intensive-applications-notes)
+48. [solution-architecture-patterns](https://github.com/chanakaudaya/solution-architecture-patterns)
+49. [Serverless Patterns](https://github.com/aws-samples/serverless-patterns)
+50. [awesome-system-design](https://github.com/madd86/awesome-system-design)
+51. [awesome-software-architecture](https://github.com/mehdihadeli/awesome-software-architecture)
+
+</details>
 
 <details><summary><h1><a href="https://andrewrgoss.com/resources/">Resources for Data Engineering</a></h1></summary>
-
-- [Awesome](https://github.com/sindresorhus/awesome)
 
 1. [Awesome ETL](https://github.com/pawl/awesome-etl)
 2. [Big Data](https://github.com/0xnr/awesome-bigdata)
 3. [CookBook](https://github.com/andkret/Cookbook)
 4. [Tech Interview ](https://github.com/yangshun/tech-interview-handbook)
 5. [Python Resources](https://github.com/vinta/awesome-python)
-6. [Jupyter](https://github.com/markusschanta/awesome-jupyter)
+6. [awesome - Jupyter](https://github.com/markusschanta/awesome-jupyter)
 7. [System Design](https://github.com/donnemartin/system-design-primer)
 8. [Awesome Data Engineering](https://github.com/igorbarinov/awesome-data-engineering)
-9. [Chaos Engineering](https://github.com/dastergon/awesome-chaos-engineering)
-10. [Data Engineering Project Example](https://github.com/damklis/DataEngineeringProject)
-11. [Data Engineering Cookbook](https://cookbook.learndataengineering.com/docs/01-Introduction/)
-12. [The Algorithms: Python](https://github.com/TheAlgorithms/Python)
-13. [Applied-ML](https://github.com/eugeneyan/applied-ml)
-14. [understanding-the-python-ecosystem](https://github.com/brunocampos01/understanding-the-python-ecosystem)
-11. [CS Courses](https://github.com/prakhar1989/awesome-courses)
-12. [Python Patterns](https://github.com/faif/python-patterns)
-13. [Awesome Python](https://github.com/vinta/awesome-python)
-14. [Diagrams](https://github.com/mingrammer/diagrams)
-15. [Algorithms and Data Structures](https://github.com/keon/algorithms)
-16. [Dev-ops Exercises](https://github.com/bregman-arie/devops-exercises)
-17. [pyspark-examples](https://github.com/spark-examples/pyspark-examples)
-18. [Awesome Process Mining](https://github.com/TheWoops/awesome-processmining)
-19. [DockerLabs](https://github.com/collabnix/dockerlabs)
-20. [ml-design-patterns](https://github.com/GoogleCloudPlatform/ml-design-patterns)
-21. [Learn Amazon Sagemaker](https://github.com/PacktPublishing/Learn-Amazon-SageMaker)
-22. [pm4py-core](https://github.com/pm4py/pm4py-core)
-23. [gophernotes](https://github.com/gopherdata/gophernotes)
-24. [python-anti-patterns](https://github.com/quantifiedcode/python-anti-patterns)
-25. [Awesome Scientific Computing](https://github.com/nschloe/awesome-scientific-computing)
-26. [RPA Framework](https://github.com/robocorp/rpaframework)
-27. [RPA Python](https://github.com/tebelorg/RPA-Python)
-28. [awesome-web-scraping](https://github.com/lorien/awesome-web-scraping)
-29. [awesome-markdown](https://github.com/mundimark/awesome-markdown)
-30. [awesome networking](https://github.com/facyber/awesome-networking)
-31. [rclone](https://github.com/rclone/rclone)
-32. [Python 3 Patterns, Recipes and Idioms](https://python-3-patterns-idioms-test.readthedocs.io/en/latest/index.html)
-33. [Python for Network Engineers](https://pyneng.readthedocs.io/en/latest/index.html)
-34. [Cookie Cutter Python Package](https://github.com/boromir674/cookiecutter-python-package)
-35. [List of Cookie Cutter Templates](https://github.com/cookiejar/cookietemple)
-36. [cookiecutter-modern-pypackage](https://github.com/fedejaure/cookiecutter-modern-pypackage)
-37. [cookiecutter-modern-datascience](https://github.com/crmne/cookiecutter-modern-datascience)
-38. [cookiecutter-data-science](https://github.com/drivendata/cookiecutter-data-science)
-39. [Cookie Cutter](https://github.com/cookiecutter/cookiecutter)
-40. [Data Oriented Design](https://github.com/dbartolini/data-oriented-design)
-41. [refurb](https://github.com/dosisod/refurb)
-42. [joblib](https://github.com/joblib/joblib)
-43. [spylunking](https://github.com/jay-johnson/spylunking)
-44. [splunk-sdk-python](https://github.com/splunk/splunk-sdk-python)
-45. [opentelemetry-python](https://github.com/open-telemetry/opentelemetry-python)
-46. [Regex](https://www.regular-expressions.info/)
-47. [networkX](https://networkx.org/)
-48. [Aws Open Telemtry](https://aws-otel.github.io/)
-49. [opentelemetry.io](https://opentelemetry.io/)
-50. [Practitioners Guide to Graph Data](https://github.com/datastax/graph-book)
-51. [Graph Data Notebooks](https://github.com/aws/graph-notebook)
-52. [Data Pipelines with Apache Airflow](https://github.com/BasPH/data-pipelines-with-apache-airflow)
-53. [Versatile Data Kit](https://github.com/vmware/versatile-data-kit)
-54. [Pyspark Project Example](https://github.com/AlexIoannides/pyspark-example-project)
-55. [Datalake ETL Pipeline Example](https://github.com/vim89/datalake-etl-pipeline)
-56. [Streamify](https://github.com/ankurchavda/streamify)
-57. [Data Algorithms with Spark](https://github.com/mahmoudparsian/data-algorithms-with-spark)
-58. [Distributed-Statistical-Computing](https://github.com/feng-li/Distributed-Statistical-Computing)
-59. [Spark with Python](https://github.com/tirthajyoti/Spark-with-Python)
-60. [Former2](https://github.com/iann0036/former2)
-61. [vaex](https://github.com/vaexio/vaex)
-62. [tomodachi](https://github.com/kalaspuff/tomodachi)
-63. [duckdb](https://github.com/duckdb/duckdb)
-64. [python-project-blueprint](https://github.com/MartinHeinz/python-project-blueprint)
-65. [python blueprint](https://github.com/johnthagen/python-blueprint)
-66. [Data Analysis With Polars](https://github.com/braaannigan/data-analysis-with-polars)
-67. [rust by example](https://github.com/rust-lang/rust-by-example)
-68. [Graph Notebook](https://github.com/aws/graph-notebook)
-69. [Goodreads ETL Pipeline](https://github.com/san089/goodreads_etl_pipeline)
-70. [awesome-ddd](https://github.com/heynickc/awesome-ddd)
-71. [Factory Boy](https://github.com/FactoryBoy/factory_boy)
-72. [awesome-network-automation](https://github.com/networktocode/awesome-network-automation)
+9. [Data Engineering Cookbook](https://cookbook.learndataengineering.com/docs/01-Introduction/)
+10. [The Algorithms: Python](https://github.com/TheAlgorithms/Python)
+11. [Applied-ML](https://github.com/eugeneyan/applied-ml)
+12. [understanding-the-python-ecosystem](https://github.com/brunocampos01/understanding-the-python-ecosystem)
+13. [pyspark-examples](https://github.com/spark-examples/pyspark-examples)
+14. [Awesome Process Mining](https://github.com/TheWoops/awesome-processmining)
+15. [Learn Amazon Sagemaker](https://github.com/PacktPublishing/Learn-Amazon-SageMaker)
+16. [pm4py-core](https://github.com/pm4py/pm4py-core)
+17. [awesome-markdown](https://github.com/mundimark/awesome-markdown)
+18. [Practitioners Guide to Graph Data](https://github.com/datastax/graph-book)
+19. [Graph Data Notebooks](https://github.com/aws/graph-notebook)
+20. [Versatile Data Kit](https://github.com/vmware/versatile-data-kit)
+21. [Pyspark Project Example](https://github.com/AlexIoannides/pyspark-example-project)
+22. [Datalake ETL Pipeline Example](https://github.com/vim89/datalake-etl-pipeline)
+23. [Streamify](https://github.com/ankurchavda/streamify)
+24. [Data Algorithms with Spark](https://github.com/mahmoudparsian/data-algorithms-with-spark)
+25. [Spark with Python](https://github.com/tirthajyoti/Spark-with-Python)
+26. [vaex](https://github.com/vaexio/vaex)
+27. [duckdb](https://github.com/duckdb/duckdb)
+28. [python-project-blueprint](https://github.com/MartinHeinz/python-project-blueprint)
+29. [python blueprint](https://github.com/johnthagen/python-blueprint)
+30. [Data Analysis With Polars](https://github.com/braaannigan/data-analysis-with-polars)
+31. [rust by example](https://github.com/rust-lang/rust-by-example)
+32. [Goodreads ETL Pipeline](https://github.com/san089/goodreads_etl_pipeline)
+33. [Data-Engineering-HowTo](https://github.com/adilkhash/Data-Engineering-HowTo)
+34. [awesome-apache-airflow](https://github.com/jghoman/awesome-apache-airflow)
+35. [DataEngineeringProject](https://github.com/damklis/DataEngineeringProject)
+36. [python-ddd](https://github.com/pgorecki/python-ddd)
+37. [data-pipelines-with-apache-airflow](https://github.com/BasPH/data-pipelines-with-apache-airflow)
+38. [Python Data Analysis](https://github.com/hnawaz007/pythondataanalysis)
 
 </details>
 
@@ -147,6 +122,15 @@
 19. [Deploy AWS Lambda Functions to Local/Cloud Environments with Jenkins and Terraform](https://anthony-f-tannous.medium.com/deploy-aws-lambda-functions-to-local-cloud-environments-with-jenkins-and-terraform-2085ceb23763)
 20. [Jenkins Build Python App](https://www.jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller/)
 21. [JQ Tutorial](https://maximaavem.medium.com/getting-started-with-jq-to-manipulating-outputs-from-the-aws-cli-notes-70ad6757a44a)
+22. [Analyzing Twitter in Real Time](https://github.com/AWS-Big-Data-Projects/Analyzing-Twitter-in-real-time-with-Kinesis-Lambda-Comprehend-and-ElasticSearch)
+23. [AWS Glue first experience - part 2 - Dependencies and guts](https://dev.to/1oglop1/aws-glue-first-experience-part-2-dependencies-and-guts-29l)
+24. [Develop and test AWS Glue version 3.0 and 4.0 jobs locally using a Docker container](https://aws.amazon.com/blogs/big-data/develop-and-test-aws-glue-version-3-0-jobs-locally-using-a-docker-container/)
+25. [Using Docker containers for AWS Glue jobs local development](https://medium.com/globalwork-data-driven-world/using-docker-containers-for-aws-glue-jobs-local-development-68b283857a15)
+26. [a-practical-guide-to-using-setup-py](https://godatadriven.com/blog/a-practical-guide-to-using-setup-py/)
+27. [How To Package Your Python Code](https://python-packaging.readthedocs.io/en/latest/index.html)
+28. [Python packaging edge cases](https://921kiyo.com/python-packaging-edge-cases/)
+29. [python-fastapi-aws-lambda-container](https://github.com/gbdevw/python-fastapi-aws-lambda-container)
+30. [How to Create a Package](https://github.com/ArjanCodes/2023-package)
 
 </details>
 
@@ -249,9 +233,19 @@
 12. [Hash_collision](https://en.wikipedia.org/wiki/Hash_collision)
 13. [Lazy_evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation)
 14. [Relational_algebra](https://en.wikipedia.org/wiki/Category:Relational_algebra)
-15. [aiofiles](https://github.com/Tinche/aiofiles)
-16. [aiobotocore](https://github.com/aio-libs/aiobotocore)
-17. [aioboto3](https://github.com/terrycain/aioboto3)
+
+</details>
+
+<details><summary><h2>Continuous Integration and Deployment</h2></summary>
+
+1. [jenkins-tutorial](https://github.com/ssbostan/jenkins-tutorial)
+2. [awesome-ciandcd](https://github.com/cicdops/awesome-ciandcd)
+3. [awesome-ci](https://github.com/ligurio/awesome-ci)
+4. [eksctl](https://github.com/eksctl-io/eksctl)
+5. [Dev-ops Exercises](https://github.com/bregman-arie/devops-exercises)
+6. [DockerLabs](https://github.com/collabnix/dockerlabs)
+7. [former2](https://github.com/iann0036/former2)
+8. [awesome-kubernetes](https://github.com/nubenetes/awesome-kubernetes)
 
 </details>
 
@@ -273,6 +267,7 @@
 14. [Metaflow](https://github.com/Netflix/metaflow)
 15. [River](https://github.com/online-ml/river)
 16. [Bytewax](https://github.com/bytewax/bytewax)
+17. [ml-design-patterns](https://github.com/GoogleCloudPlatform/ml-design-patterns)
 
 </details>
 
@@ -309,6 +304,10 @@
 29. [awesome-pentest](https://github.com/enaqx/awesome-pentest)
 30. [chaos-toolkit](https://github.com/chaostoolkit/chaostoolkit)
 31. [Python for Network Engineers](https://pyneng.readthedocs.io/en/latest/index.html#)
+32. [Chaos Engineering](https://github.com/dastergon/awesome-chaos-engineering)
+33. [awesome networking](https://github.com/facyber/awesome-networking)
+34. [Python for Network Engineers](https://pyneng.readthedocs.io/en/latest/index.html)
+35. [awesome-network-automation](https://github.com/networktocode/awesome-network-automation)
 
 </details>
 
@@ -323,6 +322,7 @@
 7. [Apex](https://github.com/NVIDIA/apex)
 8. [Zappa](https://github.com/zappa/Zappa)
 9. [Serverless](https://github.com/serverless/serverless)
+10. [tomodachi](https://github.com/kalaspuff/tomodachi)
 
 </details>
 
@@ -439,6 +439,9 @@
 
 <details><summary><h2>Databases and Parsing</h2></summary>
 
+- [amazon-redshift-utils](https://github.com/awslabs/amazon-redshift-utils)
+- [amazon-redshift-developer-guides](https://github.com/awsdocs/amazon-redshift-developer-guide)
+
 1. [SQL Alchemy](https://github.com/sqlalchemy/sqlalchemy)
 2. [Pyodbc](https://github.com/mkleehammer/pyodbc)
 3. [PyMySQL](https://github.com/PyMySQL/PyMySQL)
@@ -537,6 +540,9 @@
 21. [aiohttp-client-cache](https://github.com/requests-cache/aiohttp-client-cache)
 22. [aiohttp](https://github.com/aio-libs/aiohttp)
 23. [multiprocess](https://github.com/uqfoundation/multiprocess)
+24. [aiofiles](https://github.com/Tinche/aiofiles)
+25. [aiobotocore](https://github.com/aio-libs/aiobotocore)
+26. [aioboto3](https://github.com/terrycain/aioboto3)
 
 </details>
 
@@ -612,6 +618,9 @@
 <details><summary><h2>Big Data and Cloud API's</h2></summary>
 
 - [AWS SDK Examples](https://github.com/awsdocs/aws-doc-sdk-examples)
+- [AWS Samples](https://github.com/aws-samples)
+- [AWS Labs](https://github.com/awslabs)
+- [aws-solutions](https://github.com/aws-solutions)
 
 1. [AWS Encryption SDK](https://github.com/aws/aws-encryption-sdk-python)
 2. [AWS Xray SDK](https://github.com/aws/aws-xray-sdk-python)
@@ -636,6 +645,10 @@
 21. [duckDB](https://duckdb.org/)
 22. [Dask](https://github.com/dask/dask)
 23. [SparkSQL](https://spark.apache.org/docs/2.2.0/sql-programming-guide.html)
+24. [cloud-experiments](https://github.com/aws-samples/cloud-experiments)
+25. [document-understanding-solution](https://github.com/aws-solutions/document-understanding-solution)
+26. [aws-glue-docker](https://github.com/webysther/aws-glue-docker)
+27. [amazon-comprehend-examples](https://github.com/aws-samples/amazon-comprehend-examples)
 
 </details>
 
@@ -791,6 +804,7 @@
 71. [awesome-validation-python](https://github.com/mahmoudimus/awesome-validation-python)
 72. [attrs-strict](https://github.com/bloomberg/attrs-strict)
 73. [pydantic-core](https://github.com/pydantic/pydantic-core)
+74. [dataclass-type-validator](https://github.com/levii/dataclass-type-validator)
 
 </details>
 
@@ -859,6 +873,13 @@
 13. [Logstash](https://github.com/elastic/logstash)
 14. [Hypothesis](https://github.com/HypothesisWorks/hypothesis)
 15. [awesome-pytest](https://github.com/augustogoulart/awesome-pytest)
+16. [spylunking](https://github.com/jay-johnson/spylunking)
+17. [splunk-sdk-python](https://github.com/splunk/splunk-sdk-python)
+18. [opentelemetry-python](https://github.com/open-telemetry/opentelemetry-python)
+19. [Aws Open Telemtry](https://aws-otel.github.io/)
+20. [opentelemetry.io](https://opentelemetry.io/)
+21. [refurb](https://github.com/dosisod/refurb)
+22. [Factory Boy](https://github.com/FactoryBoy/factory_boy)
 
 </details>
 
@@ -874,24 +895,20 @@
 8. [scrapyd](https://github.com/scrapy/scrapyd)
 9. [scrapy](https://github.com/scrapy/scrapy)
 10. [puppeteer](https://github.com/puppeteer/puppeteer)
+11. [awesome-web-scraping](https://github.com/lorien/awesome-web-scraping)
 
 </details>
 
 <details><summary><h2>Data Governance</h2></summary>
 
-1. [Business_process](https://en.wikipedia.org/wiki/Category:Business_process)
-2. [Evaluation_methods](https://en.wikipedia.org/wiki/Category:Evaluation_methods)
-3. [Systems_analysis](https://en.wikipedia.org/wiki/Systems_analysis)
-4. [Awesome Data Catalogs](https://github.com/opendatadiscovery/awesome-data-catalogs)
+1. [Awesome Data Catalogs](https://github.com/opendatadiscovery/awesome-data-catalogs)
 
 <details><summary><h3>Concepts</h3></summary>
 
 1. [Automated reasoning](https://en.wikipedia.org/wiki/Automated_reasoning)
 2. [Ontology: Barry Smith](http://ontology.buffalo.edu/smith/)
 3. [Knowledge Representation](https://en.wikipedia.org/wiki/Category:Knowledge_representation)
-4. [Knowledge](https://en.wikipedia.org/wiki/Category:Knowledge)
-5. [Knowledge Graphs](https://en.wikipedia.org/wiki/Category:Knowledge_graphs)
-6. [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
+4. [Knowledge Graphs](https://en.wikipedia.org/wiki/Category:Knowledge_graphs)
 
 </details>
 
