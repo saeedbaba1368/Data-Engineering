@@ -131,6 +131,19 @@
 28. [Python packaging edge cases](https://921kiyo.com/python-packaging-edge-cases/)
 29. [python-fastapi-aws-lambda-container](https://github.com/gbdevw/python-fastapi-aws-lambda-container)
 30. [How to Create a Package](https://github.com/ArjanCodes/2023-package)
+31. [#14 Gitlab Package Registry | Build And Publish A Python Pip Package](https://www.youtube.com/watch?v=g74Ir7EqTmM)
+32. [Predefined variables reference](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
+33. [Auto Deploying Python PyPI Package with Gitlab CI/CD Simplified.](https://www.bluedoa.com/auto-deploying-python-pypi-package-with-gitlab-ci-cd-simplified-/)
+34. [POETRY AND GITLAB: DEVOPS FOR PYTHON DEVELOPERS](https://docs.mpcdf.mpg.de/doc/data/gitlab/devop-tutorial.html)
+35. [Using Gitlab pipelines to deploy Python packages in production and staging environments](https://medium.com/@pypripackages/using-gitlab-pipelines-to-deploy-python-packages-in-production-and-staging-environments-8ab7dc979274)
+36. [How To Upload Private Python Packages to Gitlab](https://medium.com/@matt_tich/how-to-upload-private-python-packages-to-gitlab-2999e9604603)
+37. [PyPI packages in the Package Registry ](https://docs.gitlab.com/ee/user/packages/pypi_repository/index.html#create-a-project)
+38. [Publishing your Python package in your Gitlab Package Registry](https://www.anapaulagomes.me/2021/04/publishing-your-python-package-in-your-gitlab-package-registry/)
+39. [Improve database performance with connection pooling](https://stackoverflow.blog/2020/10/14/improve-database-performance-with-connection-pooling/)
+40. [Understanding Go and Databases at Scale: Connection Pooling](https://koho.dev/understanding-go-and-databases-at-scale-connection-pooling-f301e56fa73)
+41. [Data Processing Architecture — Lambda and Kappa](https://medium.com/sagar-explains-azure-and-analytics-azure-series/data-processing-architecture-lambda-and-kappa-ebb54029c893)
+42. [Performance Under Load](https://netflixtechblog.medium.com/performance-under-load-3e6fa9a60581)
+43. [Kappa Architecture - A big data engineering approach](https://pradeepl.com/blog/kappa-architecture/)
 
 </details>
 
@@ -236,7 +249,7 @@
 
 </details>
 
-<details><summary><h2>Continuous Integration and Deployment</h2></summary>
+<details><summary><h2>Continuous Integration and Continuous Deployment (DevOps)</h2></summary>
 
 1. [jenkins-tutorial](https://github.com/ssbostan/jenkins-tutorial)
 2. [awesome-ciandcd](https://github.com/cicdops/awesome-ciandcd)
@@ -246,6 +259,7 @@
 6. [DockerLabs](https://github.com/collabnix/dockerlabs)
 7. [former2](https://github.com/iann0036/former2)
 8. [awesome-kubernetes](https://github.com/nubenetes/awesome-kubernetes)
+9. [Introduction to GitLab CI & DevOps with AWS - Course Notes](https://gitlab.com/gitlab-course-public/freecodecamp-gitlab-ci/-/blob/main/docs/course-notes.md)
 
 </details>
 
@@ -476,6 +490,9 @@
 32. [pg_simple](https://github.com/masroore/pg_simple)
 33. [databases](https://github.com/encode/databases)
 34. [sqlmesh](https://github.com/TobikoData/sqlmesh)
+35. [DBUtils](https://github.com/WebwareForPython/DBUtils)
+36. [pymysql-pool](https://github.com/jkklee/pymysql-pool)
+37. [django-db-connection-pool](https://github.com/altairbow/django-db-connection-pool)
 
 </details>
 
@@ -612,6 +629,7 @@
 62. [airflow provider sample](https://github.com/astronomer/airflow-provider-sample)
 63. [metabase](https://github.com/metabase/metabase)
 64. [Flowman](https://github.com/dimajix/flowman)
+65. [Apache Beam](https://github.com/apache/beam)
 
 </details>
 
@@ -621,6 +639,7 @@
 - [AWS Samples](https://github.com/aws-samples)
 - [AWS Labs](https://github.com/awslabs)
 - [aws-solutions](https://github.com/aws-solutions)
+- [Spark SQL Programming Guide](https://spark.apache.org/docs/latest/sql-programming-guide.html)
 
 1. [AWS Encryption SDK](https://github.com/aws/aws-encryption-sdk-python)
 2. [AWS Xray SDK](https://github.com/aws/aws-xray-sdk-python)
