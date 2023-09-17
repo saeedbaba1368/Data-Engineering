@@ -9,4 +9,6 @@
 8. https://python.plainenglish.io/design-patterns-in-python-builder-pattern-d921fbac7fb3
 9. https://levelup.gitconnected.com/restful-django-django-rest-framework-8b62bed31dd8
 10. https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Observer.html
+11. https://python.plainenglish.io/repository-pattern-is-insane-if-you-know-how-to-use-it-properly-python-88a05f03a50c
+
 """
