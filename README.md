@@ -96,6 +96,9 @@
 36. [python-ddd](https://github.com/pgorecki/python-ddd)
 37. [data-pipelines-with-apache-airflow](https://github.com/BasPH/data-pipelines-with-apache-airflow)
 38. [Python Data Analysis](https://github.com/hnawaz007/pythondataanalysis)
+39. [Data Engineering on GCP](https://github.com/itversity/data-engineering-on-gcp)
+40. [GPT Engineer](https://github.com/AntonOsika/gpt-engineer)
+41. [microservices-demo](https://github.com/GoogleCloudPlatform/microservices-demo)
 
 </details>
 
@@ -144,6 +147,18 @@
 41. [Data Processing Architecture — Lambda and Kappa](https://medium.com/sagar-explains-azure-and-analytics-azure-series/data-processing-architecture-lambda-and-kappa-ebb54029c893)
 42. [Performance Under Load](https://netflixtechblog.medium.com/performance-under-load-3e6fa9a60581)
 43. [Kappa Architecture - A big data engineering approach](https://pradeepl.com/blog/kappa-architecture/)
+44. [A Study Guide to the Google Cloud Professional Data Engineer Certification Path](https://simonleewm.medium.com/a-study-guide-to-the-google-cloud-professional-data-engineer-certification-path-9e83e41e311)
+45. [Install JupyterHub and JupyterLab from the ground up](https://github.com/jupyterhub/jupyterhub-the-hard-way/blob/HEAD/docs/installation-guide-hard.md)
+46. [Exploring the Most Useful SQL Operators, Functions, and Clauses](https://levelup.gitconnected.com/exploring-the-most-useful-sql-operators-functions-and-clauses-cd71f2e4a1e2)
+47. [How to design a dbt model from scratch](https://towardsdatascience.com/how-to-design-a-dbt-model-from-scratch-8c72c7684203)
+48. [Take Your SQL From Good to Great: Part 4](https://towardsdatascience.com/take-your-sql-from-good-to-great-part-4-99a55fd0e7ff)
+49. [The Ultimate SQL Guide](https://taylor-count.medium.com/the-ultimate-sql-guide-8cf06ed67281)
+50. [Kappa Architecture 1:1 - How to Build a Modern Streaming Data Architecture?](https://nexocode.com/blog/posts/kappa-architecture/)
+51. [Designing a Production-Ready Kappa Architecture for Timely Data Stream Processing](https://www.uber.com/blog/kappa-architecture-data-stream-processing/)
+52. [cumulative-table-design](https://github.com/EcZachly/cumulative-table-design)
+53. [climate-ai](https://github.com/EcZachly/climate-ai)
+54. [little-book-of-pipelines](https://github.com/EcZachly/little-book-of-pipelines)
+55. [Microbatch Hourly Deduped Tutorial](https://github.com/EcZachly/microbatch-hourly-deduped-tutorial)
 
 </details>
 
@@ -448,6 +463,8 @@
 40. [solara](https://github.com/widgetti/solara)
 41. [pygwalker](https://github.com/Kanaries/pygwalker)
 42. [graphic-walker](https://github.com/Kanaries/graphic-walker)
+43. [datapane](https://github.com/datapane/datapane)
+44. [gleam](https://github.com/gleam-lang/gleam)
 
 </details>
 
@@ -493,6 +510,8 @@
 35. [DBUtils](https://github.com/WebwareForPython/DBUtils)
 36. [pymysql-pool](https://github.com/jkklee/pymysql-pool)
 37. [django-db-connection-pool](https://github.com/altairbow/django-db-connection-pool)
+38. [Vanna](https://github.com/vanna-ai/vanna)
+39. [malloy](https://github.com/malloydata/malloy)
 
 </details>
 
@@ -668,6 +687,11 @@
 25. [document-understanding-solution](https://github.com/aws-solutions/document-understanding-solution)
 26. [aws-glue-docker](https://github.com/webysther/aws-glue-docker)
 27. [amazon-comprehend-examples](https://github.com/aws-samples/amazon-comprehend-examples)
+28. [Festin](https://github.com/cr0hn/festin)
+29. [MinIO-py](https://github.com/minio/minio-py)
+30. [Bucketstore](https://github.com/jpetrucciani/bucketstore)
+31. [amazon-redshift-udfs](https://github.com/aws-samples/amazon-redshift-udfs)
+32. [PyLazyS3](https://github.com/Den1al/PyLazyS3)
 
 </details>
 

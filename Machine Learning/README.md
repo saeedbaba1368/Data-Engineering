@@ -207,3 +207,6 @@
 155. [Yake](https://github.com/LIAAD/yake)
 156. [OmniEvent](https://github.com/THU-KEG/OmniEvent)
 157. [Hands-On-Ensemble-Learning-with-Python](https://github.com/PacktPublishing/Hands-On-Ensemble-Learning-with-Python)
+158. [ensemble-methods-notebooks](https://github.com/gkunapuli/ensemble-methods-notebooks)
+159. [Stacking-Blending-Voting-Ensembles](https://github.com/FernandoLpz/Stacking-Blending-Voting-Ensembles)
+160. [awesome-ensemble-learning](https://github.com/yzhao062/awesome-ensemble-learning)
