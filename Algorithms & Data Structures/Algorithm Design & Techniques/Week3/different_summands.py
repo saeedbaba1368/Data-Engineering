@@ -1,5 +1,6 @@
 # Uses python3
 import sys
+
 # Task. You are organizing a funny competition for children. As a prize fund you have n
 # candies. You would like to use these candies for top k places in a competition
 # with a natural restriction that a higher place gets a larger number of candies.
@@ -13,16 +14,16 @@ import sys
 # of k pairwise distinct positive integers. In the second line, output k pairwise distinct positive integers
 # that sum up to n (if there are many such representations, output any of them).
 
-# Greedy algorithm: We are going to express n in terms of k increasing integers and maximize k. 
+# Greedy algorithm: We are going to express n in terms of k increasing integers and maximize k.
 # If there are more than 2 candies, we add 1, 2, 4, 6, ... 2*k until the remaining candies are less than 2*(k + 1)
 # Then, we distribute the remaining candies to 1 place in the competition.
 # Let x denote each candy. Observe the following diagrams:
-# When there are 1 candy: 
+# When there are 1 candy:
 # x
-# When there are 2 candies: 
+# When there are 2 candies:
 # x x
-# When there are 3 candies: 
-# x 
+# When there are 3 candies:
+# x
 # x x
 # When there are 4 candies:
 # x
@@ -36,22 +37,24 @@ import sys
 # For a fix n, if the previous condition is satisfied, the increment in integer is the smallest as a[j] = a[j - 1] + 1. So the remainder is as large as possible for a[j + 1]
 # So, we can maximize k. Otherwise, we cannot build a[j + 1] and add them back to a[j] which does not hurt the optimality. So, it's a safe move.
 
+
 def optimal_summands(n):
     summands = []
     n_sum = n
-    choice = 1 # a[1]
-    while n_sum > 2*choice:
-        summands.append(choice) # append a[j - 1]
-        n_sum -= choice # n - a[1] - ... - a[j - 1]
-        choice += 1 # a[j] = a[j - 1] + 1
-    
+    choice = 1  # a[1]
+    while n_sum > 2 * choice:
+        summands.append(choice)  # append a[j - 1]
+        n_sum -= choice  # n - a[1] - ... - a[j - 1]
+        choice += 1  # a[j] = a[j - 1] + 1
+
     summands.append(n_sum)
     return summands
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     input = sys.stdin.read()
     n = int(input)
     summands = optimal_summands(n)
     print(len(summands))
     for x in summands:
-        print(x, end=' ')
+        print(x, end=" ")

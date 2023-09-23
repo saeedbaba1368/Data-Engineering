@@ -9,8 +9,9 @@ import functools
 import logging
 from typing import Union
 
-logging.basicConfig(level = logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
+
 
 def log(func):
     @functools.wraps(func)
@@ -23,31 +24,36 @@ def log(func):
             result = func(*args, **kwargs)
             return result
         except Exception as e:
-            logger.exception(f"Exception raised in {func.__name__}. exception: {str(e)}")
+            logger.exception(
+                f"Exception raised in {func.__name__}. exception: {str(e)}"
+            )
             raise e
+
     return wrapper
 
+
 @log
-def foo(a,b):
+def foo(a, b):
     c = a + b
     raise Exception("Something went wrong")
 
 
-
-
 class MyLogger:
     """This logger can be customized depending on your scenario
-    
+
     See logger.py for an example of a custom logger
     """
+
     def __init__(self):
         logging.basicConfig(level=logging.DEBUG)
 
     def get_logger(self, name=None):
         return logging.getLogger(name)
 
+
 def get_default_logger():
     return MyLogger().get_logger()
+
 
 def log(_func=None, *, my_logger: Union[MyLogger, logging.Logger] = None):
     def decorator_log(func):
@@ -68,8 +74,11 @@ def log(_func=None, *, my_logger: Union[MyLogger, logging.Logger] = None):
                 result = func(*args, **kwargs)
                 return result
             except Exception as e:
-                logger.exception(f"Exception raised in {func.__name__}. exception: {str(e)}")
+                logger.exception(
+                    f"Exception raised in {func.__name__}. exception: {str(e)}"
+                )
                 raise e
+
         return wrapper
 
     if _func is None:
@@ -77,11 +86,14 @@ def log(_func=None, *, my_logger: Union[MyLogger, logging.Logger] = None):
     else:
         return decorator_log(_func)
 
+
 @log(my_logger=MyLogger())
 def sum(a, b=10):
     return a + b
 
+
 lg = MyLogger().get_logger()
+
 
 @log(my_logger=lg)
 def sum(a, b=10):

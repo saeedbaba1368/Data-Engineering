@@ -8,15 +8,18 @@ class EnhancedJSONEncoder(json.JSONEncoder):
     """Usage: json.dumps(foo, cls=EnhancedJSONEncoder)
     https://www.bruceeckel.com/2018/09/16/json-encoding-python-dataclasses/
     """
+
     def default(self, o):
         if is_dataclass(o):
             return asdict(o)
         return super().default(o)
 
+
 @dataclass
 class Base:
     def dict(self):
         return {k: str(v) for k, v in asdict(self).items()}
+
 
 @dataclass
 class LambdaRecord(Base):
@@ -28,17 +31,20 @@ class LambdaRecord(Base):
 
     def __post_init__(self):
         """Validate types and convert datetime"""
-        for x in [self.metric_name,self.job_name,self.unit]:
-            if not isinstance(x,str):
+        for x in [self.metric_name, self.job_name, self.unit]:
+            if not isinstance(x, str):
                 raise ValueError(f"{x} is of wrong type, must be string")
-        
-        if not isinstance(self.timestamp,datetime):
+
+        if not isinstance(self.timestamp, datetime):
             raise ValueError(f"{self.timestamp} needs to be a datetime object")
-        
-        if not isinstance(self.statistic,(int,float)):
-            raise ValueError(f"Wrong type for statistic,{self.statistic}. Needs to be float or int")
-        
-        self.timestamp = self.timestamp.strftime('%Y-%m-%d %H:%M:%S.%f')
+
+        if not isinstance(self.statistic, (int, float)):
+            raise ValueError(
+                f"Wrong type for statistic,{self.statistic}. Needs to be float or int"
+            )
+
+        self.timestamp = self.timestamp.strftime("%Y-%m-%d %H:%M:%S.%f")
+
 
 @dataclass
 class GlueRecord(Base):
@@ -51,16 +57,18 @@ class GlueRecord(Base):
 
     def __post_init__(self):
         """Validate types and convert datetime"""
-        for field_name,date_obj in [
-            ("StartedOn",self.StartedOn),("LastModifiedOn",self.LastModifiedOn),("CompletedOn",self.CompletedOn)
-            ]:
-            if not isinstance(date_obj,datetime):
+        for field_name, date_obj in [
+            ("StartedOn", self.StartedOn),
+            ("LastModifiedOn", self.LastModifiedOn),
+            ("CompletedOn", self.CompletedOn),
+        ]:
+            if not isinstance(date_obj, datetime):
                 raise ValueError(f"{date_obj} is of wrong type, must be datetime")
-            
-            setattr(self, field_name ,date_obj.strftime('%Y-%m-%d %H:%M:%S.%f'))
 
-        for x in [self.JobName,self.JobRunState,self.ExecutionTime]:
-            if not isinstance(x,(str,int,float)):
+            setattr(self, field_name, date_obj.strftime("%Y-%m-%d %H:%M:%S.%f"))
+
+        for x in [self.JobName, self.JobRunState, self.ExecutionTime]:
+            if not isinstance(x, (str, int, float)):
                 raise ValueError(f"{x} is of wrong type, must be string,int,or float")
 
 

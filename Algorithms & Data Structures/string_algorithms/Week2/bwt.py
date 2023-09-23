@@ -1,10 +1,11 @@
 # python3
 import sys
 
+
 def BWT(text):
     n = len(text)
     l = list()
-    rtext = ''
+    rtext = ""
     for i in range(n):
         l.append(text[i:n] + text[0:i])
     l.sort()
@@ -12,13 +13,14 @@ def BWT(text):
         rtext += word[n - 1]
     return rtext
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     text = sys.stdin.readline().strip()
-#    text = 'AA$'
-#    text = 'ACACACAC$'
-#    text = 'AGACATA$'
-#    text = 'AACGATAGCGGTAGA$'
-#    text = 'CC$'
-#    text = 'CCCCCCCCCC$'
-    text = 'AAGACAGATATAGAAAAAGGGC$'
+    #    text = 'AA$'
+    #    text = 'ACACACAC$'
+    #    text = 'AGACATA$'
+    #    text = 'AACGATAGCGGTAGA$'
+    #    text = 'CC$'
+    #    text = 'CCCCCCCCCC$'
+    text = "AAGACAGATATAGAAAAAGGGC$"
     print(BWT(text))

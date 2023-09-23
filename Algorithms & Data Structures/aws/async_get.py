@@ -28,7 +28,7 @@ async def get_content_length(url):
             return request.content_length
 
 
-def parts_generator(size, start=0, part_size=10 * 1024 ** 2):
+def parts_generator(size, start=0, part_size=10 * 1024**2):
     while size - start > part_size:
         yield start, start + part_size
         start += part_size

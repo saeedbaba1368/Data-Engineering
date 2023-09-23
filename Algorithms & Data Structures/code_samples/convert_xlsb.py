@@ -9,6 +9,7 @@ expected_sheet = "Raw Data"
 class TimerError(Exception):
     """A custom exception used to report errors in use of Timer class"""
 
+
 class Timer:
     def __init__(self):
         self._start_time = None
@@ -30,9 +31,9 @@ class Timer:
         print(f"Elapsed time: {elapsed_time:0.4f} seconds")
 
 
-def convert_xlsb(new_file_name,old_file_name):
+def convert_xlsb(new_file_name, old_file_name):
     """Convert XLSB to CSV"""
-    with open(new_file_name + ".csv","w", newline="") as file_handle:
+    with open(new_file_name + ".csv", "w", newline="") as file_handle:
         csv_writer = csv.writer(file_handle)
         print("opening worksheets")
         with open_workbook(old_file_name) as wb:
@@ -45,7 +46,8 @@ def convert_xlsb(new_file_name,old_file_name):
                     csv_writer.writerow([r.v for r in row]),
     return True
 
+
 t = Timer()
 t.start()
-convert_xlsb(file_name.strip(".xlsb"),file_name)
+convert_xlsb(file_name.strip(".xlsb"), file_name)
 t.stop()

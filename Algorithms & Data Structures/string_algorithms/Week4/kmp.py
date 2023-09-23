@@ -1,6 +1,7 @@
 # python3
 import sys
 
+
 def compute_prefix_function(pattern):
     s = [0] * len(pattern)
     border = 0
@@ -14,13 +15,14 @@ def compute_prefix_function(pattern):
         s[i] = border
     return s
 
+
 def find_pattern(pattern, text):
     """
     Find all the occurrences of the pattern in the text
     and return a list of all positions in the text
     where the pattern starts in the text.
     """
-    S = pattern + '$' + text
+    S = pattern + "$" + text
     s = compute_prefix_function(S)
     result = []
     # Implement this function yourself
@@ -29,10 +31,11 @@ def find_pattern(pattern, text):
             result.append(i - 2 * len(pattern))
     return result
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     pattern = sys.stdin.readline().strip()
     text = sys.stdin.readline().strip()
-#    pattern = 'ATAT'
-#    text = 'GATATATGCATATACTT'
+    #    pattern = 'ATAT'
+    #    text = 'GATATATGCATATACTT'
     result = find_pattern(pattern, text)
     print(" ".join(map(str, result)))

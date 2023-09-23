@@ -20,7 +20,9 @@ class strongly_connected_components:
 
         self.count = 0  # Count the strongly connected components (SCCs)
         self.scc = list()  # For strong the sorted SCCs
-        self.num2scc = [None] * self.n  # A look-up table to check literal-SCC relationship
+        self.num2scc = [
+            None
+        ] * self.n  # A look-up table to check literal-SCC relationship
 
     def explore(self, v, visit):
         visit[v] = 1
@@ -71,8 +73,12 @@ class strongly_connected_components:
 class implication_graph:
     def __init__(self, n, clauses):
         self.n = n
-        self.adj = [set() for _ in range(2 * n)]  # Adjacency list, we use set() to avoid duplicaed edges
-        self.radj = [set() for _ in range(2 * n)]  # Reversed adjacency list, we use set() to avoid duplicaed edges
+        self.adj = [
+            set() for _ in range(2 * n)
+        ]  # Adjacency list, we use set() to avoid duplicaed edges
+        self.radj = [
+            set() for _ in range(2 * n)
+        ]  # Reversed adjacency list, we use set() to avoid duplicaed edges
         self.clauses = clauses
 
     # Convert indices [-n,..., -1, 1,...., n] to [0, ..., 2n - 1]
@@ -120,6 +126,7 @@ class implication_graph:
                 self.adj[_from].add(_to)
                 self.radj[_to].add(_from)
 
+
 def check_satisfiability(n, clauses):
     # Build the implication graph based on clauses
     # https://en.wikipedia.org/wiki/Implication_graph
@@ -155,43 +162,59 @@ def check_satisfiability(n, clauses):
 
     return assign_literal
 
+
 # Convert vertex and color to an literal
 def get_literal(i, color_code):
-    if color_code == 'R':
-        return 3*(i + 1) - 2
-    elif color_code == 'G':
-        return 3*(i + 1) - 1
-    elif color_code == 'B':
-        return 3*(i + 1)
+    if color_code == "R":
+        return 3 * (i + 1) - 2
+    elif color_code == "G":
+        return 3 * (i + 1) - 1
+    elif color_code == "B":
+        return 3 * (i + 1)
+
 
 def assign_new_colors(n, edges, colors):
     clauses = list()
-    color_set = set(['R', 'G', 'B']) # A set of all colors
+    color_set = set(["R", "G", "B"])  # A set of all colors
 
     for i in range(n):
-        color1, color2 = color_set - set(colors[i]) # Set difference, consider the remaining colors
-        clauses.append((get_literal(i, color1), get_literal(i, color2))) # x[i][c1] v x[i][c2]
-        clauses.append((-get_literal(i, color1), -get_literal(i, color2))) # ~x[i][c1] v ~x[i][c2] -> Either c1 or c2 but not both
+        color1, color2 = color_set - set(
+            colors[i]
+        )  # Set difference, consider the remaining colors
+        clauses.append(
+            (get_literal(i, color1), get_literal(i, color2))
+        )  # x[i][c1] v x[i][c2]
+        clauses.append(
+            (-get_literal(i, color1), -get_literal(i, color2))
+        )  # ~x[i][c1] v ~x[i][c2] -> Either c1 or c2 but not both
 
     for left, right in edges:
         for color in color_set:
-            clauses.append((-get_literal(left - 1, color), -get_literal(right - 1, color))) # If x and y are two vertices connected by an edge, they cannot have the same colors for R, B and G
+            clauses.append(
+                (-get_literal(left - 1, color), -get_literal(right - 1, color))
+            )  # If x and y are two vertices connected by an edge, they cannot have the same colors for R, B and G
 
-    return check_satisfiability(3*n, clauses) # Reuse the code from the first assignment
+    return check_satisfiability(
+        3 * n, clauses
+    )  # Reuse the code from the first assignment
+
 
 # Get color code given literal
 def get_color(i):
     if (i + 1) % 3 == 1:
-        return 'R'
+        return "R"
     elif (i + 1) % 3 == 2:
-        return 'G'
+        return "G"
     elif (i + 1) % 3 == 0:
-        return 'B'
+        return "B"
+
 
 def main():
     n, m = map(int, input().split())
     colors = input()
-    colors = [char for char in colors] # Original code: colors = input().split() has a bug, use list comphrension intead
+    colors = [
+        char for char in colors
+    ]  # Original code: colors = input().split() has a bug, use list comphrension intead
     edges = []
 
     for i in range(m):
@@ -203,6 +226,7 @@ def main():
     if new_colors is None:
         print("Impossible")
     else:
-        print(''.join(get_color(i) if new_colors[i] else '' for i in range(3*n)))
+        print("".join(get_color(i) if new_colors[i] else "" for i in range(3 * n)))
 
-threading.Thread(target = main).start()
+
+threading.Thread(target=main).start()

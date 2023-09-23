@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys, threading
-sys.setrecursionlimit(10**7) # max depth of recursion
+
+sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)  # new thread will get stack of such size
 # Task. You are given a binary tree with integers as its keys. You need to test whether it is a correct binary
 # search tree. The definition of the binary search tree is the following: for any node of the tree, if its
@@ -19,23 +20,28 @@ threading.stack_size(2**27)  # new thread will get stack of such size
 # description), output one word “CORRECT” (without quotes). Otherwise, output one word “INCORRECT”
 # (without quotes).
 
+
 class TreeOrders:
-    def read(self, arr): # Read input and build tree, see tree-order.py
+    def read(self, arr):  # Read input and build tree, see tree-order.py
         self.n = len(arr)
         self.key = [0 for i in range(self.n)]
         self.left = [0 for i in range(self.n)]
         self.right = [0 for i in range(self.n)]
-        
+
         for i in range(self.n):
             a, b, c = arr[i]
             self.key[i] = a
             self.left[i] = b
             self.right[i] = c
-          
-    def inOrderTraversal(self, i, result, warning): # Modified in-order traversal: warning list indicates if two elements are equal 
+
+    def inOrderTraversal(
+        self, i, result, warning
+    ):  # Modified in-order traversal: warning list indicates if two elements are equal
         if i == -1:
             return None
-        if self.left[i] != -1: # If a node has left child and left child shares the same key as its parent, then it violates BST condition
+        if (
+            self.left[i] != -1
+        ):  # If a node has left child and left child shares the same key as its parent, then it violates BST condition
             if self.key[self.left[i]] == self.key[i]:
                 warning.append(1)
         self.inOrderTraversal(self.left[i], result, warning)
@@ -43,31 +49,37 @@ class TreeOrders:
         self.inOrderTraversal(self.right[i], result, warning)
         return result, warning
 
-def check_result(l): # A linear search to compare two elements if they violate BST conditions
+
+def check_result(
+    l,
+):  # A linear search to compare two elements if they violate BST conditions
     for i in range(1, len(l)):
         if l[i - 1] > l[i]:
             return False
     return True
+
 
 def IsBinarySearchTree(tree):
     bst = TreeOrders()
     bst.read(tree)
     result, warning = bst.inOrderTraversal(0, list(), list())
 
-    if len(warning) > 0: # If any violations are detected, return False
+    if len(warning) > 0:  # If any violations are detected, return False
         return False
-    return check_result(result) # Otherwise, check the results as usual
+    return check_result(result)  # Otherwise, check the results as usual
+
 
 def main():
     nodes = int(sys.stdin.readline().strip())
     tree = []
     for i in range(nodes):
         tree.append(list(map(int, sys.stdin.readline().strip().split())))
-    if nodes == 0: # trivial case
+    if nodes == 0:  # trivial case
         print("CORRECT")
     elif IsBinarySearchTree(tree):
         print("CORRECT")
     else:
         print("INCORRECT")
+
 
 threading.Thread(target=main).start()

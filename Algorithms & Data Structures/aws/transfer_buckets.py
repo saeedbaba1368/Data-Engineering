@@ -210,13 +210,15 @@ class TransferBuckets(FileTransferClient):
                 continue
 
             file_object = Struct(
-                self.session.get_object(Bucket=self.buckets_and_paths["_in_bucket"], Key=file_obj.Key)
+                self.session.get_object(
+                    Bucket=self.buckets_and_paths["_in_bucket"], Key=file_obj.Key
+                )
             )
-            
+
             print(file_object)
 
             try:
-                print(bucket,path + file_obj.Key.split("/")[-1])
+                print(bucket, path + file_obj.Key.split("/")[-1])
                 response = self.session.put_object(
                     Bucket=bucket,
                     Body=file_object.Body.read(),
@@ -227,9 +229,9 @@ class TransferBuckets(FileTransferClient):
                 logger.info("Error putting file in S3,file: {}".format(file_obj.Key))
         return True
 
-    def _session_put(self,data,bucket,key):
+    def _session_put(self, data, bucket, key):
         """wrapper for s3 session"""
-        self.session.meta.client.upload_fileobj(data, Bucket = bucket,Key = key)
+        self.session.meta.client.upload_fileobj(data, Bucket=bucket, Key=key)
 
     def _session_get_bucket(self, bucket, path):
         """get content from bucket"""
@@ -260,23 +262,25 @@ class TransferBuckets(FileTransferClient):
                 continue
 
             file_object = Struct(
-                self.session.Object(bucket_name=self.buckets_and_paths["_in_bucket"], key=file_obj.key).get()
+                self.session.Object(
+                    bucket_name=self.buckets_and_paths["_in_bucket"], key=file_obj.key
+                ).get()
             )
             print(file_object)
             process = multiprocessing.Process(
-                target = self._session_put,
-                args = (
-                    BytesIO(file_object.Body.read()), 
+                target=self._session_put,
+                args=(
+                    BytesIO(file_object.Body.read()),
                     bucket,
                     path + file_obj.key.split("/")[-1],
-                )
+                ),
             )
             processes.append(process)
             process.start()
-        
+
         for process in processes:
             process.join()
-    
+
         return True
 
     def transfer_files(self):
@@ -294,7 +298,6 @@ class TransferBuckets(FileTransferClient):
         )
 
         return {"status": 200 if response else 202}
-
 
 
 def lambda_handler(event, context):
@@ -319,4 +322,3 @@ def lambda_handler(event, context):
     response = file_transfer_object.transfer_files()
 
     return {"statusCode": 200, "body": json.dumps(response)}
-

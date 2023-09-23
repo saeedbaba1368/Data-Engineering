@@ -9,24 +9,20 @@ import concurrent.futures
 from concurrent.futures import ThreadPoolExecutor
 import threading
 import multiprocessing
-import boto3 
+import boto3
 import logging as logger
 import time
 import botocore
 from functools import wraps
 
-config = {
-    "aws_region" : "",
-    "aws_access_key_id": "",
-    "aws_secret_access_key":""
-}
+config = {"aws_region": "", "aws_access_key_id": "", "aws_secret_access_key": ""}
 BUCKET_NAME = ""
 
 client_config = botocore.config.Config(
-   max_pool_connections = 25,
+    max_pool_connections=25,
 )
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 def retry(exceptions, total_tries=4, initial_wait=0.5, backoff_factor=2):
@@ -39,35 +35,43 @@ def retry(exceptions, total_tries=4, initial_wait=0.5, backoff_factor=2):
         backoff_factor: Backoff multiplier (e.g. value of 2 will double the delay each retry).
         logger: logger to be used, if none specified print
     """
+
     def retry_decorator(f):
         @wraps(f)
         def func_with_retries(*args, **kwargs):
             _tries, _delay = total_tries + 1, initial_wait
             while _tries > 1:
                 try:
-                    print(f'{total_tries + 2 - _tries}. try:',kwargs)
+                    print(f"{total_tries + 2 - _tries}. try:", kwargs)
                     return f(*args, **kwargs)
                 except exceptions as e:
                     _tries -= 1
-                    print_args = args if args else 'no args'
+                    print_args = args if args else "no args"
                     if _tries == 1:
-                        msg = str(f'Function: {f.__name__}\n'
-                                  f'Failed despite best efforts after {total_tries} tries.\n'
-                                  f'args: {print_args}, kwargs: {kwargs}')
+                        msg = str(
+                            f"Function: {f.__name__}\n"
+                            f"Failed despite best efforts after {total_tries} tries.\n"
+                            f"args: {print_args}, kwargs: {kwargs}"
+                        )
                         print(msg)
                         raise
-                    msg = str(f'Function: {f.__name__}\n'
-                              f'Exception: {e}\n'
-                              f'Retrying in {_delay} seconds!, args: {print_args}, kwargs: {kwargs}\n')
+                    msg = str(
+                        f"Function: {f.__name__}\n"
+                        f"Exception: {e}\n"
+                        f"Retrying in {_delay} seconds!, args: {print_args}, kwargs: {kwargs}\n"
+                    )
                     print(msg)
                     time.sleep(_delay)
                     _delay *= backoff_factor
 
         return func_with_retries
+
     return retry_decorator
 
 
-def cache(seconds: int, maxsize: int = 128, typed: bool = False) -> Callable[..., Callable[..., T]]:
+def cache(
+    seconds: int, maxsize: int = 128, typed: bool = False
+) -> Callable[..., Callable[..., T]]:
     def wrapper_cache(func: Any) -> Any:
         func = functools.lru_cache(maxsize=maxsize, typed=typed)(func)
         func.delta = timedelta(seconds=seconds)
@@ -85,45 +89,44 @@ def cache(seconds: int, maxsize: int = 128, typed: bool = False) -> Callable[...
 
     return wrapper_cache
 
+
 @retry(Exception, total_tries=4, initial_wait=20)
-def retry_requests(query_string:str, prod: bool = False):
+def retry_requests(query_string: str, prod: bool = False):
     """Used in unpack_records to deal with occasional network issues"""
     try:
-        r = requests.get(
-            query_string, 
-            headers = {}
-        )
+        r = requests.get(query_string, headers={})
         r.raise_for_status()
     except Exception as e:
         r = ""
-    
+
     return r
+
 
 @cache(seconds=3600)
-def request(query_string:str, prod: bool = False) -> requests.models.Response:
+def request(query_string: str, prod: bool = False) -> requests.models.Response:
     try:
-        r = requests.get(
-            query_string, 
-            headers = {}
-        )
+        r = requests.get(query_string, headers={})
         r.raise_for_status()
     except requests.exceptions.HTTPError as errh:
-        print("Http Error:",errh)
+        print("Http Error:", errh)
         r = ""
     except requests.exceptions.ConnectionError as errc:
-        print("Error Connecting:",errc)
+        print("Error Connecting:", errc)
         r = ""
     except requests.exceptions.Timeout as errt:
-        print("Timeout Error:",errt)
+        print("Timeout Error:", errt)
         r = ""
     except requests.exceptions.RequestException as err:
-        print("Something Else:",err)
+        print("Something Else:", err)
         r = ""
     return r
 
-def recurse(obj: dict, parent_key: bool = False, separator: str = '.') -> collections.abc.Generator[str,str]:
+
+def recurse(
+    obj: dict, parent_key: bool = False, separator: str = "."
+) -> collections.abc.Generator[str, str]:
     """Recurse through nested record, identify href for additional call.
-    
+
     args:
         obj (dict): key-value mapping, complex object
     yield:
@@ -136,15 +139,16 @@ def recurse(obj: dict, parent_key: bool = False, separator: str = '.') -> collec
         elif isinstance(value, (tuple, list)):
             for idx, x in enumerate(value):
                 if isinstance(x, dict):
-                    yield from recurse(x,new_key, separator)
+                    yield from recurse(x, new_key, separator)
                 else:
-                     yield (new_key+"."+str(idx),x)
+                    yield (new_key + "." + str(idx), x)
         else:
-            yield (new_key,value)
+            yield (new_key, value)
+
 
 def get_all_s3_objects(s3, **base_kwargs):
     """Return metadata for all S3 objects in a bucket/path.
-    
+
     Args:
         s3 (boto3 client): s3 client
         Bucket (str): S3 bucket
@@ -156,12 +160,13 @@ def get_all_s3_objects(s3, **base_kwargs):
     while True:
         list_kwargs = dict(MaxKeys=1000, **base_kwargs)
         if continuation_token:
-            list_kwargs['ContinuationToken'] = continuation_token
+            list_kwargs["ContinuationToken"] = continuation_token
         response = s3.list_objects_v2(**list_kwargs)
-        yield from response.get('Contents', [])
-        if not response.get('IsTruncated'):
+        yield from response.get("Contents", [])
+        if not response.get("IsTruncated"):
             break
-        continuation_token = response.get('NextContinuationToken')
+        continuation_token = response.get("NextContinuationToken")
+
 
 def timer(func):
     """Print the runtime of the decorated function"""
@@ -177,8 +182,14 @@ def timer(func):
 
     return wrapper_timer
 
-def get_from_s3_parallel(): pass
-def put_s3_object_parallel(): pass
+
+def get_from_s3_parallel():
+    pass
+
+
+def put_s3_object_parallel():
+    pass
+
 
 @timer
 def download_files_parallel(args):
@@ -186,52 +197,56 @@ def download_files_parallel(args):
     Massive performance gain.
     """
     records = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=2000) as executor:  
-        tracker_futures = []  
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2000) as executor:
+        tracker_futures = []
         for arg in args:
-            tracker_futures.append(executor.submit(lambda a: get_from_s3_parallel(*a),arg))
+            tracker_futures.append(
+                executor.submit(lambda a: get_from_s3_parallel(*a), arg)
+            )
 
     for future in concurrent.futures.as_completed(tracker_futures):
         records.append(future.result())
         tracker_futures.remove(future)
         del future
-    
+
     return records
 
 
 @timer
 def upload_files_parallel(args):
     """Parallel upload to S3.
-    
+
     Args:
         args(tuple): Body, Bucket, Key
     """
     records = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=2000) as executor:  
-        tracker_futures = []  
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2000) as executor:
+        tracker_futures = []
         for arg in args:
-            tracker_futures.append(executor.submit(lambda a: put_s3_object_parallel(*a),arg))
+            tracker_futures.append(
+                executor.submit(lambda a: put_s3_object_parallel(*a), arg)
+            )
 
         for future in concurrent.futures.as_completed(tracker_futures):
             records.append(future.result())
             tracker_futures.remove(future)
             del future
-    
+
     return records
 
-class S3Bucket:
 
+class S3Bucket:
     def __init__(self, list_to_send):
         self.list_to_send = list_to_send
         self.thread_local = threading.local()
         self.cpuCount = multiprocessing.cpu_count()
-    
+
     def writeToS3(self, data):
         """Write payload to S3
         SCHEMA:
             {
-                'folderName': "", 
-                'fileName': "", 
+                'folderName': "",
+                'fileName': "",
                 'fileContents': ""
             }
         """
@@ -240,15 +255,14 @@ class S3Bucket:
         fileContents = data.get("fileContents")
 
         try:
-            s3_client = boto3.resource('s3', **config)
-            s3_object = s3_client.Object(BUCKET_NAME, folderName + '/' + fileName)
+            s3_client = boto3.resource("s3", **config)
+            s3_object = s3_client.Object(BUCKET_NAME, folderName + "/" + fileName)
             s3_object.put(Body=fileContents)
         except Exception as e:
-            logger.error('Failed to write to aws s3 bucket')
+            logger.error("Failed to write to aws s3 bucket")
             logger.error(e)
         else:
-            logger.info('Successfully wrote to aws s3 bucket')
-
+            logger.info("Successfully wrote to aws s3 bucket")
 
     # thread pool for creating incidents via http request
     def send_all_files_to_s3(self):

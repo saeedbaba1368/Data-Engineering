@@ -6,6 +6,7 @@ try:
 except ImportError as e:
     boto3_config = {}
 
+
 class LamdaMetrics:
     def __init__(self, starttime: datetime, endtime: datetime, target: str = ""):
         if starttime >= endtime:

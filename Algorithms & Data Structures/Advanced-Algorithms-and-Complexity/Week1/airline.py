@@ -1,5 +1,6 @@
 # python3
 from queue import Queue
+
 # Task. The airline offers a bunch of flights and has a set of crews that can work on those flights. However,
 # the flights are starting in different cities and at different times, so only some of the crews are able to
 # work on a particular flight. You are given the pairs of flights and associated crews that can work on
@@ -13,14 +14,16 @@ from queue import Queue
 # but you can output any number of −1’s. If there are several assignments with the maximum possible
 # number of flights having a crew assigned, output any of them.
 
-class Edge: # see evacuation.py
+
+class Edge:  # see evacuation.py
     def __init__(self, u, v, capacity):
         self.u = u
         self.v = v
         self.capacity = capacity
         self.flow = 0
 
-class FlowGraph: # see evacuation.py
+
+class FlowGraph:  # see evacuation.py
     def __init__(self, n):
         self.edges = []
         self.graph = [[] for _ in range(n)]
@@ -46,9 +49,14 @@ class FlowGraph: # see evacuation.py
         self.edges[id].flow += flow
         self.edges[id ^ 1].flow -= flow
 
-def construct_graph(n, m, adj_matrix): # build a network given adjacency matrix of a bipartite graph
-    fix_capacity = 1 # each edge carries a capacity of 1
-    vertex_count = n + m + 2 # total number of vertex is n flights + m crews + 1 source + 1 sink = n + m + 2
+
+def construct_graph(
+    n, m, adj_matrix
+):  # build a network given adjacency matrix of a bipartite graph
+    fix_capacity = 1  # each edge carries a capacity of 1
+    vertex_count = (
+        n + m + 2
+    )  # total number of vertex is n flights + m crews + 1 source + 1 sink = n + m + 2
     graph = FlowGraph(vertex_count)
     source = 0
     # The following for loop adds n edges from the source to the flights
@@ -58,8 +66,8 @@ def construct_graph(n, m, adj_matrix): # build a network given adjacency matrix 
     for i in range(n):
         for j in range(m):
             if adj_matrix[i][j] == 1:
-                flight = i + 1 # flight starts from 1 because source has index 0
-                crew = n + j + 1 # crew starts from n + 1 
+                flight = i + 1  # flight starts from 1 because source has index 0
+                crew = n + j + 1  # crew starts from n + 1
                 graph.add_edge(flight, crew, fix_capacity)
     sink = n + m + 1
     # The following for loop adds m edges from crews to sink
@@ -67,13 +75,15 @@ def construct_graph(n, m, adj_matrix): # build a network given adjacency matrix 
         graph.add_edge(crew, sink, fix_capacity)
     return graph
 
-def update_residual_graph(graph, X, edges, prev, from_, to): # see evacuation.py
+
+def update_residual_graph(graph, X, edges, prev, from_, to):  # see evacuation.py
     while to != from_:
         graph.add_flow(edges[to], X)
         to = prev[to]
     return graph
 
-def reconstruct_path(graph, from_, to, prev, edges): # see evacuation.py
+
+def reconstruct_path(graph, from_, to, prev, edges):  # see evacuation.py
     result = []
     X = 1 + 1
     while to != from_:
@@ -82,7 +92,8 @@ def reconstruct_path(graph, from_, to, prev, edges): # see evacuation.py
         to = prev[to]
     return [from_] + [u for u in reversed(result)], X, edges, prev
 
-def find_a_path(graph, from_, to): # see evacuation.py
+
+def find_a_path(graph, from_, to):  # see evacuation.py
     dist = [False] * graph.size()
     dist[from_] = True
     prev = [None] * graph.size()
@@ -92,13 +103,13 @@ def find_a_path(graph, from_, to): # see evacuation.py
     q.put(from_)
     while not q.empty():
         u = q.get()
-        
+
         for id in graph.get_ids(u):
             to_edge_v = graph.get_edge(id)
             v = to_edge_v.v
             flow = to_edge_v.flow
             capacity = to_edge_v.capacity
-            
+
             if (dist[v] == False) and (flow < capacity):
                 q.put(v)
                 dist[v] = True
@@ -110,30 +121,42 @@ def find_a_path(graph, from_, to): # see evacuation.py
     else:
         return [], 0, [], []
 
-def update_matching(matching, path, n): # a function to update matching
-    flight, crew = path[1], path[2] - (n + 1) # path[0] is source, path[1] is flight index, path[2] - (n + 1) is crew index, path[3] is sink
-    matching[flight - 1] = crew # As there is an edge from flight to crew, matching[flight index] = crew index
+
+def update_matching(matching, path, n):  # a function to update matching
+    flight, crew = path[1], path[2] - (
+        n + 1
+    )  # path[0] is source, path[1] is flight index, path[2] - (n + 1) is crew index, path[3] is sink
+    matching[
+        flight - 1
+    ] = crew  # As there is an edge from flight to crew, matching[flight index] = crew index
     return matching
 
+
 class MaxMatching:
-    def read_data(self): # read data and build an adjacency matrix of a bipartite graph
+    def read_data(self):  # read data and build an adjacency matrix of a bipartite graph
         n, m = map(int, input().split())
         adj_matrix = [list(map(int, input().split())) for i in range(n)]
         return adj_matrix
 
     def write_response(self, matching):
         line = [str(-1 if x == -1 else x + 1) for x in matching]
-        print(' '.join(line))
+        print(" ".join(line))
 
     def find_matching(self, adj_matrix):
-        n, m = len(adj_matrix), len(adj_matrix[0]) # n = number of flight, m = number of crew
-        from_, to = 0, n + m + 1 # source = 0, sink = n + m + 1
-        matching = [-1] * n # if there are no matching, output -1
-        graph = construct_graph(n, m, adj_matrix) # build a network with respect to the bipartite graph
-        flow = 0 # flow is initialized with 0
-        
-        while True: # Standard implementation of Edmonds-Karp algorithm
-            path, X, edges, prev = find_a_path(graph, from_, to) # it returns shortest path, minimum capacity X in the shortest path
+        n, m = len(adj_matrix), len(
+            adj_matrix[0]
+        )  # n = number of flight, m = number of crew
+        from_, to = 0, n + m + 1  # source = 0, sink = n + m + 1
+        matching = [-1] * n  # if there are no matching, output -1
+        graph = construct_graph(
+            n, m, adj_matrix
+        )  # build a network with respect to the bipartite graph
+        flow = 0  # flow is initialized with 0
+
+        while True:  # Standard implementation of Edmonds-Karp algorithm
+            path, X, edges, prev = find_a_path(
+                graph, from_, to
+            )  # it returns shortest path, minimum capacity X in the shortest path
             if len(path) == 0:
                 return matching
             flow += X
@@ -145,7 +168,7 @@ class MaxMatching:
         matching = self.find_matching(adj_matrix)
         self.write_response(matching)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     max_matching = MaxMatching()
     max_matching.solve()
-

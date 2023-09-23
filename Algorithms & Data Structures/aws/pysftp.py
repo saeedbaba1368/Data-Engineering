@@ -5,7 +5,7 @@ import socket
 import time
 
 
-def setInterval(interval, times = -1):
+def setInterval(interval, times=-1):
     # This will be the actual decorator,
     # with fixed interval and times parameter
     def outer_wrap(function):
@@ -27,12 +27,16 @@ def setInterval(interval, times = -1):
             t.daemon = True
             t.start()
             return stop
+
         return wrap
+
     return outer_wrap
 
 
 class PyFTPclient:
-    def __init__(self, host, port = 21, login = 'anonymous', passwd = 'anonymous', monitor_interval = 30):
+    def __init__(
+        self, host, port=21, login="anonymous", passwd="anonymous", monitor_interval=30
+    ):
         self.host = host
         self.port = port
         self.login = login
@@ -42,13 +46,12 @@ class PyFTPclient:
         self.max_attempts = 15
         self.waiting = True
 
-
-    def DownloadFile(self, dst_filename, local_filename = None):
-        res = ''
+    def DownloadFile(self, dst_filename, local_filename=None):
+        res = ""
         if local_filename is None:
             local_filename = dst_filename
 
-        with open(local_filename, 'w+b') as f:
+        with open(local_filename, "w+b") as f:
             self.ptr = f.tell()
 
             @setInterval(self.monitor_interval)
@@ -56,11 +59,13 @@ class PyFTPclient:
                 if not self.waiting:
                     i = f.tell()
                     if self.ptr < i:
-                        logging.debug("%d  -  %0.1f Kb/s" % (i, (i-self.ptr)/(1024*self.monitor_interval)))
+                        logging.debug(
+                            "%d  -  %0.1f Kb/s"
+                            % (i, (i - self.ptr) / (1024 * self.monitor_interval))
+                        )
                         self.ptr = i
                     else:
                         ftp.close()
-
 
             def connect():
                 ftp.connect(self.host, self.port)
@@ -75,7 +80,7 @@ class PyFTPclient:
             ftp.set_pasv(True)
 
             connect()
-            ftp.voidcmd('TYPE I')
+            ftp.voidcmd("TYPE I")
             dst_filesize = ftp.size(dst_filename)
 
             mon = monitor()
@@ -84,36 +89,40 @@ class PyFTPclient:
                     connect()
                     self.waiting = False
                     # retrieve file from position where we were disconnected
-                    res = ftp.retrbinary('RETR %s' % dst_filename, f.write) if f.tell() == 0 else \
-                              ftp.retrbinary('RETR %s' % dst_filename, f.write, rest=f.tell())
+                    res = (
+                        ftp.retrbinary("RETR %s" % dst_filename, f.write)
+                        if f.tell() == 0
+                        else ftp.retrbinary(
+                            "RETR %s" % dst_filename, f.write, rest=f.tell()
+                        )
+                    )
 
                 except:
                     self.max_attempts -= 1
                     if self.max_attempts == 0:
                         mon.set()
-                        logging.exception('')
+                        logging.exception("")
                         raise
                     self.waiting = True
-                    logging.info('waiting 30 sec...')
+                    logging.info("waiting 30 sec...")
                     time.sleep(30)
-                    logging.info('reconnect')
+                    logging.info("reconnect")
 
-
-            mon.set() #stop monitor
+            mon.set()  # stop monitor
             ftp.close()
 
-            if not res.startswith('226 Transfer complete'):
-                logging.error('Downloaded file {0} is not full.'.format(dst_filename))
+            if not res.startswith("226 Transfer complete"):
+                logging.error("Downloaded file {0} is not full.".format(dst_filename))
                 # os.remove(local_filename)
                 return None
-
-
 
             return 1
 
 
 if __name__ == "__main__":
     #        logging.basicConfig(filename='/var/log/dreamly.log',format='%(asctime)s %(levelname)s: %(message)s',level=logging.DEBUG)
-    logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s', level=cfg.logging.level)
-    obj = PyFTPclient('192.168.0.59', port = 2121, login = 'test', passwd = 'testftp')
-    obj.DownloadFile('USAHD-8974-20131013-0300-0330.ts')
+    logging.basicConfig(
+        format="%(asctime)s %(levelname)s: %(message)s", level=cfg.logging.level
+    )
+    obj = PyFTPclient("192.168.0.59", port=2121, login="test", passwd="testftp")
+    obj.DownloadFile("USAHD-8974-20131013-0300-0330.ts")

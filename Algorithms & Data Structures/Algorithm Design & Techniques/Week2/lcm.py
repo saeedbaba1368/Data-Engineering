@@ -1,9 +1,11 @@
 # Uses python3
 import sys
+
 # Task. Given two integers a and b, find their least common multiple.
 # Input Format. The two integers a and b are given in the same line separated by space.
 # Constraints. 1 <= a, b <= 107.
 # Output Format. Output the least common multiple of a and b.
+
 
 def gcd_naive(a, b):
     # Standard implementation of the Euclid algorithm
@@ -15,7 +17,8 @@ def gcd_naive(a, b):
         c, d = min(a, b), max(a, b)
         a, b = c, d % c
         return gcd_naive(a, b)
-    
+
+
 def lcm_naive(a, b):
     if (a != 0) or (b != 0):
         # If not both are 0, gcd != 0 and we can return a quotient.
@@ -28,8 +31,8 @@ def lcm_naive(a, b):
         # If a and b are 0, then we cannot do division and return 0
         return 0
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     input = sys.stdin.read()
     a, b = map(int, input.split())
     print(lcm_naive(a, b))
-

@@ -19,36 +19,45 @@ from collections import namedtuple
 # Case 1: s[i] and s[j] does not overlap each other. The optimal solution have two points. The greedy algorithm is consistent with ths optimal solution as
 # we pick ending coordinates of s[i] and s[j] as solutions.
 # Case 2: s[i] and s[j] overlaps. There must exist a point that both segments cover. The greey algorithm is consistent with this optimal solution as
-# the left-most segment, say s[i] (if s[i].end < s[j].end), must have some area covered by s[j]. The worst case is the ending coordinate. 
+# the left-most segment, say s[i] (if s[i].end < s[j].end), must have some area covered by s[j]. The worst case is the ending coordinate.
 # So, picking the left segment is a safe move.
 
-Segment = namedtuple('Segment', 'start end')
+Segment = namedtuple("Segment", "start end")
 
-def min_segments(segments): # return the index of the left-most segment by a linear search on the 'end' coordinate of segment
+
+def min_segments(
+    segments,
+):  # return the index of the left-most segment by a linear search on the 'end' coordinate of segment
     index = 0
     for i in range(len(segments)):
         if segments[i].end < segments[index].end and index != i:
             index = i
     return index
 
+
 def optimal_points(segments):
-    points = [] # A set of points to be covered by segments
+    points = []  # A set of points to be covered by segments
     segments_copy = segments.copy()
-    anchor = 0 # Current point for processing which will be reinitialized in the loop
+    anchor = 0  # Current point for processing which will be reinitialized in the loop
     for i in range(len(segments)):
-        argmin_index = min_segments(segments_copy) 
-        s = segments_copy[argmin_index] # Extract the left-most segment
-        if i == 0: # If it is the first left-most segment, the ending coordinate must be a solution
+        argmin_index = min_segments(segments_copy)
+        s = segments_copy[argmin_index]  # Extract the left-most segment
+        if (
+            i == 0
+        ):  # If it is the first left-most segment, the ending coordinate must be a solution
             anchor = s.end
             points.append(anchor)
-        else: # for the remaining left-most segment, if the segment does not cover the previous fix point, then we need to construct a new point using ending coordinate
-            if not((s.start <= anchor) and (anchor <= s.end)):
+        else:  # for the remaining left-most segment, if the segment does not cover the previous fix point, then we need to construct a new point using ending coordinate
+            if not ((s.start <= anchor) and (anchor <= s.end)):
                 anchor = s.end
                 points.append(anchor)
-        del segments_copy[argmin_index] # Delete the left-most segment for the next search
+        del segments_copy[
+            argmin_index
+        ]  # Delete the left-most segment for the next search
     return points
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     input = sys.stdin.read()
     n, *data = map(int, input.split())
     segments = list(map(lambda x: Segment(x[0], x[1]), zip(data[::2], data[1::2])))

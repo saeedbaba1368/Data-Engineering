@@ -1,8 +1,9 @@
 # python3
 import sys
 
+
 def sort_characters(S):
-    dict_help = {'$':0, 'A':1, 'C':2, 'G':3, 'T':4}
+    dict_help = {"$": 0, "A": 1, "C": 2, "G": 3, "T": 4}
     size_alphabet = 5
     order = [0] * len(S)
     count = [0] * size_alphabet
@@ -16,6 +17,7 @@ def sort_characters(S):
         order[count[c]] = i
     return order
 
+
 def compute_char_classes(S, order):
     class_ = [0] * len(S)
     class_[order[0]] = 0
@@ -25,6 +27,7 @@ def compute_char_classes(S, order):
         else:
             class_[order[i]] = class_[order[i - 1]]
     return class_
+
 
 def sort_doubled(S, L, order, class_):
     count = [0] * len(S)
@@ -39,6 +42,7 @@ def sort_doubled(S, L, order, class_):
         count[cl] -= 1
         newOrder[count[cl]] = start
     return newOrder
+
 
 def update_classes(newOrder, class_, L):
     n = len(newOrder)
@@ -55,6 +59,7 @@ def update_classes(newOrder, class_, L):
             newClass[cur] = newClass[prev]
     return newClass
 
+
 def build_suffix_array(text):
     """
     Build suffix array of the string text and
@@ -70,11 +75,11 @@ def build_suffix_array(text):
         order = sort_doubled(text, L, order, class_)
         class_ = update_classes(order, class_, L)
         L *= 2
-  # Implement this function yourself
+    # Implement this function yourself
     return order
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     text = sys.stdin.readline().strip()
-#    text = 'AACGATAGCGGTAGA$'
+    #    text = 'AACGATAGCGGTAGA$'
     print(" ".join(map(str, build_suffix_array(text))))
