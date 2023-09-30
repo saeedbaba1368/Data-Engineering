@@ -1,0 +1,6 @@
+[run]
+source = warn
+omit = 
+    tests/*
+    autoapp.py
+
