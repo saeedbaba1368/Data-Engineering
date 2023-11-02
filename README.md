@@ -275,6 +275,9 @@
 7. [former2](https://github.com/iann0036/former2)
 8. [awesome-kubernetes](https://github.com/nubenetes/awesome-kubernetes)
 9. [Introduction to GitLab CI & DevOps with AWS - Course Notes](https://gitlab.com/gitlab-course-public/freecodecamp-gitlab-ci/-/blob/main/docs/course-notes.md)
+10. [Scuba](https://github.com/JonathonReinhart/scuba)
+11. [dagu](https://github.com/dagu-dev/dagu)
+12. [tawazi](https://github.com/mindee/tawazi)
 
 </details>
 
@@ -415,6 +418,11 @@
 57. [psutil](https://github.com/giampaolo/psutil)
 58. [ray](https://github.com/ray-project/ray)
 59. [click](https://github.com/pallets/click)
+60. [flask-boilerplate](https://github.com/realpython/flask-boilerplate)
+61. [python-packager](https://github.com/fcurella/python-packager)
+62. [python-project-skeleton](https://github.com/joaomcteixeira/python-project-skeleton)
+63. [wemake-python-package](https://github.com/wemake-services/wemake-python-package)
+64. [pyscaffold](https://github.com/pyscaffold/pyscaffold)
 
 </details>
 
@@ -512,6 +520,10 @@
 37. [django-db-connection-pool](https://github.com/altairbow/django-db-connection-pool)
 38. [Vanna](https://github.com/vanna-ai/vanna)
 39. [malloy](https://github.com/malloydata/malloy)
+40. [Apache ORC](https://github.com/apache/orc)
+41. [Apache Pinot](https://github.com/apache/pinot)
+42. [pdfplumber](https://github.com/jsvine/pdfplumber)
+43. [camelot](https://github.com/camelot-dev/camelot)
 
 </details>
 
@@ -649,6 +661,7 @@
 63. [metabase](https://github.com/metabase/metabase)
 64. [Flowman](https://github.com/dimajix/flowman)
 65. [Apache Beam](https://github.com/apache/beam)
+66. [hamilton](https://github.com/DAGWorks-Inc/hamilton)
 
 </details>
 
@@ -692,6 +705,7 @@
 30. [Bucketstore](https://github.com/jpetrucciani/bucketstore)
 31. [amazon-redshift-udfs](https://github.com/aws-samples/amazon-redshift-udfs)
 32. [PyLazyS3](https://github.com/Den1al/PyLazyS3)
+33. [Minio](https://github.com/minio/minio)
 
 </details>
 
@@ -848,6 +862,8 @@
 72. [attrs-strict](https://github.com/bloomberg/attrs-strict)
 73. [pydantic-core](https://github.com/pydantic/pydantic-core)
 74. [dataclass-type-validator](https://github.com/levii/dataclass-type-validator)
+75. [Jinja](https://github.com/pallets/jinja)
+76. [liaison](https://github.com/Julian-Nash/liaison)
 
 </details>
 
