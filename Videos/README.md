@@ -42,6 +42,7 @@
 25. [Making Apache Spark™ Better with Delta Lake](https://youtu.be/LJtShrQqYZY?si=tzdwbQauys3hGUBE)
 26. [SQL Server - Procedures and Programming](https://youtube.com/playlist?list=PLNIs-AWhQzcleQWADpUgriRxebMkMmi4H&si=5YJpkrrOh9HcT8um)
 27. [Data Mesh, Data Fabric, Data Lakehouse - SQLBits 2022](https://youtu.be/VYmjJe2gR1A?si=FafwcBi2KYcGF8np)
+28. [Web Scraping Full Course 2023](https://youtu.be/lh9XVGv6BHs?si=-RCxJtKBVRotu9oM)
 
 ## Networking 
 
