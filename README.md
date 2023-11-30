@@ -424,6 +424,7 @@
 62. [python-project-skeleton](https://github.com/joaomcteixeira/python-project-skeleton)
 63. [wemake-python-package](https://github.com/wemake-services/wemake-python-package)
 64. [pyscaffold](https://github.com/pyscaffold/pyscaffold)
+65. [xmltodict](https://github.com/martinblech/xmltodict)
 
 </details>
 
