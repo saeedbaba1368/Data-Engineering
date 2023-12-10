@@ -1,5 +1,7 @@
 # Resources
 
+- [Data Engineer Handbook](https://github.com/DataEngineer-io/data-engineer-handbook)
+
 <details><summary><h1>Design Guides</h1></summary>
 
 1. [Design Patterns in the Real World](https://holub.com/patterns/)

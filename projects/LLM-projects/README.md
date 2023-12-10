@@ -3,6 +3,7 @@
 - [HuggingFace](https://huggingface.co/) (LLM Leaderboard)(https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)
 - [LangChain Website](https://www.langchain.com/) and [github](https://github.com/langchain-ai/langchain)
 - [open-llms](https://github.com/eugeneyan/open-llms)
+- [openai cookbook](https://cookbook.openai.com/)
 
 ## Practical Guides
 
@@ -44,6 +45,13 @@
 24. [privateGPT](https://github.com/imartinez/privateGPT)
 25. [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)
 26. [ChatDev](https://github.com/OpenBMB/ChatDev)
+27. [AIBookingAssistant](https://github.com/DoubleN96/AIBookingAssistant)
+28. [babyagi](https://github.com/yoheinakajima/babyagi)
+29. [chatgpt-memory](https://github.com/continuum-llms/chatgpt-memory)
+30. [vector-search](https://github.com/esteininger/vector-search)
+31. [llama.cpp](https://github.com/ggerganov/llama.cpp)
+32. [llama2.rs](https://github.com/srush/llama2.rs)
+33. [llama2.py](https://github.com/tairov/llama2.py)
 
 ## Vector Databases and RAG
 
@@ -72,6 +80,7 @@
 23. [qdrant](https://github.com/qdrant/qdrant)
 24. [milvus](https://github.com/milvus-io/milvus)
 25. [hyperDB](https://github.com/jdagdelen/hyperDB)
+26. [azure-open-ai-embeddings-qna](https://github.com/ruoccofabrizio/azure-open-ai-embeddings-qna)
 
 ## LLM Resources
 
