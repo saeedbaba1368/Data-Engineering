@@ -4,6 +4,7 @@
 - [LangChain Website](https://www.langchain.com/) and [github](https://github.com/langchain-ai/langchain)
 - [open-llms](https://github.com/eugeneyan/open-llms)
 - [openai cookbook](https://cookbook.openai.com/)
+- [SalesGPT](https://github.com/filip-michalsky/SalesGPT)
 
 ## Practical Guides
 
@@ -52,6 +53,16 @@
 31. [llama.cpp](https://github.com/ggerganov/llama.cpp)
 32. [llama2.rs](https://github.com/srush/llama2.rs)
 33. [llama2.py](https://github.com/tairov/llama2.py)
+34. [MetaGPT](https://github.com/geekan/MetaGPT)
+35. [langchainjs](https://github.com/langchain-ai/langchainjs)
+36. [awesome-ai-agents](https://github.com/e2b-dev/awesome-ai-agents)
+37. [XAgent](https://github.com/OpenBMB/XAgent)
+38. [agenta](https://github.com/Agenta-AI/agenta)
+39. [awesome-llm-agents](https://github.com/kaushikb11/awesome-llm-agents)
+40. [LLM-Agent-Paper-List](https://github.com/WooooDyy/LLM-Agent-Paper-List)
+41. [trainable-agents](https://github.com/choosewhatulike/trainable-agents)
+42. [langroid](https://github.com/langroid/langroid)
+43. [ReMoDiffuse](https://github.com/mingyuan-zhang/ReMoDiffuse)
 
 ## Vector Databases and RAG
 
@@ -81,6 +92,8 @@
 24. [milvus](https://github.com/milvus-io/milvus)
 25. [hyperDB](https://github.com/jdagdelen/hyperDB)
 26. [azure-open-ai-embeddings-qna](https://github.com/ruoccofabrizio/azure-open-ai-embeddings-qna)
+27. [redis-product-search](https://github.com/RedisVentures/redis-product-search)
+28. [LLM-VectorDB-Bootcamp](https://github.com/Spartee/LLM-VectorDB-Bootcamp)
 
 ## LLM Resources
 
