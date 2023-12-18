@@ -477,6 +477,9 @@
 42. [graphic-walker](https://github.com/Kanaries/graphic-walker)
 43. [datapane](https://github.com/datapane/datapane)
 44. [gleam](https://github.com/gleam-lang/gleam)
+45. [streamlit](https://github.com/streamlit/streamlit)
+46. [ipywidgets](https://github.com/jupyter-widgets/ipywidgets)
+47. [voila](https://github.com/voila-dashboards/voila)
 
 </details>
 
