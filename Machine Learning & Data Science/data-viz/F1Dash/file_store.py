@@ -3,6 +3,7 @@ import time
 
 size_limit_in_GB = 0
 
+
 def delete_files(delete_all=False):
     # Function to delete least recently accessed cache files when size limit exceeded
     # As an example, a race dataset is ~200MB
@@ -18,7 +19,7 @@ def delete_files(delete_all=False):
     folder_size_in_GB = folder_size / 1000000000
 
     if folder_size_in_GB > size_limit_in_GB and delete_all == False:
-        
+
         sorted_files = sorted(file_modified_dict.items())
         while folder_size_in_GB > size_limit_in_GB and len(sorted_files) > 0:
             record = sorted_files[0]
@@ -47,12 +48,11 @@ def cleanup(delete_delay_in_hours):
     to_delete = []
     for file in os.listdir(directory):
         atime = os.path.getatime(directory + file)
-        if current_time - atime > delete_delay_in_seconds: to_delete.append(file)
+        if current_time - atime > delete_delay_in_seconds:
+            to_delete.append(file)
 
     deleted_file_count = len(to_delete)
     for file in to_delete:
         os.remove(directory + file)
 
     return deleted_file_count
-
-

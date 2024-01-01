@@ -9,19 +9,10 @@
 # Perform imports here:
 
 
-
-
 # Define a data variable
 
 
-
-
-
-
 # Define the layout
-
-
-
 
 
 # Create a fig from data and layout, and plot the fig

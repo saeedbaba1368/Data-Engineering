@@ -1,16 +1,16 @@
-'''
+"""
 create denormalized table for data warehouse
 change the table according to business needs
-'''
-import sqlite3 
+"""
+import sqlite3
 import pandas as pd
-from  sqlite3 import Error
+from sqlite3 import Error
 
 # ------------------------------------------------------------------------------
 def create_connection(dw_file):
-    '''
+    """
     create connection with data warehouse
-    '''
+    """
     try:
         conn = sqlite3.connect(dw_file)
         return conn
@@ -18,11 +18,12 @@ def create_connection(dw_file):
     except Error as e:
         print(e)
 
+
 # ------------------------------------------------------------------------------
 def create_table_sql(conn, sql_query):
-    '''
+    """
     create denormalized table from sql_query
-    '''
+    """
     try:
         cursor = conn.cursor()
         cursor.execute(sql_query)
@@ -30,14 +31,15 @@ def create_table_sql(conn, sql_query):
     except Error as e:
         print(e)
 
+
 # ------------------------------------------------------------------------------
 def main():
-    '''
+    """
     create denormolized framework for data
-    '''
-    database = 'data_warehouse.db'
+    """
+    database = "data_warehouse.db"
 
-    data_warehouse = '''
+    data_warehouse = """
     
     CREATE TABLE IF NOT EXISTS MASTER_FILE(
         Year INT NOT NULL CHECK(length(Year) = 4),
@@ -57,22 +59,23 @@ def main():
         Latitude FLOAT NOT NULL,
         Longitude FLOAT NOT NULL
     );
-    '''
+    """
 
     # create a database connection
     conn = create_connection(database)
 
     if conn is not None:
 
-        # create 
+        # create
         create_table_sql(conn, data_warehouse)
 
         conn.commit()
 
+
 # ------------------------------------------------------------------------------
-if __name__ == '__main__':
-    
+if __name__ == "__main__":
+
     try:
         main()
     except:
-        print('Database exists!')
+        print("Database exists!")

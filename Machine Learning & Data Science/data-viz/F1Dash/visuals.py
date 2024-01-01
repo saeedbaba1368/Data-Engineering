@@ -7,42 +7,22 @@ def get_figure(client_info):
     # Returns a consistent starting point for each visual
     fig = go.Figure()
     fig.update_layout(
-        {
-            "plot_bgcolor": "rgba(0, 0, 0, 0)",
-            "paper_bgcolor": "rgba(0, 0, 0, 0)"
-        },
+        {"plot_bgcolor": "rgba(0, 0, 0, 0)", "paper_bgcolor": "rgba(0, 0, 0, 0)"},
         font_color="#15151E",
         dragmode="lasso",
         clickmode="event+select",
         font_family="'Titillium Web', Arial",
         title_font_size=20,
         title_x=0,
-        margin={
-            "l": 10,
-            "r": 10,
-            "t": 55,
-            "b": 5
-        }
+        margin={"l": 10, "r": 10, "t": 55, "b": 5},
     )
 
-    fig.update_xaxes(
-        gridcolor="#B8B8BB",
-        fixedrange=True
-    )
-    fig.update_yaxes(
-        gridcolor="#15151E",
-        fixedrange=True
-    )
+    fig.update_xaxes(gridcolor="#B8B8BB", fixedrange=True)
+    fig.update_yaxes(gridcolor="#15151E", fixedrange=True)
 
     if client_info["isMobile"]:
         # Disable more functionality
-        fig.update_layout(
-            dragmode=False,
-            margin={
-                "l": 0,
-                "r": 0
-            }
-        )
+        fig.update_layout(dragmode=False, margin={"l": 0, "r": 0})
 
     client_height = client_info["height"]
     # Dynamically size figure heights for screen sizes
@@ -53,22 +33,11 @@ def get_figure(client_info):
 def empty_figure(fig, text="No data"):
     # Returns placeholder figure when no data is available (on initiate or when conflicting filters have been applied)
     fig.add_annotation(
-            text=text,
-            xref="paper",
-            yref="paper",
-            x=0.5,
-            y=0.5,
-            showarrow=False
-        )
-    fig.update_layout(
-        font_color = "rgb(175, 175, 175)"
+        text=text, xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False
     )
-    fig.update_xaxes(
-        visible=False
-    )
-    fig.update_yaxes(
-        visible=False
-    )
+    fig.update_layout(font_color="rgb(175, 175, 175)")
+    fig.update_xaxes(visible=False)
+    fig.update_yaxes(visible=False)
 
     return fig
 
@@ -77,10 +46,16 @@ def filter_data(data, filter_dict, ignore=[]):
 
     # Loop through filters and filter dataframe by each
     for field in filter_dict:
-        if field == "TimeFilter" and "SessionTime" in data.columns and field not in ignore:
+        if (
+            field == "TimeFilter"
+            and "SessionTime" in data.columns
+            and field not in ignore
+        ):
             # Handle time filtering here
             time_min, time_max = filter_dict[field]
-            data = data[(data["SessionTime"] >= time_min) & (data["SessionTime"] <= time_max)]
+            data = data[
+                (data["SessionTime"] >= time_min) & (data["SessionTime"] <= time_max)
+            ]
         else:
             if field in data.columns and field not in ignore:
                 data = data[(data[field].isin(filter_dict[field]))]
@@ -92,7 +67,7 @@ def filter_exists(filter_dict, filter):
 
     # Determine whether a filter exists for a given field. Used to work out e.g. whether to use sector- or zone-level dataset.
     if filter in filter_dict:
-            return True
+        return True
     return False
 
 
@@ -134,7 +109,7 @@ def get_filter_options(data, filter_dict, return_fields_tuple, ignore=[]):
 def ns_to_delta_string(ns, is_benchmark=False):
 
     # Converts ns to readable string
-    
+
     ms = ns / 1000000
     s = ms / 1000
     m = int(s / 60)
@@ -148,14 +123,14 @@ def ns_to_delta_string(ns, is_benchmark=False):
             string = f"{pol}{str(m).rjust(2, '0')}:{str(rem_s).rjust(2, '0')}.{str(rem_ms).rjust(3, '0')}"
         else:
             string = f"{pol}{str(rem_s).rjust(2, '0')}.{str(rem_ms).rjust(3, '0')}"
-    
+
     return string
 
 
 def get_time_axis_ticks(time_min, time_max):
 
     # Returns a dynamic number of axis values/labels for time Y axis
-    
+
     max_ticks = 12
     time_range = time_max - time_min
     one_second = 1000000000
@@ -170,13 +145,13 @@ def get_time_axis_ticks(time_min, time_max):
         one_second,
         one_second * 2,
         one_second * 5,
-        one_second * 10
+        one_second * 10,
     ]
-    
+
     for spacing in tick_spacings:
         if time_range / spacing < max_ticks:
             break
-            
+
     tick_values = []
     tick_labels = []
     for i in range(0, max_ticks):
@@ -186,7 +161,7 @@ def get_time_axis_ticks(time_min, time_max):
         else:
             label = ns_to_delta_string(i * spacing)
         tick_labels.append(label)
-        
+
     return tick_values, tick_labels
 
 
@@ -195,9 +170,14 @@ def get_dashboard_headings(events_and_sessions, loaded_event_id, loaded_session_
     if not isinstance(events_and_sessions, pd.DataFrame):
         events_and_sessions = pd.DataFrame(events_and_sessions)
 
-    session_row = events_and_sessions[(events_and_sessions["EventId"] == int(loaded_event_id)) & (events_and_sessions["SessionName"] == loaded_session_name)]
+    session_row = events_and_sessions[
+        (events_and_sessions["EventId"] == int(loaded_event_id))
+        & (events_and_sessions["SessionName"] == loaded_session_name)
+    ]
     upper_heading = session_row["OfficialEventName"].iloc[0]
-    lower_heading = f"{session_row['EventName'].iloc[0]}: {session_row['SessionName'].iloc[0]}"
+    lower_heading = (
+        f"{session_row['EventName'].iloc[0]}: {session_row['SessionName'].iloc[0]}"
+    )
 
     return (upper_heading, lower_heading)
 
@@ -232,11 +212,13 @@ def build_lap_plot(data_dict, filters, client_info):
     title_values_string = ""
     if title_values != []:
         title_values_string += f"for {title_measure}"
-        if len(title_values) > 1: title_values_string += "s" 
+        if len(title_values) > 1:
+            title_values_string += "s"
         title_values_string += " "
         for i, value in enumerate(title_values):
             title_values_string += str(value)
-            if len(title_values) > i + 1: title_values_string += ", "
+            if len(title_values) > i + 1:
+                title_values_string += ", "
         title_values_string += " per Lap"
 
     if not client_info["isMobile"] and filter_exists(filters, "LapId"):
@@ -245,53 +227,78 @@ def build_lap_plot(data_dict, filters, client_info):
         subtitle = "<br><sup>Select points to cross filter by lap</sup>"
 
     title = f"<b>{title_measure} Times </b>{title_values_string}{subtitle}"
-    fig.update_layout(
-        title_text = title
-    )
+    fig.update_layout(title_text=title)
 
     data = filter_data(data, filters, ignore=["LapId", "StintId"])
     if len(data) == 0:
         fig = empty_figure(fig)
         return fig
 
-    data = data.groupby(["TeamOrder", "DriverOrder", "StintId", "StintNumber", 
-                         "LapsInStint", "LapId", "Compound", "Driver", 
-                         "Tla", "TeamColour"])[time_field].sum().reset_index()
-    
-    data.sort_values(["TeamOrder", "DriverOrder", "StintNumber", "LapsInStint"], inplace=True)    
+    data = (
+        data.groupby(
+            [
+                "TeamOrder",
+                "DriverOrder",
+                "StintId",
+                "StintNumber",
+                "LapsInStint",
+                "LapId",
+                "Compound",
+                "Driver",
+                "Tla",
+                "TeamColour",
+            ]
+        )[time_field]
+        .sum()
+        .reset_index()
+    )
+
+    data.sort_values(
+        ["TeamOrder", "DriverOrder", "StintNumber", "LapsInStint"], inplace=True
+    )
     data.reset_index(drop=True, inplace=True)
 
     min_lap_time = data[time_field].min()
     max_lap_time = data[time_field].max()
-    data["text"] = data[time_field].apply(lambda x: ns_to_delta_string(
-        x if x == min_lap_time else x - min_lap_time, 
-        True if x == min_lap_time else False)
+    data["text"] = data[time_field].apply(
+        lambda x: ns_to_delta_string(
+            x if x == min_lap_time else x - min_lap_time,
+            True if x == min_lap_time else False,
         )
-    
+    )
+
     compound_colour = {
         "Soft": "rgba(255, 30, 0, 1)",
         "Medium": "rgba(247, 225, 21, 1)",
         "Hard": "rgba(255, 255, 255, 1)",
         "Unknown": "rgba(0, 0, 0, 1)",
         "Intermediate": "rgba(13, 203, 15, 1)",
-        "Wet": "rgba(41, 114, 237, 1)"
+        "Wet": "rgba(41, 114, 237, 1)",
     }
 
     def colour_opacity(compound, lap_id):
         if compound not in compound_colour:
             compound = "Unknown"
         colour = compound_colour[compound]
-        if filter_exists(filters, "LapId") and lap_id not in filter_values(filters, "LapId"):
+        if filter_exists(filters, "LapId") and lap_id not in filter_values(
+            filters, "LapId"
+        ):
             colour = colour.replace("1)", "0.25)")
         return colour
 
-    data["colour"] = data.apply(lambda x: colour_opacity(x["Compound"], x["LapId"]), axis=1)
-    
+    data["colour"] = data.apply(
+        lambda x: colour_opacity(x["Compound"], x["LapId"]), axis=1
+    )
+
     if filter_exists(filters, "LapId"):
-        data["line_colour"] = data["LapId"].apply(lambda x: "rgba(0, 0, 0, 1)" if x in filter_values(filters, "LapId") else "rgba(0, 0, 0, 0.25)")
+        data["line_colour"] = data["LapId"].apply(
+            lambda x: "rgba(0, 0, 0, 1)"
+            if x in filter_values(filters, "LapId")
+            else "rgba(0, 0, 0, 0.25)"
+        )
     else:
         data["line_colour"] = "rgba(0, 0, 0, 1)"
- 
+
     # Plot times
     fig.add_trace(
         go.Scatter(
@@ -303,7 +310,7 @@ def build_lap_plot(data_dict, filters, client_info):
             marker_line_width=1,
             hoverinfo="none" if client_info["isMobile"] else "text",
             hovertext=data["text"],
-            customdata=data[["StintId", "LapId"]].to_dict("records")
+            customdata=data[["StintId", "LapId"]].to_dict("records"),
         )
     )
 
@@ -312,7 +319,9 @@ def build_lap_plot(data_dict, filters, client_info):
     tick_labels = []
     previous_driver_index_end = -0.5
 
-    data["DriverTeam"] = data.apply(lambda x: str(x["Driver"]) + x["TeamColour"], axis=1)
+    data["DriverTeam"] = data.apply(
+        lambda x: str(x["Driver"]) + x["TeamColour"], axis=1
+    )
 
     for driver_team in list(data["DriverTeam"].unique()):
         x_min = previous_driver_index_end
@@ -321,17 +330,18 @@ def build_lap_plot(data_dict, filters, client_info):
         previous_driver_index_end = x_max
         tick_values.append(x_mid)
         tick_labels.append(data[(data["DriverTeam"] == driver_team)]["Tla"].iloc[0])
-        
+
         fig.add_vrect(
             x0=x_min,
             x1=x_max,
-            fillcolor="#" + data[(data["DriverTeam"] == driver_team)]["TeamColour"].iloc[0],
+            fillcolor="#"
+            + data[(data["DriverTeam"] == driver_team)]["TeamColour"].iloc[0],
             layer="below",
             opacity=1,
             line_width=0.5,
-            line_color="#FFFFFF"
+            line_color="#FFFFFF",
         )
-        
+
     fig.update_xaxes(
         tickvals=tick_values,
         ticktext=tick_labels,
@@ -339,7 +349,7 @@ def build_lap_plot(data_dict, filters, client_info):
         zeroline=False,
         showgrid=False,
         linewidth=2,
-        linecolor="#B8B8BB"
+        linecolor="#B8B8BB",
     )
 
     # Update Y axis
@@ -352,12 +362,10 @@ def build_lap_plot(data_dict, filters, client_info):
         zeroline=False,
         gridwidth=0.25,
         linewidth=2,
-        linecolor="#B8B8BB"
+        linecolor="#B8B8BB",
     )
 
-    fig.update_layout(
-        showlegend=False
-    )
+    fig.update_layout(showlegend=False)
 
     return fig
 
@@ -373,14 +381,12 @@ def build_track_map(data_dict, filters, client_info):
         fig = empty_figure(fig)
         return fig, ""
 
-    
     track_map = data_dict["track_map"]
 
     x_min = track_map["X"].min()
     x_max = track_map["X"].max()
     y_min = track_map["Y"].min()
     y_max = track_map["Y"].max()
-
 
     if filter_values(filters, "track_split")[0] == "zones":
         section_times = data_dict["zone_times"]
@@ -400,14 +406,14 @@ def build_track_map(data_dict, filters, client_info):
         ignore = ["SectorNumber", "ZoneNumber"]
 
     section_times = filter_data(section_times, filters, ignore)
-    
+
     section_times.reset_index(drop=True, inplace=True)
     sections = list(section_times[section_identifier].unique())
 
     colours = {
         "session_best": "#b228ad",
         "personal_best": "#0dcb0f",
-        "no_improvement": "#f7e115"
+        "no_improvement": "#f7e115",
     }
 
     # Readout data
@@ -417,60 +423,140 @@ def build_track_map(data_dict, filters, client_info):
     else:
         readout_data = filter_data(data_dict["lap_times"].copy(), filters, ignore)
         readout_time_identifier = "LapTime"
-    
+
     if len(lap_id_filter) == 1:
         lap_id = lap_id_filter[0]
-        lap_times = readout_data.groupby(["Tla", "LapId"])[readout_time_identifier].sum().reset_index()
+        lap_times = (
+            readout_data.groupby(["Tla", "LapId"])[readout_time_identifier]
+            .sum()
+            .reset_index()
+        )
         tla = lap_times[(lap_times["LapId"] == lap_id)]["Tla"].iloc[0]
-        lap_time = lap_times[(lap_times["LapId"] == lap_id)][readout_time_identifier].iloc[0]
-        personal_best = lap_times[(lap_times["Tla"] == tla)][readout_time_identifier].min()
+        lap_time = lap_times[(lap_times["LapId"] == lap_id)][
+            readout_time_identifier
+        ].iloc[0]
+        personal_best = lap_times[(lap_times["Tla"] == tla)][
+            readout_time_identifier
+        ].min()
         session_best = lap_times[readout_time_identifier].min()
         if lap_time == session_best:
             colour = colours["session_best"]
             readout_delta = []
         elif lap_time == personal_best:
             colour = colours["personal_best"]
-            readout_delta = [html.Tr(html.Td(ns_to_delta_string(lap_time - session_best) + " to session best"))]
+            readout_delta = [
+                html.Tr(
+                    html.Td(
+                        ns_to_delta_string(lap_time - session_best) + " to session best"
+                    )
+                )
+            ]
         else:
             colour = colours["no_improvement"]
             readout_delta = [
-                html.Tr(html.Td(ns_to_delta_string(lap_time - personal_best) + " to personal best", colSpan=2)),
-                html.Tr(html.Td(ns_to_delta_string(lap_time - session_best) + " to session best", colSpan=2))
+                html.Tr(
+                    html.Td(
+                        ns_to_delta_string(lap_time - personal_best)
+                        + " to personal best",
+                        colSpan=2,
+                    )
+                ),
+                html.Tr(
+                    html.Td(
+                        ns_to_delta_string(lap_time - session_best)
+                        + " to session best",
+                        colSpan=2,
+                    )
+                ),
             ]
         readout = [
-                html.Tr(
-                    [
-                        html.Td("Total Time: "),
-                        html.Td(ns_to_delta_string(lap_time, True), style={"color": colour})
-                    ],
-                    style={"background-color": "#15151E"}
-                )
+            html.Tr(
+                [
+                    html.Td("Total Time: "),
+                    html.Td(
+                        ns_to_delta_string(lap_time, True), style={"color": colour}
+                    ),
+                ],
+                style={"background-color": "#15151E"},
+            )
         ]
         readout.extend(readout_delta)
-        readout = html.Table(readout, style={"color": "#FFFFFF", "background-color": "#555", "margin-top": "50px", "margin-left": "10px", "width": "150px", "font-size": "0.7rem"})
-        
+        readout = html.Table(
+            readout,
+            style={
+                "color": "#FFFFFF",
+                "background-color": "#555",
+                "margin-top": "50px",
+                "margin-left": "10px",
+                "width": "150px",
+                "font-size": "0.7rem",
+            },
+        )
+
     else:
-        readout_frame = filter_data(readout_data, filters).groupby(["Tla", "LapId", "TeamColour"])[readout_time_identifier].sum().reset_index()
-        readout_driver_bests = readout_frame.groupby(["Tla", "TeamColour"])[readout_time_identifier].min().reset_index()
+        readout_frame = (
+            filter_data(readout_data, filters)
+            .groupby(["Tla", "LapId", "TeamColour"])[readout_time_identifier]
+            .sum()
+            .reset_index()
+        )
+        readout_driver_bests = (
+            readout_frame.groupby(["Tla", "TeamColour"])[readout_time_identifier]
+            .min()
+            .reset_index()
+        )
         readout_driver_bests.sort_values(readout_time_identifier, inplace=True)
         readout_dict_list = readout_driver_bests.to_dict("records")
         readout = []
         for i, tla_time in enumerate(readout_dict_list):
-            time_delta = tla_time[readout_time_identifier] if i == 0 else tla_time[readout_time_identifier] - readout_dict_list[0][readout_time_identifier]
+            time_delta = (
+                tla_time[readout_time_identifier]
+                if i == 0
+                else tla_time[readout_time_identifier]
+                - readout_dict_list[0][readout_time_identifier]
+            )
             readout.extend(
                 [
                     html.Tr(
                         [
-                            html.Td(str(i + 1), style={"color": "#15151E", "background-color": "#FFFFFF", "border": "1px solid black", "border-radius": "2px"}),
-                            html.Td("▮", style={"color": "#" + tla_time["TeamColour"], "width": "10px"}),
-                            html.Td(tla_time['Tla'], style={"color": "#FFFFFF"}),
-                            html.Td(ns_to_delta_string(time_delta, i == 0), style={"color": "#FFFFFF", "background-color": "#555", "width": "80px"})
+                            html.Td(
+                                str(i + 1),
+                                style={
+                                    "color": "#15151E",
+                                    "background-color": "#FFFFFF",
+                                    "border": "1px solid black",
+                                    "border-radius": "2px",
+                                },
+                            ),
+                            html.Td(
+                                "▮",
+                                style={
+                                    "color": "#" + tla_time["TeamColour"],
+                                    "width": "10px",
+                                },
+                            ),
+                            html.Td(tla_time["Tla"], style={"color": "#FFFFFF"}),
+                            html.Td(
+                                ns_to_delta_string(time_delta, i == 0),
+                                style={
+                                    "color": "#FFFFFF",
+                                    "background-color": "#555",
+                                    "width": "80px",
+                                },
+                            ),
                         ],
-                        style={"line-height": "1.4vh"}
+                        style={"line-height": "1.4vh"},
                     )
                 ]
             )
-        readout = html.Table(readout, style={"background-color": "#15151E", "margin-top": "1.5vh", "margin-left": "10px"})
+        readout = html.Table(
+            readout,
+            style={
+                "background-color": "#15151E",
+                "margin-top": "1.5vh",
+                "margin-left": "10px",
+            },
+        )
 
     # Draw map
     for section in sections:
@@ -478,11 +564,18 @@ def build_track_map(data_dict, filters, client_info):
         track.sort_values("SampleId", inplace=True)
         track.reset_index(drop=True, inplace=True)
 
-        driver_bests = section_times[(section_times[section_identifier] == section)].groupby(["Tla", "TeamColour", "DriverOrder"])[time_identifier].min().reset_index()
+        driver_bests = (
+            section_times[(section_times[section_identifier] == section)]
+            .groupby(["Tla", "TeamColour", "DriverOrder"])[time_identifier]
+            .min()
+            .reset_index()
+        )
         driver_bests.sort_values(time_identifier, inplace=True)
         driver_bests.reset_index(drop=True, inplace=True)
 
-        if filter_exists(filters, section_identifier) and section not in filter_values(filters, section_identifier):
+        if filter_exists(filters, section_identifier) and section not in filter_values(
+            filters, section_identifier
+        ):
             opacity = 0.5
         else:
             opacity = 1
@@ -492,7 +585,15 @@ def build_track_map(data_dict, filters, client_info):
 
             lap_id = lap_id_filter[0]
 
-            if len(section_times[(section_times["LapId"] == lap_id) & (section_times[section_identifier] == section)]) == 0:
+            if (
+                len(
+                    section_times[
+                        (section_times["LapId"] == lap_id)
+                        & (section_times[section_identifier] == section)
+                    ]
+                )
+                == 0
+            ):
                 # Handle missing/erroneous data
                 fig.add_trace(
                     go.Scatter(
@@ -506,18 +607,28 @@ def build_track_map(data_dict, filters, client_info):
                         opacity=1,
                         line_width=1,
                         line_shape="spline",
-                        customdata=[{section_identifier: section}] * len(track)
+                        customdata=[{section_identifier: section}] * len(track),
                     )
                 )
             else:
-                tla = section_times[(section_times["LapId"] == lap_id) & (section_times[section_identifier] == section)]["Tla"].iloc[0]
-                section_time = section_times[(section_times["LapId"] == lap_id) & (section_times[section_identifier] == section)][time_identifier].iloc[0]
-                personal_best = driver_bests[(driver_bests["Tla"] == tla)][time_identifier].iloc[0]
+                tla = section_times[
+                    (section_times["LapId"] == lap_id)
+                    & (section_times[section_identifier] == section)
+                ]["Tla"].iloc[0]
+                section_time = section_times[
+                    (section_times["LapId"] == lap_id)
+                    & (section_times[section_identifier] == section)
+                ][time_identifier].iloc[0]
+                personal_best = driver_bests[(driver_bests["Tla"] == tla)][
+                    time_identifier
+                ].iloc[0]
                 session_best = driver_bests[time_identifier].min()
 
                 if section_time == session_best:
                     colour = colours["session_best"]
-                    hover_text = "Session best: " + ns_to_delta_string(section_time, True)
+                    hover_text = "Session best: " + ns_to_delta_string(
+                        section_time, True
+                    )
                 elif section_time == personal_best:
                     colour = colours["personal_best"]
                     hover_text = f"Personal best, {ns_to_delta_string(section_time - session_best)} to session best"
@@ -537,7 +648,7 @@ def build_track_map(data_dict, filters, client_info):
                         opacity=opacity,
                         line_width=5,
                         line_shape="spline",
-                        customdata=[{section_identifier: section}] * len(track)
+                        customdata=[{section_identifier: section}] * len(track),
                     )
                 )
 
@@ -552,8 +663,10 @@ def build_track_map(data_dict, filters, client_info):
                 if i == 0:
                     delta = ns_to_delta_string(benchmark_time, True)
                 else:
-                    delta = ns_to_delta_string(driver_bests[time_identifier].iloc[i] - benchmark_time)
-                line =  f"{tla}: {delta}<br>"
+                    delta = ns_to_delta_string(
+                        driver_bests[time_identifier].iloc[i] - benchmark_time
+                    )
+                line = f"{tla}: {delta}<br>"
                 hover_text += line
 
             fig.add_trace(
@@ -568,7 +681,7 @@ def build_track_map(data_dict, filters, client_info):
                     opacity=opacity,
                     line_width=6,
                     line_shape="spline",
-                    customdata=[{section_identifier: section}] * len(track)
+                    customdata=[{section_identifier: section}] * len(track),
                 )
             )
 
@@ -584,7 +697,7 @@ def build_track_map(data_dict, filters, client_info):
                         opacity=opacity,
                         line_width=1,
                         line_shape="spline",
-                        customdata=[{section_identifier: section}] * len(track)
+                        customdata=[{section_identifier: section}] * len(track),
                     )
                 )
 
@@ -593,7 +706,7 @@ def build_track_map(data_dict, filters, client_info):
                 mid_index = int(len(track) / 2)
                 mid_x = track["X"].iloc[mid_index]
                 mid_y = track["Y"].iloc[mid_index]
- 
+
                 fig.add_annotation(
                     x=mid_x,
                     y=mid_y,
@@ -603,12 +716,13 @@ def build_track_map(data_dict, filters, client_info):
                     bgcolor="#dee2e6",
                     borderpad=0,
                     opacity=0.75,
-                    height=10
+                    height=10,
                 )
 
-
     if len(filter_values(filters, "LapId")) == 1:
-        lap_number = section_times[(section_times["LapId"] == lap_id)]["NumberOfLaps"].iloc[0]
+        lap_number = section_times[(section_times["LapId"] == lap_id)][
+            "NumberOfLaps"
+        ].iloc[0]
         title_main = f"<b>{title_section} Times</b>, {tla} Lap {lap_number}"
     else:
         if filter_exists(filters, "LapId"):
@@ -618,38 +732,34 @@ def build_track_map(data_dict, filters, client_info):
         title_main = f"<b>Fastest Driver per {title_section}</b>{title_filter}"
 
     if not client_info["isMobile"] and filter_exists(filters, section_identifier):
-        subtitle = f"<br><sup>Double click to clear {title_section.lower()} selection</sup>"
+        subtitle = (
+            f"<br><sup>Double click to clear {title_section.lower()} selection</sup>"
+        )
     else:
-        subtitle = f"<br><sup>Select sections to cross filter by {title_section.lower()}</sup>"
-    
-    fig.update_layout(
-        title_text=title_main + subtitle
-    )
+        subtitle = (
+            f"<br><sup>Select sections to cross filter by {title_section.lower()}</sup>"
+        )
+
+    fig.update_layout(title_text=title_main + subtitle)
 
     # Extend X & Y axes a bit to fit whole map, also hide them
     x_centre = (x_min + x_max) / 2
     y_centre = (y_min + y_max) / 2
     axis_length = max(x_max - x_min, y_max - y_min)
     axis_length = axis_length * 1.05
-    
+
     fig.update_xaxes(
-        range=[x_centre - axis_length / 2, x_centre + axis_length / 2],
-        visible=False
+        range=[x_centre - axis_length / 2, x_centre + axis_length / 2], visible=False
     )
-    
+
     fig.update_yaxes(
-        range=[y_centre - axis_length / 2, y_centre + axis_length / 2],
-        visible=False
+        range=[y_centre - axis_length / 2, y_centre + axis_length / 2], visible=False
     )
 
-    fig.update_layout(
-        showlegend=False
-    )
+    fig.update_layout(showlegend=False)
 
-    return (
-        fig,
-        readout
-    )
+    return (fig, readout)
+
 
 def build_stint_graph(data_dict, filters, client_info):
 
@@ -685,7 +795,7 @@ def build_stint_graph(data_dict, filters, client_info):
     else:
         ignore = ["LapId"]
         title_over = "Session"
-    
+
     data = filter_data(data, filters, ignore)
     if len(data) == 0:
         fig = empty_figure(fig)
@@ -694,33 +804,53 @@ def build_stint_graph(data_dict, filters, client_info):
     title_values_string = ""
     if title_values != []:
         title_values_string += f"for {title_section}"
-        if len(title_values) > 1: title_values_string += "s" 
+        if len(title_values) > 1:
+            title_values_string += "s"
         title_values_string += " "
         for i, value in enumerate(title_values):
             title_values_string += str(value)
-            if len(title_values) > i + 1: title_values_string += ", "    
+            if len(title_values) > i + 1:
+                title_values_string += ", "
 
     title = f"<b>{title_section} Times over {title_over}</b> {title_values_string}"
-    fig.update_layout(
-        title_text=title
+    fig.update_layout(title_text=title)
+
+    data = (
+        data.groupby(
+            [
+                "TeamOrder",
+                "DriverOrder",
+                "NumberOfLaps",
+                "StintId",
+                "StintNumber",
+                "LapsInStint",
+                "LapId",
+                "Compound",
+                "Driver",
+                "Tla",
+                "TeamColour",
+            ]
+        )[time_field]
+        .sum()
+        .reset_index()
     )
 
-    data = data.groupby(["TeamOrder", "DriverOrder", "NumberOfLaps", "StintId", "StintNumber", 
-                         "LapsInStint", "LapId", "Compound", "Driver", 
-                         "Tla", "TeamColour"])[time_field].sum().reset_index()
-
-    data.sort_values(["TeamOrder", "DriverOrder", "NumberOfLaps"], inplace=True)  
+    data.sort_values(["TeamOrder", "DriverOrder", "NumberOfLaps"], inplace=True)
     data.reset_index(drop=True, inplace=True)
-    
+
     min_lap_time = data[time_field].min()
     max_lap_time = data[time_field].max()
-    data["text"] = data[time_field].apply(lambda x: ns_to_delta_string(
-        x if x == min_lap_time else x - min_lap_time, 
-        True if x == min_lap_time else False)
+    data["text"] = data[time_field].apply(
+        lambda x: ns_to_delta_string(
+            x if x == min_lap_time else x - min_lap_time,
+            True if x == min_lap_time else False,
         )
-    
+    )
+
     # Trace per driver or stint
-    stint_filtering = filter_exists(filters, "StintId") or filter_exists(filters, "Compound")
+    stint_filtering = filter_exists(filters, "StintId") or filter_exists(
+        filters, "Compound"
+    )
     if stint_filtering:
         x_field = "LapsInStint"
         x_title = "Stint Lap"
@@ -732,11 +862,11 @@ def build_stint_graph(data_dict, filters, client_info):
 
     plotted_tlas = []
     plotted_teams = []
-    
-    for iterator in list(data[trace_identifier].unique()):        
+
+    for iterator in list(data[trace_identifier].unique()):
         trace_data = data[(data[trace_identifier] == iterator)]
         colour = "#" + trace_data["TeamColour"].iloc[0]
-        
+
         tla = trace_data["Tla"].iloc[0]
         team = trace_data["TeamOrder"].iloc[0]
         if tla in plotted_tlas or team in plotted_teams:
@@ -745,20 +875,24 @@ def build_stint_graph(data_dict, filters, client_info):
             dash_style = "solid"
             plotted_tlas.append(tla)
             plotted_teams.append(team)
-            
-        trace_name = tla + " stint " + str(trace_data["StintNumber"].iloc[0]) if trace_identifier == "StintId" else tla
-        
+
+        trace_name = (
+            tla + " stint " + str(trace_data["StintNumber"].iloc[0])
+            if trace_identifier == "StintId"
+            else tla
+        )
+
         fig.add_trace(
             go.Scatter(
                 x=trace_data[x_field],
                 y=trace_data[time_field],
                 mode="lines+markers",
                 marker_color=colour,
-                marker_size = 4,
+                marker_size=4,
                 hoverinfo="none" if client_info["isMobile"] else "text",
                 hovertext=trace_data["Tla"] + ": " + trace_data["text"],
                 line={"dash": dash_style},
-                name=trace_name
+                name=trace_name,
             )
         )
 
@@ -780,10 +914,10 @@ def build_stint_graph(data_dict, filters, client_info):
                         marker_line_color="rgb(255, 255, 255)",
                         hoverinfo="none" if client_info["isMobile"] else "text",
                         hovertext=trace_data["Tla"] + ": " + trace_data["text"],
-                        showlegend=False
+                        showlegend=False,
                     )
                 )
-    
+
     # Update axes
     tick_values, tick_labels = get_time_axis_ticks(min_lap_time, max_lap_time)
     range_extend = (tick_values[-1] - tick_values[0]) * 0.1
@@ -792,16 +926,11 @@ def build_stint_graph(data_dict, filters, client_info):
         ticktext=tick_labels,
         range=[tick_values[-1] + range_extend, tick_values[0] - range_extend],
         zeroline=False,
-        gridwidth=0.2
+        gridwidth=0.2,
     )
-    fig.update_xaxes(
-        title = x_title
-    )
+    fig.update_xaxes(title=x_title)
 
-    fig.update_layout(
-        dragmode=False,
-        clickmode="none"
-    )
+    fig.update_layout(dragmode=False, clickmode="none")
 
     return fig
 
@@ -831,7 +960,7 @@ def build_inputs_graph(data_dict, filters, client_info, data):
         "RPM": (norms_data["RPMMin"], norms_data["RPMMax"]),
         "Speed": (norms_data["SpeedMin"], norms_data["SpeedMax"]),
         "Throttle": (norms_data["ThrottleMin"], norms_data["ThrottleMax"]),
-        "Gear": (0, 8)
+        "Gear": (0, 8),
     }
 
     if not isinstance(data, pd.DataFrame):
@@ -844,17 +973,21 @@ def build_inputs_graph(data_dict, filters, client_info, data):
         "Speed": "#b228ad",
         "Brake": "#15151E",
         "Gear": "#0dcb0f",
-        "Throttle": "#2972ed"
+        "Throttle": "#2972ed",
     }
 
     for trace in filters["input_trace"]:
         if trace == "Brake":
             data[trace] = data[trace].apply(lambda x: 1 if x == True else 0)
-            data["text_" + trace] = data[trace].apply(lambda x: "Brake applied" if x == True else "Brake off")
+            data["text_" + trace] = data[trace].apply(
+                lambda x: "Brake applied" if x == True else "Brake off"
+            )
         else:
             trace_min, trace_max = norms[trace]
             trace_range = trace_max - trace_min
-            data["norm_" + trace] = data[trace].apply(lambda x: (x - trace_min) / trace_range)
+            data["norm_" + trace] = data[trace].apply(
+                lambda x: (x - trace_min) / trace_range
+            )
             if trace == "Speed":
                 data["text_" + trace] = data[trace].apply(lambda x: str(x) + " km/h")
             elif trace == "RPM":
@@ -862,17 +995,19 @@ def build_inputs_graph(data_dict, filters, client_info, data):
             elif trace == "Gear":
                 data["text_" + trace] = data[trace].apply(lambda x: "Gear " + str(x))
             elif trace == "Throttle":
-                data["text_" + trace] = data[trace].apply(lambda x: "Throttle: " + str(x))
-            
+                data["text_" + trace] = data[trace].apply(
+                    lambda x: "Throttle: " + str(x)
+                )
+
     first_lap_start_time = 0
     max_lap_end_time = 0
     title_drivers = []
     title_laps = []
     for i, lap_id in enumerate(filtered_lap_ids):
-        
+
         lap_data = data[(data["LapId"] == lap_id)].copy()
         lap_data.sort_values("SessionTime", inplace=True)
-        
+
         legend_group = str(i)
         tla = lap_data["Tla"].iloc[0]
         lap_number = lap_data["NumberOfLaps"].iloc[0]
@@ -880,22 +1015,26 @@ def build_inputs_graph(data_dict, filters, client_info, data):
 
         title_drivers.append(tla)
         title_laps.append(lap_number)
-        
-        if i == 0: 
+
+        if i == 0:
             first_lap_start_time = lap_data["SessionTime"].min()
             max_lap_end_time = lap_data["SessionTime"].max()
             time_offset = 0
             dash_style = "solid"
         else:
             time_offset = lap_data["SessionTime"].min() - first_lap_start_time
-            max_lap_end_time = max(max_lap_end_time, lap_data["SessionTime"].max() - time_offset)
+            max_lap_end_time = max(
+                max_lap_end_time, lap_data["SessionTime"].max() - time_offset
+            )
             dash_style = "dot"
-            
+
         for trace in filters["input_trace"]:
             fig.add_trace(
                 go.Scatter(
                     x=lap_data["SessionTime"] - time_offset,
-                    y=lap_data["Brake"] if trace == "Brake" else lap_data["norm_" + trace],
+                    y=lap_data["Brake"]
+                    if trace == "Brake"
+                    else lap_data["norm_" + trace],
                     mode="lines+markers",
                     marker_color=traces_colours[trace],
                     marker_size=0.5,
@@ -904,7 +1043,7 @@ def build_inputs_graph(data_dict, filters, client_info, data):
                     line={"dash": dash_style},
                     legendgroup=legend_group,
                     legendgrouptitle_text=legend_group_title,
-                    name=trace
+                    name=trace,
                 )
             )
 
@@ -916,7 +1055,7 @@ def build_inputs_graph(data_dict, filters, client_info, data):
         linewidth=2,
         linecolor="#B8B8BB",
         title_text="Time",
-        range=[first_lap_start_time, max_lap_end_time]
+        range=[first_lap_start_time, max_lap_end_time],
     )
     fig.update_yaxes(
         showticklabels=False,
@@ -924,9 +1063,9 @@ def build_inputs_graph(data_dict, filters, client_info, data):
         showline=True,
         linewidth=2,
         linecolor="#B8B8BB",
-        range=[0, 1.05]
+        range=[0, 1.05],
     )
-    
+
     # Get title
     if filter_exists(filters, "SectorNumber"):
         title_measure = "Sector"
@@ -940,27 +1079,24 @@ def build_inputs_graph(data_dict, filters, client_info, data):
     title_values_string = ""
     if title_values != []:
         title_values_string += f", {title_measure}"
-        if len(title_values) > 1: title_values_string += "s" 
+        if len(title_values) > 1:
+            title_values_string += "s"
         title_values_string += " "
         for i, value in enumerate(title_values):
             title_values_string += str(value)
-            if len(title_values) > i + 1: title_values_string += ", "
+            if len(title_values) > i + 1:
+                title_values_string += ", "
 
     title = f"<b>Input Telemetry</b> for "
     for i, lap in enumerate(title_laps):
-        if i > 0: title += " and "
+        if i > 0:
+            title += " and "
         title += f"{title_drivers[i]} Lap {str(lap)}"
     title += title_values_string
 
-    fig.update_layout(
-        title_text=title,
-        showlegend=True
-    )
+    fig.update_layout(title_text=title, showlegend=True)
 
-    fig.update_layout(
-        dragmode=False,
-        clickmode="none"
-    )
+    fig.update_layout(dragmode=False, clickmode="none")
 
     return fig, True
 
@@ -977,7 +1113,7 @@ def build_conditions_plot(data_dict, client_info):
         selectdirection="h",
         clickmode="event",
         selectionrevision=False,
-        font_color="#FFFFFF"
+        font_color="#FFFFFF",
     )
 
     if data_dict is None:
@@ -989,10 +1125,10 @@ def build_conditions_plot(data_dict, client_info):
     if len(data) == 0:
         fig = empty_figure(fig)
         return fig
-    
+
     max_laps = float(data["Laps"].max())
     data["Laps"] = data["Laps"].apply(lambda x: x / max_laps)
-    
+
     status_colours = {
         "AllClear": "#0dcb0f",
         "Red": "#FF1E00",
@@ -1000,55 +1136,55 @@ def build_conditions_plot(data_dict, client_info):
         "SCDeployed": "#f56b0e",
         "SCEnding": "#f56b0e",
         "VSCDeployed": "#b228ad",
-        "VSCEnding": "#b228ad"
+        "VSCEnding": "#b228ad",
     }
 
     metrics = {
         "Humidity": {
             "trace_type": "scatter",
             "axis_label": "Humidity",
-            "hoverable": True, 
+            "hoverable": True,
             "text_suffix": "%",
-            "colour": "#b228ad"
+            "colour": "#b228ad",
         },
         "Rainfall": {
             "trace_type": "scatter",
             "axis_label": "Rain",
-            "hoverable": False, 
+            "hoverable": False,
             "text_suffix": "",
-            "colour": "#2972ed"
+            "colour": "#2972ed",
         },
         "TrackTemp": {
             "trace_type": "annotation",
             "axis_label": "Temp (track)",
             "hoverable": False,
-            "text_suffix": "°C"
+            "text_suffix": "°C",
         },
         "AirTemp": {
             "trace_type": "annotation",
             "axis_label": "Temp (air)",
             "hoverable": False,
-            "text_suffix": "°C"
+            "text_suffix": "°C",
         },
         "WindSpeed": {
             "trace_type": "annotation",
             "axis_label": "Wind speed",
             "hoverable": False,
-            "text_suffix": "kph"
+            "text_suffix": "kph",
         },
         "WindDirection": {
             "trace_type": "annotation",
             "axis_label": "Wind direction",
             "hoverable": False,
-            "text_suffix": "°"
+            "text_suffix": "°",
         },
         "Laps": {
             "trace_type": "scatter",
             "axis_label": "Track activity",
             "hoverable": False,
             "text_suffix": "",
-            "colour": "#FF1E00"
-        }
+            "colour": "#FF1E00",
+        },
     }
 
     # Get evenly spaced samples of session time for annotations
@@ -1060,7 +1196,9 @@ def build_conditions_plot(data_dict, client_info):
     # Hover labels
     for metric in metrics:
         data["text_" + metric] = data[metric].apply(
-            lambda x: str(x) + metrics[metric]["text_suffix"] if x is not None else "Unavailable"
+            lambda x: str(x) + metrics[metric]["text_suffix"]
+            if x is not None
+            else "Unavailable"
         )
 
     # Traces
@@ -1070,16 +1208,18 @@ def build_conditions_plot(data_dict, client_info):
         metric_dict = metrics[metric]
         y_values.append(y + 0.5)
         y_labels.append(metric_dict["axis_label"])
-        
+
         if metric_dict["trace_type"] == "scatter":
             fig.add_trace(
                 go.Scatter(
                     x=data["SessionTime"],
                     y=data[metric] + y,
                     hoverinfo="text" if metric_dict["hoverable"] == True else "none",
-                    hovertext=data["text_" + metric] if metric_dict["hoverable"] == True else "", 
+                    hovertext=data["text_" + metric]
+                    if metric_dict["hoverable"] == True
+                    else "",
                     marker_color=metric_dict["colour"],
-                    fill="none"
+                    fill="none",
                 )
             )
         elif metric_dict["trace_type"] == "annotation":
@@ -1088,7 +1228,7 @@ def build_conditions_plot(data_dict, client_info):
                     x=x_sampled_data["SessionTime"].iloc[i],
                     y=y + 0.5,
                     text=data["text_" + metric].iloc[i],
-                    showarrow=False
+                    showarrow=False,
                 )
 
     # Do track status separately
@@ -1115,17 +1255,17 @@ def build_conditions_plot(data_dict, client_info):
                 marker_color=status_colour,
                 marker_size=0.5,
                 hoverinfo="text",
-                hovertext=status
+                hovertext=status,
             )
         )
-    
+
     # Update axes
     fig.update_yaxes(
-        tickvals = y_values,
-        ticktext = y_labels,
+        tickvals=y_values,
+        ticktext=y_labels,
         zeroline=False,
         showgrid=False,
-        range = [0, len(y_values)]
+        range=[0, len(y_values)],
     )
     fig.update_xaxes(
         visible=True,
@@ -1133,19 +1273,16 @@ def build_conditions_plot(data_dict, client_info):
         range=[data["SessionTime"].min(), data["SessionTime"].max()],
         showticklabels=False,
         showgrid=False,
-        showline=True
+        showline=True,
     )
 
-    fig.update_layout(
-        margin={"l":100, "r":100, "t":0, "b":0},
-        dragmode="select"
-    )
+    fig.update_layout(margin={"l": 100, "r": 100, "t": 0, "b": 0}, dragmode="select")
 
     return fig
 
 
 def shade_conditions_plot(figure_state, filters):
-    
+
     # Takes session time tuple from selectedData xaxis.range output and draws vrects either side
 
     # Build fig from existing dict, clear any existing shapes
@@ -1170,11 +1307,11 @@ def shade_conditions_plot(figure_state, filters):
             fillcolor="rgb(175, 175, 175)",
             opacity=0.5,
             layer="above",
-            line_width=0
+            line_width=0,
         )
 
     return fig
-    
+
 
 def add_line_to_inputs_graph(figure_state, session_time):
 
@@ -1193,9 +1330,6 @@ def add_line_to_inputs_graph(figure_state, session_time):
     if not x_min <= session_time <= x_max:
         return fig
 
-    fig.add_vline(
-        x=session_time,
-        line_color="rgba(255, 0, 255, 0.5)"
-    )
+    fig.add_vline(x=session_time, line_color="rgba(255, 0, 255, 0.5)")
 
     return fig

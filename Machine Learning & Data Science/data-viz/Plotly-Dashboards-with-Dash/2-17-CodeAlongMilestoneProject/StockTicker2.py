@@ -14,33 +14,21 @@ from dash.dependencies import Input, Output
 
 app = dash.Dash()
 
-app.layout = html.Div([
-    html.H1('Stock Ticker Dashboard'),
-    html.H3('Enter a stock symbol:'),
-    dcc.Input(
-        id='my_ticker_symbol',
-        value='TSLA' # sets a default value
-    ),
-    dcc.Graph(
-        id='my_graph',
-        figure={
-            'data': [
-                {'x': [1,2], 'y': [3,1]}
-            ]
-        }
-    )
-])
-@app.callback(
-    Output('my_graph', 'figure'),
-    [Input('my_ticker_symbol', 'value')])
+app.layout = html.Div(
+    [
+        html.H1("Stock Ticker Dashboard"),
+        html.H3("Enter a stock symbol:"),
+        dcc.Input(id="my_ticker_symbol", value="TSLA"),  # sets a default value
+        dcc.Graph(id="my_graph", figure={"data": [{"x": [1, 2], "y": [3, 1]}]}),
+    ]
+)
+
+
+@app.callback(Output("my_graph", "figure"), [Input("my_ticker_symbol", "value")])
 def update_graph(stock_ticker):
-    fig = {
-        'data': [
-            {'x': [1,2], 'y': [3,1]}
-        ],
-        'layout': {'title':stock_ticker}
-    }
+    fig = {"data": [{"x": [1, 2], "y": [3, 1]}], "layout": {"title": stock_ticker}}
     return fig
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run_server()

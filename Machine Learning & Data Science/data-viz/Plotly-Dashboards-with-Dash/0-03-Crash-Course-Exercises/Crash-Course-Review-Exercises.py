@@ -1,5 +1,5 @@
 ##################################################################
-####### Crash Course Review Exercises 
+####### Crash Course Review Exercises
 #########################################################
 
 #########################################################
@@ -12,11 +12,9 @@
 ######
 
 
-
 #######
 # TASK 2: Set Numpy's random number generator seed to 101
 ######
-
 
 
 #######
@@ -26,7 +24,6 @@
 ######
 
 
-
 #######
 # TASK 4: Now use pd.DataFrame() to read in this numpy array as a dataframe.
 #         Simple pass in the numpy array into that function to get back a
@@ -34,13 +31,11 @@
 ######
 
 
-
 #######
 # TASK 5: Using your previously created DataFrame, use [df.columns = [...]]
 #         (https://stackoverflow.com/questions/11346283/renaming-columns-in-pandas)
 #         to rename the pandas columns to be ['f1','f2','f3','f4','label'].
 ######
-
 
 
 #######

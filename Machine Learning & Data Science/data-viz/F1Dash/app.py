@@ -1,6 +1,19 @@
-from dash import dcc, html, Input, Output, State, dash_table, callback_context, no_update
+from dash import (
+    dcc,
+    html,
+    Input,
+    Output,
+    State,
+    dash_table,
+    callback_context,
+    no_update,
+)
 from dash.exceptions import PreventUpdate
-from dash_extensions.enrich import DashProxy, ServersideOutput, ServersideOutputTransform
+from dash_extensions.enrich import (
+    DashProxy,
+    ServersideOutput,
+    ServersideOutputTransform,
+)
 import dash_bootstrap_components as dbc
 import json
 import threading
@@ -16,7 +29,11 @@ def filter_dict_from_inputs(input_dict):
 
     filters = {}
     for field in ["TeamName", "Driver", "Compound"]:
-        if field in input_dict and input_dict[field] is not None and input_dict[field] not in [[False], []]:
+        if (
+            field in input_dict
+            and input_dict[field] is not None
+            and input_dict[field] not in [[False], []]
+        ):
             filters[field] = input_dict[field]
 
     if "CleanLap" in input_dict and input_dict["CleanLap"] != False:
@@ -42,9 +59,14 @@ def filter_dict_from_inputs(input_dict):
             stint_ids.add(stint_id)
         filters["StintId"] = list(stint_ids)
 
-    if "SectorOrZoneNumber" in input_dict and input_dict["SectorOrZoneNumber"] is not None:
+    if (
+        "SectorOrZoneNumber" in input_dict
+        and input_dict["SectorOrZoneNumber"] is not None
+    ):
         values = set()
-        field = list(input_dict["SectorOrZoneNumber"]["points"][0]["customdata"].keys())[0]
+        field = list(
+            input_dict["SectorOrZoneNumber"]["points"][0]["customdata"].keys()
+        )[0]
         for point in input_dict["SectorOrZoneNumber"]["points"]:
             value = point["customdata"][field]
             values.add(value)
@@ -64,11 +86,11 @@ config = read_database.get_app_config()
 
 file_store.size_limit_in_GB = float(config["MaxFileStoreSizeInGB"])
 file_store.delete_files(delete_all=True)
-light_version = config['RunLightVersion'] == "1"
+light_version = config["RunLightVersion"] == "1"
 layouts.light_version = light_version
 read_database.light_version = light_version
 
-max_thread_wakeup_delay = int(config['ThreadMaxWakeupDelayInSeconds'])
+max_thread_wakeup_delay = int(config["ThreadMaxWakeupDelayInSeconds"])
 
 if config["EnableDatabaseThread"] == "1":
     database_thread = threading.Thread(
@@ -77,8 +99,8 @@ if config["EnableDatabaseThread"] == "1":
         args=(
             "Database",
             max_thread_wakeup_delay,
-            float(config["DatabaseThreadSleepInHours"])
-        )
+            float(config["DatabaseThreadSleepInHours"]),
+        ),
     )
     database_thread.start()
 
@@ -90,17 +112,16 @@ if config["EnableCacheCleanupThread"] == "1":
             "Cache",
             max_thread_wakeup_delay,
             float(config["CacheThreadSleepInHours"]),
-            float(config["CacheFileDeleteDelayInHours"])
-        )
+            float(config["CacheFileDeleteDelayInHours"]),
+        ),
     )
     cache_cleanup_thread.start()
 
 
-dash_app = DashProxy(__name__,
-    meta_tags=[
-        {"name": "viewport", "content": "width=device-width, initial-scale=1"}
-    ],
-    transforms=[ServersideOutputTransform()]
+dash_app = DashProxy(
+    __name__,
+    meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}],
+    transforms=[ServersideOutputTransform()],
 )
 app = dash_app.server
 dash_app.title = "F1Dash"
@@ -114,11 +135,8 @@ dash_app.layout = html.Div(
         dcc.Store(id="loaded_session", storage_type="memory"),
         dcc.Store(id="datasets", storage_type="memory"),
         dcc.Store(id="stored_telemetry", storage_type="memory"),
-        dbc.Container(
-            id="container",
-            fluid=True
-        )
-    ]
+        dbc.Container(id="container", fluid=True),
+    ],
 )
 
 # Clientside callback to get client info such as screen size
@@ -132,20 +150,24 @@ dash_app.clientside_callback(
             documentHeight: document.documentElement.clientHeight,
             documentWidth: document.documentElement.clientWidth
         };
-        client_info.isMobile = Boolean(client_info.width < """ + config["DetectMobileWidth"] + """ || client_info.height < """ + config["DetectMobileHeight"] + """);
+        client_info.isMobile = Boolean(client_info.width < """
+    + config["DetectMobileWidth"]
+    + """ || client_info.height < """
+    + config["DetectMobileHeight"]
+    + """);
 
         return client_info
     }
     """,
     Output("client_info", "data"),
-    Input("top_div", "children")
+    Input("top_div", "children"),
 )
 
 # Initiating callback
 @dash_app.callback(
     Output("container", "children"),
     Output("events_and_sessions", "data"),
-    Input("client_info", "data")
+    Input("client_info", "data"),
 )
 def initiate(client_info):
 
@@ -162,14 +184,14 @@ def initiate(client_info):
         else:
             layout = layouts.layout_desktop
 
-    read_database.app_logging(str(client_info), "initiate", "mobile" if client_info["isMobile"] else "desktop")
+    read_database.app_logging(
+        str(client_info), "initiate", "mobile" if client_info["isMobile"] else "desktop"
+    )
 
     available_events_and_sessions = read_database.get_available_sessions().to_dict()
 
-    return (
-        layout,
-        available_events_and_sessions
-    )
+    return (layout, available_events_and_sessions)
+
 
 # Open/close parameters panel
 @dash_app.callback(
@@ -178,9 +200,11 @@ def initiate(client_info):
     Input("datasets", "data"),
     State("parameters_panel", "is_open"),
     State("selected_session", "data"),
-    State("loaded_session", "data")
+    State("loaded_session", "data"),
 )
-def open_close_parameters(open_click, datasets, is_open, selected_session, loaded_session):
+def open_close_parameters(
+    open_click, datasets, is_open, selected_session, loaded_session
+):
 
     if callback_context.triggered[0]["prop_id"].split(".")[0] == "datasets":
         # Close having loaded new datasets
@@ -197,7 +221,11 @@ def open_close_parameters(open_click, datasets, is_open, selected_session, loade
         loaded_session = json.loads(loaded_session)
         loaded_event_id = loaded_session["EventId"]
         loaded_session_name = loaded_session["SessionName"]
-        if loaded_session is None or loaded_event_id != selected_event_id or loaded_session_name != selected_session_name:
+        if (
+            loaded_session is None
+            or loaded_event_id != selected_event_id
+            or loaded_session_name != selected_session_name
+        ):
             open = True
         else:
             open = False
@@ -209,25 +237,16 @@ def open_close_parameters(open_click, datasets, is_open, selected_session, loade
     Output("parameters_panel", "backdrop"),
     Output("load_button", "children"),
     Input("open_parameters_button", "n_clicks"),
-    Input("selected_session", "data")
+    Input("selected_session", "data"),
 )
 def lock_panel_on_loading(open_parameters_button, selected_session):
     caller = callback_context.triggered[0]["prop_id"].split(".")[0]
     if caller == "open_parameters_button":
-        return (
-            True,
-            "Load new session"
-        )
+        return (True, "Load new session")
     elif caller == "selected_session":
-        return (
-            "static",
-            [dbc.Spinner(color="light", size="sm"), " Please wait..."]
-        )
+        return ("static", [dbc.Spinner(color="light", size="sm"), " Please wait..."])
     else:
-        return (
-            "static",
-            no_update
-        )
+        return ("static", no_update)
 
 
 # Populate event dropdown
@@ -236,25 +255,28 @@ def lock_panel_on_loading(open_parameters_button, selected_session):
     Output("event_select", "value"),
     Input("events_and_sessions", "data"),
     Input("open_parameters_button", "n_clicks"),
-    State("loaded_session", "data")
+    State("loaded_session", "data"),
 )
 def event_selector_refresh(events_and_sessions, panel_open, loaded_session):
     if callback_context.triggered[0]["prop_id"].split(".")[0] == "events_and_sessions":
-        #events_and_sessions = json.loads(events_and_sessions)
-        event_options = visuals.get_filter_options(events_and_sessions, {}, ("EventLabel", "EventId"))
+        # events_and_sessions = json.loads(events_and_sessions)
+        event_options = visuals.get_filter_options(
+            events_and_sessions, {}, ("EventLabel", "EventId")
+        )
         event_value = event_options[0]["value"]
-    elif callback_context.triggered[0]["prop_id"].split(".")[0] == "open_parameters_button":
+    elif (
+        callback_context.triggered[0]["prop_id"].split(".")[0]
+        == "open_parameters_button"
+    ):
         event_options = no_update
         event_value = json.loads(loaded_session)["EventId"]
     else:
         event_options = no_update
         event_value = no_update
 
-    return (
-        event_options,
-        event_value
-    )
-    
+    return (event_options, event_value)
+
+
 # Populate session dropdown
 @dash_app.callback(
     Output("session_select", "options"),
@@ -262,24 +284,30 @@ def event_selector_refresh(events_and_sessions, panel_open, loaded_session):
     Input("open_parameters_button", "n_clicks"),
     Input("event_select", "value"),
     State("events_and_sessions", "data"),
-    State("loaded_session", "data")
+    State("loaded_session", "data"),
 )
-def session_selector_refresh(panel_open, event_select_value, events_and_sessions, loaded_session):
+def session_selector_refresh(
+    panel_open, event_select_value, events_and_sessions, loaded_session
+):
     if callback_context.triggered[0]["prop_id"].split(".")[0] == "event_select":
-        #events_and_sessions = json.loads(events_and_sessions)
-        session_options = visuals.get_filter_options(events_and_sessions, {"EventId": [int(event_select_value)]}, ("SessionName", "SessionName"))
+        # events_and_sessions = json.loads(events_and_sessions)
+        session_options = visuals.get_filter_options(
+            events_and_sessions,
+            {"EventId": [int(event_select_value)]},
+            ("SessionName", "SessionName"),
+        )
         session_value = session_options[0]["value"]
-    elif callback_context.triggered[0]["prop_id"].split(".")[0] == "open_parameters_button":
+    elif (
+        callback_context.triggered[0]["prop_id"].split(".")[0]
+        == "open_parameters_button"
+    ):
         session_options = no_update
         session_value = json.loads(loaded_session)["SessionName"]
     else:
         session_options = no_update
         session_value = no_update
 
-    return (
-        session_options,
-        session_value
-    )
+    return (session_options, session_value)
 
 
 # Clear selected data on new session load or crossfilter clear
@@ -293,12 +321,22 @@ def session_selector_refresh(panel_open, event_select_value, events_and_sessions
     State("event_select", "value"),
     State("session_select", "value"),
     State("selected_session", "data"),
-    State("client_info", "data")
+    State("client_info", "data"),
 )
-def request_datasets(load_click, clear_crossfilters_click, event_id, session_name, selected_session_state, client_info):
+def request_datasets(
+    load_click,
+    clear_crossfilters_click,
+    event_id,
+    session_name,
+    selected_session_state,
+    client_info,
+):
 
     # Crossfilters clear
-    if callback_context.triggered[0]["prop_id"].split(".")[0] == "clear_crossfilters_button":
+    if (
+        callback_context.triggered[0]["prop_id"].split(".")[0]
+        == "clear_crossfilters_button"
+    ):
         return no_update, None, None, no_update
 
     # Session load
@@ -308,17 +346,28 @@ def request_datasets(load_click, clear_crossfilters_click, event_id, session_nam
         new_request = True
     if selected_session_state is not None:
         selected_session_state = json.loads(selected_session_state)
-        if selected_session_state["EventId"] != event_id or selected_session_state["SessionName"] != session_name:
+        if (
+            selected_session_state["EventId"] != event_id
+            or selected_session_state["SessionName"] != session_name
+        ):
             new_request = True
         else:
-            new_request = False     
+            new_request = False
 
     if new_request == True:
-        selected_session = {"EventId": event_id, "SessionName": session_name} 
-        read_database.app_logging(str(client_info), "request_datasets", f"event_id: {event_id}, session_name: {session_name}")
+        selected_session = {"EventId": event_id, "SessionName": session_name}
+        read_database.app_logging(
+            str(client_info),
+            "request_datasets",
+            f"event_id: {event_id}, session_name: {session_name}",
+        )
         cache_files_deleted = file_store.delete_files()
         if cache_files_deleted is not None:
-            read_database.app_logging(str(client_info), "delete_files", f"{str(cache_files_deleted)} cache files deleted")
+            read_database.app_logging(
+                str(client_info),
+                "delete_files",
+                f"{str(cache_files_deleted)} cache files deleted",
+            )
         return json.dumps(selected_session), None, None, None
     else:
         return no_update, no_update, no_update, no_update
@@ -328,29 +377,23 @@ def request_datasets(load_click, clear_crossfilters_click, event_id, session_nam
 @dash_app.callback(
     ServersideOutput("datasets", "data", session_check=False),
     Input("selected_session", "data"),
-    memoize = True
+    memoize=True,
 )
 def load_datasets(selected_session):
 
-    # Note: Adding client info state into this callback would prevent sharing of cache between sessions 
+    # Note: Adding client info state into this callback would prevent sharing of cache between sessions
     # because it would appear as a distinct arg to ServersideOutput
 
     if selected_session == None:
-        return (
-            no_update,
-            no_update,
-            no_update
-        )
+        return (no_update, no_update, no_update)
     else:
         selected_session = json.loads(selected_session)
         event_id = selected_session["EventId"]
         session_name = selected_session["SessionName"]
-        
+
         data_dict = read_database.read_session_data(event_id, session_name)
-        
-        return (
-            data_dict
-        )
+
+        return data_dict
 
 
 # Update heading and loaded session keys on dataset reload
@@ -364,53 +407,41 @@ def load_datasets(selected_session):
     Output("abstract_div", "hidden"),
     Input("datasets", "data"),
     State("events_and_sessions", "data"),
-    State("selected_session", "data")
+    State("selected_session", "data"),
 )
 def refresh_heading(datasets, events_and_sessions, selected_session):
     if selected_session is None:
-        return (
-            no_update,
-            no_update,
-            no_update,
-            no_update,
-            no_update,
-            no_update
-        )
+        return (no_update, no_update, no_update, no_update, no_update, no_update)
     else:
         selected_session = json.loads(selected_session)
         event_id = selected_session["EventId"]
         session_name = selected_session["SessionName"]
-        upper_heading, lower_heading = visuals.get_dashboard_headings(events_and_sessions, event_id, session_name)
+        upper_heading, lower_heading = visuals.get_dashboard_headings(
+            events_and_sessions, event_id, session_name
+        )
         loaded_session = json.dumps({"EventId": event_id, "SessionName": session_name})
 
-    return (
-        upper_heading,
-        lower_heading,
-        loaded_session,
-        False,
-        False,
-        True
-    )
+    return (upper_heading, lower_heading, loaded_session, False, False, True)
 
 
 # Open timeline
 @dash_app.callback(
     Output("conditions_panel", "is_open"),
     Input("open_conditions_button", "n_clicks"),
-    State("client_info", "data")
+    State("client_info", "data"),
 )
 def open_conditions_panel(click, client_info):
     if click is not None:
-        return True        
+        return True
     else:
-        return False   
+        return False
 
 
 # Set clear crossfilters button colour
 @dash_app.callback(
     Output("clear_crossfilters_button", "disabled"),
     Input("lap_plot", "selectedData"),
-    Input("track_map", "selectedData")
+    Input("track_map", "selectedData"),
 )
 def set_clear_filters_button(lap_plot_selection, track_map_selection):
     return lap_plot_selection is None and track_map_selection is None
@@ -418,62 +449,90 @@ def set_clear_filters_button(lap_plot_selection, track_map_selection):
 
 ### Callback for each dropdown filter
 
+
 @dash_app.callback(
     Output("team_filter_dropdown", "options"),
     Output("team_filter_dropdown", "value"),
-    Input("datasets", "data")
+    Input("datasets", "data"),
 )
 def team_filter_dropdown_refresh(datasets):
     if datasets is None:
         return no_update, no_update
     else:
-        return visuals.get_filter_options(datasets["session_drivers"], {}, ("TeamName", "TeamName")), []
+        return (
+            visuals.get_filter_options(
+                datasets["session_drivers"], {}, ("TeamName", "TeamName")
+            ),
+            [],
+        )
+
 
 @dash_app.callback(
     Output("driver_filter_dropdown", "options"),
     Input("team_filter_dropdown", "value"),
-    Input("datasets", "data")
+    Input("datasets", "data"),
 )
 def driver_filter_dropdown_refresh(team_filter_values, datasets):
     if datasets is None:
         return no_update
     else:
-        filter = {} if team_filter_values is None or team_filter_values == [] else {"TeamName": team_filter_values}
-        return visuals.get_filter_options(datasets["session_drivers"], filter, ("Tla", "RacingNumber"))
+        filter = (
+            {}
+            if team_filter_values is None or team_filter_values == []
+            else {"TeamName": team_filter_values}
+        )
+        return visuals.get_filter_options(
+            datasets["session_drivers"], filter, ("Tla", "RacingNumber")
+        )
+
 
 @dash_app.callback(
     Output("driver_filter_dropdown", "value"),
     Input("team_filter_dropdown", "value"),
     Input("datasets", "data"),
-    State("driver_filter_dropdown", "value")
+    State("driver_filter_dropdown", "value"),
 )
 def driver_filter_values_refresh(team_filter_values, datasets, driver_filter_values):
-    if (team_filter_values is None or team_filter_values == []) and (driver_filter_values is None or driver_filter_values == []):
+    if (team_filter_values is None or team_filter_values == []) and (
+        driver_filter_values is None or driver_filter_values == []
+    ):
         return no_update
     elif callback_context.triggered[0]["prop_id"].split(".")[0] == "datasets":
         return []
     else:
         session_drivers = datasets["session_drivers"]
-        driver_filter_values = [] if driver_filter_values is None else driver_filter_values
-        valid_drivers = list(session_drivers[(session_drivers["TeamName"].isin(driver_filter_values))]["RacingNumber"])
+        driver_filter_values = (
+            [] if driver_filter_values is None else driver_filter_values
+        )
+        valid_drivers = list(
+            session_drivers[(session_drivers["TeamName"].isin(driver_filter_values))][
+                "RacingNumber"
+            ]
+        )
         return [driver for driver in driver_filter_values if driver in valid_drivers]
+
 
 @dash_app.callback(
     Output("compound_filter_dropdown", "options"),
     Output("compound_filter_dropdown", "value"),
-    Input("datasets", "data")
+    Input("datasets", "data"),
 )
 def compound_filter_dropdown_refresh(datasets):
     if datasets is None:
         return no_update, no_update
     else:
-        return visuals.get_filter_options(datasets["lap_times"], {}, ("Compound", "Compound")), []
-
+        return (
+            visuals.get_filter_options(
+                datasets["lap_times"], {}, ("Compound", "Compound")
+            ),
+            [],
+        )
 
 
 ### Callback for each of the main visuals
 
 # Lap plot
+
 
 @dash_app.callback(
     Output("lap_plot", "figure"),
@@ -486,7 +545,7 @@ def compound_filter_dropdown_refresh(datasets):
     Input("track_map", "selectedData"),
     Input("conditions_plot", "selectedData"),
     Input("datasets", "data"),
-    State("client_info", "data")
+    State("client_info", "data"),
 )
 def lap_plot_refresh(
     team_filter_values,
@@ -497,35 +556,30 @@ def lap_plot_refresh(
     track_map_selection,
     conditions_plot_selection,
     datasets,
-    client_info
+    client_info,
 ):
     if datasets is None:
-        return (
-            visuals.build_lap_plot(datasets, [], client_info),
-            False
-        )
+        return (visuals.build_lap_plot(datasets, [], client_info), False)
     else:
         if callback_context.triggered[0]["prop_id"].split(".")[0] == "datasets":
-            filters = filter_dict_from_inputs({
-                "CleanLap": clean_laps_filter_values
-            })
+            filters = filter_dict_from_inputs({"CleanLap": clean_laps_filter_values})
         else:
-            filters = filter_dict_from_inputs({
-                "TeamName": team_filter_values,
-                "Driver": driver_filter_values,
-                "Compound": compound_filter_values,
-                "CleanLap": clean_laps_filter_values,
-                "LapId": lap_plot_selection,
-                "SectorOrZoneNumber": track_map_selection,
-                "TimeFilter": conditions_plot_selection
-            })
-        return (
-            visuals.build_lap_plot(datasets, filters, client_info),
-            True
-        )
+            filters = filter_dict_from_inputs(
+                {
+                    "TeamName": team_filter_values,
+                    "Driver": driver_filter_values,
+                    "Compound": compound_filter_values,
+                    "CleanLap": clean_laps_filter_values,
+                    "LapId": lap_plot_selection,
+                    "SectorOrZoneNumber": track_map_selection,
+                    "TimeFilter": conditions_plot_selection,
+                }
+            )
+        return (visuals.build_lap_plot(datasets, filters, client_info), True)
 
 
 # Track map
+
 
 @dash_app.callback(
     Output("track_map", "figure"),
@@ -540,7 +594,7 @@ def lap_plot_refresh(
     Input("track_map", "selectedData"),
     Input("conditions_plot", "selectedData"),
     Input("datasets", "data"),
-    State("client_info", "data")
+    State("client_info", "data"),
 )
 def track_map_refresh(
     team_filter_values,
@@ -552,41 +606,40 @@ def track_map_refresh(
     track_map_selection,
     conditions_plot_selection,
     datasets,
-    client_info
+    client_info,
 ):
     if datasets is None:
         figure, readout = visuals.build_track_map(datasets, [], client_info)
-        return (
-            figure,
-            readout,
-            False
-        )
+        return (figure, readout, False)
     else:
         if callback_context.triggered[0]["prop_id"].split(".")[0] == "datasets":
-            filters = filter_dict_from_inputs({
-                "CleanLap": clean_laps_filter_values,
-                "track_split": track_split_values
-            })
+            filters = filter_dict_from_inputs(
+                {
+                    "CleanLap": clean_laps_filter_values,
+                    "track_split": track_split_values,
+                }
+            )
         else:
-            filters = filter_dict_from_inputs({
-                "TeamName": team_filter_values,
-                "Driver": driver_filter_values,
-                "Compound": compound_filter_values,
-                "track_split": track_split_values,
-                "CleanLap": clean_laps_filter_values,
-                "LapId": lap_plot_selection,
-                "SectorOrZoneNumber": track_map_selection,
-                "TimeFilter": conditions_plot_selection
-            })
-        track_map, track_map_readout = visuals.build_track_map(datasets, filters, client_info)
-        return (
-            track_map,
-            track_map_readout,
-            True
+            filters = filter_dict_from_inputs(
+                {
+                    "TeamName": team_filter_values,
+                    "Driver": driver_filter_values,
+                    "Compound": compound_filter_values,
+                    "track_split": track_split_values,
+                    "CleanLap": clean_laps_filter_values,
+                    "LapId": lap_plot_selection,
+                    "SectorOrZoneNumber": track_map_selection,
+                    "TimeFilter": conditions_plot_selection,
+                }
+            )
+        track_map, track_map_readout = visuals.build_track_map(
+            datasets, filters, client_info
         )
+        return (track_map, track_map_readout, True)
 
 
 # Stint graph
+
 
 @dash_app.callback(
     Output("stint_graph", "figure"),
@@ -599,7 +652,7 @@ def track_map_refresh(
     Input("track_map", "selectedData"),
     Input("conditions_plot", "selectedData"),
     Input("datasets", "data"),
-    State("client_info", "data")
+    State("client_info", "data"),
 )
 def stint_graph_refresh(
     team_filter_values,
@@ -610,36 +663,31 @@ def stint_graph_refresh(
     track_map_selection,
     conditions_plot_selection,
     datasets,
-    client_info
+    client_info,
 ):
     if datasets is None:
-        return (
-            visuals.build_stint_graph(datasets, [], client_info),
-            False
-        )
+        return (visuals.build_stint_graph(datasets, [], client_info), False)
     else:
         if callback_context.triggered[0]["prop_id"].split(".")[0] == "datasets":
-            filters = filter_dict_from_inputs({
-                "CleanLap": clean_laps_filter_values
-            })
+            filters = filter_dict_from_inputs({"CleanLap": clean_laps_filter_values})
         else:
-            filters = filter_dict_from_inputs({
-                "TeamName": team_filter_values,
-                "Driver": driver_filter_values,
-                "Compound": compound_filter_values,
-                "CleanLap": clean_laps_filter_values,
-                "LapId": lap_plot_selection,
-                "StintId": lap_plot_selection,
-                "SectorOrZoneNumber": track_map_selection,
-                "TimeFilter": conditions_plot_selection
-            })
-        return (
-            visuals.build_stint_graph(datasets, filters, client_info),
-            True
-        )
+            filters = filter_dict_from_inputs(
+                {
+                    "TeamName": team_filter_values,
+                    "Driver": driver_filter_values,
+                    "Compound": compound_filter_values,
+                    "CleanLap": clean_laps_filter_values,
+                    "LapId": lap_plot_selection,
+                    "StintId": lap_plot_selection,
+                    "SectorOrZoneNumber": track_map_selection,
+                    "TimeFilter": conditions_plot_selection,
+                }
+            )
+        return (visuals.build_stint_graph(datasets, filters, client_info), True)
 
 
 # Inputs graph
+
 
 @dash_app.callback(
     Output("inputs_graph", "figure"),
@@ -656,7 +704,7 @@ def stint_graph_refresh(
     Input("datasets", "data"),
     Input("selected_session", "data"),
     State("client_info", "data"),
-    State("stored_telemetry", "data") 
+    State("stored_telemetry", "data"),
 )
 def inputs_graph_refresh(
     team_filter_values,
@@ -669,57 +717,55 @@ def inputs_graph_refresh(
     datasets,
     selected_session,
     client_info,
-    stored_telemetry
+    stored_telemetry,
 ):
     if light_version:
-        return (
-            no_update,
-            no_update,
-            no_update,
-            no_update
-        )
+        return (no_update, no_update, no_update, no_update)
     elif datasets is None:
-        figure, data_displayed = visuals.build_inputs_graph(datasets, [], client_info, None)
-        return (
-            figure,
-            True,
-            False,
-            no_update
+        figure, data_displayed = visuals.build_inputs_graph(
+            datasets, [], client_info, None
         )
+        return (figure, True, False, no_update)
     else:
         if callback_context.triggered[0]["prop_id"].split(".")[0] == "datasets":
-            filters = filter_dict_from_inputs({
-                "CleanLap": clean_laps_filter_values,
-                "input_trace": input_trace_selector_values
-            })
+            filters = filter_dict_from_inputs(
+                {
+                    "CleanLap": clean_laps_filter_values,
+                    "input_trace": input_trace_selector_values,
+                }
+            )
         else:
-            filters = filter_dict_from_inputs({
-                "TeamName": team_filter_values,
-                "Driver": driver_filter_values,
-                "Compound": compound_filter_values,
-                "CleanLap": clean_laps_filter_values,
-                "LapId": lap_plot_selection,
-                "SectorOrZoneNumber": track_map_selection,
-                "input_trace": input_trace_selector_values
-            })
-        
-        if callback_context.triggered[0]["prop_id"].split(".")[0] in ["input_trace_selector", "track_map"]:
+            filters = filter_dict_from_inputs(
+                {
+                    "TeamName": team_filter_values,
+                    "Driver": driver_filter_values,
+                    "Compound": compound_filter_values,
+                    "CleanLap": clean_laps_filter_values,
+                    "LapId": lap_plot_selection,
+                    "SectorOrZoneNumber": track_map_selection,
+                    "input_trace": input_trace_selector_values,
+                }
+            )
+
+        if callback_context.triggered[0]["prop_id"].split(".")[0] in [
+            "input_trace_selector",
+            "track_map",
+        ]:
             data = stored_telemetry
             stored_telemetry_output = no_update
         else:
             selected_session = json.loads(selected_session)
             lap_ids = filters["LapId"] if "LapId" in filters else [-1]
-            data = read_database.read_car_data(selected_session["EventId"], selected_session["SessionName"], lap_ids)
+            data = read_database.read_car_data(
+                selected_session["EventId"], selected_session["SessionName"], lap_ids
+            )
             stored_telemetry_output = data.to_dict("records")
 
-        figure, data_displayed = visuals.build_inputs_graph(datasets, filters, client_info, data)
-
-        return (
-            figure,
-            not data_displayed,
-            True,
-            stored_telemetry_output
+        figure, data_displayed = visuals.build_inputs_graph(
+            datasets, filters, client_info, data
         )
+
+        return (figure, not data_displayed, True, stored_telemetry_output)
 
 
 # Conditions plot
@@ -728,9 +774,11 @@ def inputs_graph_refresh(
     Input("datasets", "data"),
     Input("conditions_plot", "selectedData"),
     State("conditions_plot", "figure"),
-    State("client_info", "data")
+    State("client_info", "data"),
 )
-def conditions_plot_refresh(datasets, conditions_plot_selection, conditions_plot_state, client_info):
+def conditions_plot_refresh(
+    datasets, conditions_plot_selection, conditions_plot_state, client_info
+):
     if datasets is None:
         return visuals.build_conditions_plot(datasets, client_info)
     else:
@@ -738,15 +786,10 @@ def conditions_plot_refresh(datasets, conditions_plot_selection, conditions_plot
         if "datasets" in calling_props:
             return visuals.build_conditions_plot(datasets, client_info)
         else:
-            filter = filter_dict_from_inputs({
-                "TimeFilter": conditions_plot_selection
-            })
+            filter = filter_dict_from_inputs({"TimeFilter": conditions_plot_selection})
             return visuals.shade_conditions_plot(conditions_plot_state, filter)
 
 
-
-
-        
 if __name__ == "__main__":
     # Azure host will not run this
     dash_app.run_server(debug=True)

@@ -10,19 +10,13 @@
 # Perform imports here:
 
 
-
 # Create a DataFrame from  "flights" data
-df = pd.read_csv('../data/flights.csv')
+df = pd.read_csv("../data/flights.csv")
 
 # Define a data variable
 
 
-
-
-
-
 # Define the layout
-
 
 
 # Create a fig from data and layout, and plot the fig

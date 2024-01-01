@@ -6,9 +6,6 @@
 # Perform imports here:
 
 
-
-
-
 # Launch the application:
 
 
@@ -16,20 +13,7 @@
 # and at least one output. Assign IDs to each component:
 
 
-
-
-
-
-
-
-
-
-
 # Create a Dash callback:
-
-
-
-
 
 
 # Add the server clause:

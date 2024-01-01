@@ -49,7 +49,15 @@ ax.plot(years, death_rate_poorest, color="#8A2BE2", lw=2, marker="o")
 # Annotations for the death rates and dotted lines
 for y, w, p in zip(years, death_rate_wealthiest, death_rate_poorest):
     diff = p - w
-    ax.text(y + 0.5, (w + p) / 2, f"{diff} more deaths", ha="center", va="center", fontsize=9, color="#8A2BE2")
+    ax.text(
+        y + 0.5,
+        (w + p) / 2,
+        f"{diff} more deaths",
+        ha="center",
+        va="center",
+        fontsize=9,
+        color="#8A2BE2",
+    )
     ax.plot([y, y], [w, p], linestyle="--", color="#8A2BE2", linewidth=0.5)
 
 # Additional texts
@@ -82,7 +90,14 @@ ax.spines["bottom"].set_color("#C0C0C0")
 ax.grid(axis="y", linestyle="--", linewidth=0.5, color="#C0C0C0")
 
 # Title and Subtitle
-ax.text(1978, 1392, "Small death gap has grown wide", fontsize=15, fontweight="bold", ha="left")
+ax.text(
+    1978,
+    1392,
+    "Small death gap has grown wide",
+    fontsize=15,
+    fontweight="bold",
+    ha="left",
+)
 ax.text(
     1978,
     1265,
@@ -102,7 +117,9 @@ ax.set_ylim(0, 1200)
 # Adjusting tick labels
 ax.set_xticks([1980, 2000, 2015, 2020])
 ax.set_yticks(range(0, 1201, 200))
-ax.set_yticklabels([str(i) if i != 1200 else "1200 deaths per 100K" for i in range(0, 1201, 200)])
+ax.set_yticklabels(
+    [str(i) if i != 1200 else "1200 deaths per 100K" for i in range(0, 1201, 200)]
+)
 
 plt.tight_layout()
 plt.show()

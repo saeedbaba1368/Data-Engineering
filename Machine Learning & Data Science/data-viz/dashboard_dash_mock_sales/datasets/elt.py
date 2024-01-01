@@ -1,7 +1,7 @@
-'''
+"""
 connect with operation database 
 create a denormalized dataframe for dataware house
-'''
+"""
 
 import pandas as pd
 import sqlite3
@@ -10,45 +10,47 @@ from sqlite3 import Error
 
 # ------------------------------------------------------------------------------
 def create_connection(db_file):
-    '''
+    """
     create connection with operation database
-    '''
+    """
     try:
         conn = sqlite3.connect(db_file)
         return conn
-    
-    except Error as e:
-        return print (e)
 
-# ------------------------------------------------------------------------------        
+    except Error as e:
+        return print(e)
+
+
+# ------------------------------------------------------------------------------
 def create_cursor(conn, sql_query):
-    '''
+    """
     hold the rows returned by sql query
-    '''
+    """
     try:
         cursor = conn.cursor()
-        
+
     except:
-        print('\nPlease check database path!')
-    
-    try:  
+        print("\nPlease check database path!")
+
+    try:
         return cursor.execute(sql_query)
-    
+
     except UnboundLocalError as u:
         print(u)
-        
-    else: 
-        print('\nTable in database and query does not match!')
+
+    else:
+        print("\nTable in database and query does not match!")
+
 
 # ------------------------------------------------------------------------------
 def get_datawarehouse_dataframe():
-    '''
+    """
     create a dataframe for dataware house
-    '''
-    
-    db_file = 'operation.db'
+    """
 
-    order_details_query = '''
+    db_file = "operation.db"
+
+    order_details_query = """
     SELECT
         strftime('%Y', OH.OrderDate) as Year,
         CASE
@@ -87,28 +89,27 @@ def get_datawarehouse_dataframe():
         ON CAT.CategoryID = P.CategoryID
     INNER JOIN EMPLOYEES as EM
         ON EM.EmployeeID = OH.EmployeeID
-    '''
+    """
 
     try:
         conn = create_connection(db_file)
     except:
-        print('\nCannot create connection to database!')
+        print("\nCannot create connection to database!")
 
     try:
         cursor = create_cursor(conn, order_details_query)
     except:
-        print('\nTable cannot be found!')
-    
+        print("\nTable cannot be found!")
+
     try:
         master_df = pd.DataFrame(cursor, columns=[i[0] for i in cursor.description])
     except:
-        print('\nCannot convert query into dataframe!')
-    
+        print("\nCannot convert query into dataframe!")
+
     return master_df
 
+
 # ------------------------------------------------------------------------------
-if __name__ == '__main__':
-    
+if __name__ == "__main__":
+
     get_datawarehouse_dataframe()
-
-

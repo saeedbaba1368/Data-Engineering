@@ -1,14 +1,14 @@
-'''
+"""
 Setting up tables for operation database
-'''
+"""
 import sqlite3
 from sqlite3 import Error
 
 # ------------------------------------------------------------------------------
 def create_connection(db_file):
-    '''
+    """
     create a database connection to sqlite database
-    '''
+    """
     try:
         conn = sqlite3.connect(db_file)
         return conn
@@ -18,11 +18,12 @@ def create_connection(db_file):
 
     return conn
 
+
 # ------------------------------------------------------------------------------
 def create_table(conn, create_table_sql):
-    '''
+    """
     create a table from the create_table_sql statement
-    ''' 
+    """
     try:
         cursor = conn.cursor()
         cursor.execute(create_table_sql)
@@ -30,14 +31,15 @@ def create_table(conn, create_table_sql):
     except Error as e:
         print(e)
 
+
 # ------------------------------------------------------------------------------
 def main():
-    '''
+    """
     create all tables
-    '''
-    database = 'operation.db'
+    """
+    database = "operation.db"
 
-    products = '''
+    products = """
     
     CREATE TABLE IF NOT EXISTS PRODUCTS(
         ProductID INTEGER NOT NULL UNIQUE PRIMARY KEY,
@@ -45,18 +47,18 @@ def main():
         CategoryID INTEGER NOT NULL,
         SupplierID INTEGER NOT NULL
     );
-    '''
+    """
 
-    categories = '''
+    categories = """
 
     CREATE TABLE IF NOT EXISTS CATEGORIES(
         CategoryID INTEGER NOT NULL UNIQUE PRIMARY KEY,
         CategoryName CHAR(50),
         Description CHAR(50)
     );
-    '''
+    """
 
-    suppliers = '''
+    suppliers = """
 
     CREATE TABLE IF NOT EXISTS SUPPLIERS(
         SupplierID INTEGER NOT NULL UNIQUE PRIMARY KEY,
@@ -64,9 +66,9 @@ def main():
         SupplierContact CHAR(50),
         SupplierCountry CHAR(50)
     );
-    '''
+    """
 
-    order_header = '''
+    order_header = """
 
     CREATE TABLE IF NOT EXISTS ORDER_HEADER(
         OrderID INTEGER NOT NULL UNIQUE PRIMARY KEY,
@@ -76,17 +78,17 @@ def main():
         FOREIGN KEY(CustomerID) REFERENCES CUSTOMERS(CustomerNumber),
         FOREIGN KEY(EmployeeID) REFERENCES EMPLOYEES(EmployeeID)
     );
-    '''
+    """
 
-    employees = '''
+    employees = """
 
     CREATE TABLE IF NOT EXISTS EMPLOYEES(
         EmployeeID INTEGER NOT NULL UNIQUE PRIMARY KEY,
         EmployeeName CHAR(30) NOT NULL
     );
-    '''
+    """
 
-    customers = '''
+    customers = """
 
     CREATE TABLE IF NOT EXISTS CUSTOMERS(
         CustomerNumber INTEGER NOT NULL UNIQUE PRIMARY KEY,
@@ -100,9 +102,9 @@ def main():
         Region CHAR(15),
         EmployeeID INTEGER  
     );
-    '''
+    """
 
-    order_details = '''
+    order_details = """
 
     CREATE TABLE IF NOT EXISTS ORDER_DETAILS(
         ProductID INTEGER NOT NULL,
@@ -116,7 +118,7 @@ def main():
         FOREIGN KEY(OrderID) REFERENCES ORDER_HEADER(OrderID),
         PRIMARY KEY(ProductID, OrderID)
     );
-    '''
+    """
 
     # create a database connection
     conn = create_connection(database)
@@ -124,7 +126,7 @@ def main():
     # create Tables
 
     if conn is not None:
-       
+
         # create products table
         create_table(conn, products)
 
@@ -134,7 +136,7 @@ def main():
         # create supplier table
         create_table(conn, suppliers)
 
-         # create order_header table
+        # create order_header table
         create_table(conn, order_header)
 
         # create employee table
@@ -146,16 +148,15 @@ def main():
         # create order_details table
         create_table(conn, order_details)
 
-
         conn.commit()
-       
+
     else:
-        print('\nError cannot create database connection.')
+        print("\nError cannot create database connection.")
+
 
 # ------------------------------------------------------------------------------
-if __name__ == '__main__':
-    try: 
+if __name__ == "__main__":
+    try:
         main()
     except:
-        print('\nDatabase exists!')
-    
+        print("\nDatabase exists!")

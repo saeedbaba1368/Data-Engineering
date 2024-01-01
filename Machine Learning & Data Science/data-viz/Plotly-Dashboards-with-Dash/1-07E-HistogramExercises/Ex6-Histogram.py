@@ -7,20 +7,13 @@
 # Perform imports here:
 
 
-
-
 # create a DataFrame from the .csv file:
 
 
 # create a data variable:
 
 
-
-
-
 # add a layout
-
-
 
 
 # create a fig from data & layout, and plot the fig

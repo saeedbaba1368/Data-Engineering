@@ -8,22 +8,13 @@
 # Perform imports here:
 
 
-
-
 # create a DataFrame from the .csv file:
 
 
 # create traces using a list comprehension:
 
 
-
-
-
-
 # create a layout, remember to set the barmode here
-
-
-
 
 
 # create a fig from data & layout, and plot the fig.

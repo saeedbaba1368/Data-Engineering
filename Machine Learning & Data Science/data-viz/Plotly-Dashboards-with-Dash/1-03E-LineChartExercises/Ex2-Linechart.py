@@ -7,11 +7,9 @@
 # Perform imports here:
 
 
-
-
 # Create a pandas DataFrame from 2010YumaAZ.csv
-df = pd.read_csv('../data/2010YumaAZ.csv')
-days = ['TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY','MONDAY']
+df = pd.read_csv("../data/2010YumaAZ.csv")
+days = ["TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY", "MONDAY"]
 
 
 # Use a for loop (or list comprehension to create traces for the data list)
@@ -23,9 +21,6 @@ for day in days:
     data.append(trace)
 
 # Define the layout
-
-
-
 
 
 # Create a fig from data and layout, and plot the fig

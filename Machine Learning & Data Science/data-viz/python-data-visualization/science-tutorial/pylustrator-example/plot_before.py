@@ -4,10 +4,10 @@ import numpy as np
 import pylustrator
 
 # Use scientific plot style
-plt.style.use('scientific')
+plt.style.use("scientific")
 
 # Create dummy data
-x = np.linspace(0, 4*np.pi, 200)
+x = np.linspace(0, 4 * np.pi, 200)
 y1 = np.sin(x)
 y2 = np.cos(x)
 
@@ -22,8 +22,8 @@ ax3 = fig.add_subplot(313)
 
 # Plot data
 # Subplot 1
-ax1.plot(x, y1, label='y1')
-ax1.plot(x, y2, label='y2')
+ax1.plot(x, y1, label="y1")
+ax1.plot(x, y2, label="y2")
 ax1.legend()
 
 # Subplot 2

@@ -25,7 +25,7 @@ np.random.seed(101)
 #         random integers from 1-100. (Keep in mind that the upper
 #         limit may be exclusive.)
 ######
-mat = np.random.randint(1,101,(100,5))
+mat = np.random.randint(1, 101, (100, 5))
 print(mat)
 
 
@@ -44,7 +44,7 @@ print(df)
 #         to rename the pandas columns to be ['f1','f2','f3','f4','label'].
 ######
 
-df.columns = ['f1','f2','f3','f4','label']
+df.columns = ["f1", "f2", "f3", "f4", "label"]
 
 #######
 # TASK 6: Alright, all the other tasks were hopefully straightforward.
@@ -55,7 +55,7 @@ df.columns = ['f1','f2','f3','f4','label']
 #         between 0 and 100. (Hint: Use numpy to create the numbers, then pass
 #         it in to pd.DataFrame(), check out the data= and index= parameters
 #         for that call.)
-random_numbers = np.random.randint(0,100,200)
-random_mat = random_numbers.reshape(50,4)
-col_names = 'A B C D'.split()
-df = pd.DataFrame(data = random_mat,columns=col_names)
+random_numbers = np.random.randint(0, 100, 200)
+random_mat = random_numbers.reshape(50, 4)
+col_names = "A B C D".split()
+df = pd.DataFrame(data=random_mat, columns=col_names)

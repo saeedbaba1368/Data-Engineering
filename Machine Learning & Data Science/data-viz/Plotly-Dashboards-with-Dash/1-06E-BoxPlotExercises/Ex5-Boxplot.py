@@ -8,31 +8,16 @@
 # Perform imports here:
 
 
-
-
-
 # create a DataFrame from the .csv file:
 
 
 # take two random samples of different sizes:
 
 
-
 # create a data variable with two Box plots:
 
 
-
-
-
-
-
-
-
-
-
 # add a layout
-
-
 
 
 # create a fig from data & layout, and plot the fig
