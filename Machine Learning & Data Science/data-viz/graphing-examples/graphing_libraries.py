@@ -1180,7 +1180,7 @@ class SubPlot3DPlotter:
 
         df = data_for_3d(num_years = 50, num_cols = 5)
         plotter = SubPlot3DPlotter(df)
-        plotter.plot_3d_line(subset_columns=['Column1', 'Column2'], subset_years=None)
+        plotter.Column1"
     """
 
     def __init__(self, dataframe):
@@ -1191,20 +1191,29 @@ class SubPlot3DPlotter:
         df = self.dataframe.copy()
         if subset_columns is not None:
             df = df[subset_columns]
-
+    
         if subset_years is not None:
             df = df[df.index.isin(subset_years)]
-
+    
+        num_columns = len(df.columns)
+        num_rows = (num_columns + 2) // 3
+    
+        # Adjust the number of columns based on the actual number of columns
+        num_columns_to_plot = min(3, num_columns)
+    
         # Create subplots
-        fig = plt.figure(figsize=(12, 8))
+        fig, axes = plt.subplots(num_rows, num_columns_to_plot, figsize=(15, 5 * num_rows), subplot_kw={'projection': '3d'})
         fig.suptitle("Interactive 3D Subplots of Time Series")
-
-        for i, column in enumerate(df.columns, 1):
-            ax = fig.add_subplot(len(df.columns), 1, i, projection="3d")
+    
+        for i, column in enumerate(df.columns):
+            row_index = i // num_columns_to_plot
+            col_index = i % num_columns_to_plot
+            ax = axes[row_index, col_index] if num_rows > 1 else axes[col_index]
+    
             times = df.index
             values = df[column]
             line = ax.plot(range(len(times)), [1] * len(df), values, label=column)
-
+    
             ax.set_xlabel("Time")
             ax.set_xticks(range(len(times)))
             ax.set_xticklabels([str(time) for time in times], rotation=45)
@@ -1212,16 +1221,21 @@ class SubPlot3DPlotter:
             ax.set_yticklabels([column])
             ax.set_zlabel("Value")
             ax.set_title(column)
-
+    
             # Use mplcursors for interactive data labels
             mplcursors.cursor(line, hover=True).connect(
                 "add",
                 lambda sel: sel.annotation.set_text(f"{column}: {sel.target[2]:.2f}"),
             )
-
+    
         # Adjust layout
         fig.tight_layout(rect=[0, 0, 1, 0.96])
-
+    
+        # Remove empty subplots if needed
+        if num_columns % 3 != 0:
+            for i in range(num_columns % 3, 3):
+                fig.delaxes(axes[-1, i])
+    
         # Show plot
         plt.show()
 
