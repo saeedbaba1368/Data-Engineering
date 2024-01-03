@@ -1283,6 +1283,10 @@ class SubplotDonutPlotter:
                 "equal"
             )  # Equal aspect ratio ensures that pie is drawn as a circle.
             ax.set_title(f"Donut Plot - {column}")
+            
+        if (num_plots % 2) != 0:
+            # Delete the last subplot
+            fig.delaxes(axes[rows - 1, cols - 1])
 
         plt.tight_layout()
         plt.show()
@@ -1314,6 +1318,10 @@ class SubplotDonutPlotter:
                 "equal"
             )  # Equal aspect ratio ensures that pie is drawn as a circle.
             ax.set_title(f"Donut Plot - {year}")
+
+        if (num_plots % 2) != 0:
+            # Delete the last subplot
+            fig.delaxes(axes[rows - 1, cols - 1])
 
         plt.tight_layout()
         plt.show()
