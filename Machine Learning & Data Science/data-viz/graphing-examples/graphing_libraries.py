@@ -360,8 +360,9 @@ class ThreeDPlotter:
 
 
 class TimeSeriesPlotter:
-    def __init__(self, dataframe):
+    def __init__(self, dataframe, kind = "Columns"):
         self.dataframe = dataframe
+        self.kind = "Columns"
 
     def plot_interactive_time_series(
         self,
@@ -419,13 +420,17 @@ class TimeSeriesPlotter:
         if years_subset is None:
             years_subset = self.dataframe.index
 
+        num_columns = len(columns_subset)
+        num_rows = 1 if num_columns == 1 else num_columns
+        # Create subplots
         fig, axs = plt.subplots(
-            len(columns_subset),
-            2,
-            figsize=(16, 4 * len(columns_subset)),
-            sharex="col",
-            gridspec_kw={"width_ratios": [3, 1]},
+            nrows=num_rows,
+            ncols=2,
+            figsize=(16, 5 * num_rows),
         )
+        # If there's only one column to plot, adjust axes accordingly
+        if num_columns == 1:
+            axs = axs.reshape(1, -1)
 
         for i, column in enumerate(columns_subset):
             values = self.dataframe.loc[years_subset, column].values
@@ -554,7 +559,7 @@ class TimeSeriesPlotter:
         axs[-1, 0].set_xlabel("Year")
         axs[-1, 1].set_xlabel("Year")
 
-        plt.suptitle("Interactive Time Series Subplots")
+        plt.suptitle(f"{self.kind}")
 
         # Adjust layout to ensure the legend is visible
         plt.tight_layout()
@@ -582,7 +587,7 @@ class TimeSeriesPlotter:
         return adjusted_series
 
     def plot_multiple_time_series(
-        self, columns_subset=None, years_subset=None, growth_rates=None
+        self, columns_subset=None, years_subset=None, growth_rates=None, show_original=True
     ):
         """
         Plot multiple time series on one plot with optional compound growth rates.
@@ -626,7 +631,9 @@ class TimeSeriesPlotter:
         # Plot the original time series
         plt.figure(figsize=(10, 6))
         for column in columns_subset:
-            plt.plot(subset_df.index, subset_df[column], label=f"{column} (Original)")
+
+            if show_original:
+                plt.plot(subset_df.index, subset_df[column], label=f"{column} (Original)")
 
             # Apply growth rate if provided
             if growth_rates and (column in growth_rates):
@@ -685,19 +692,23 @@ class TimeSeriesPlotter:
             if year not in self.dataframe.index:
                 raise ValueError(f"Year '{year}' not found in the dataframe index.")
 
+        num_columns = len(column_subset)
+        num_rows = 1 if num_columns == 1 else num_columns
         # Create subplots
         fig, axes = plt.subplots(
-            nrows=len(column_subset),
+            nrows=num_rows,
             ncols=3,
-            figsize=(18, 5 * len(column_subset)),
+            figsize=(18, 5 * num_rows),
             gridspec_kw={"width_ratios": [3, 1, 1]},
         )
+        # If there's only one column to plot, adjust axes accordingly
+        if num_columns == 1:
+            axes = axes.reshape(1, -1)
 
         # Iterate over specified columns
         for i, column_name in enumerate(column_subset):
             # Get the specified time series
             original_series = self.dataframe.loc[year_subset, column_name]
-
             # Apply growth rate if provided
             if growth_rate is not None:
                 adjusted_series = self.apply_growth_rate(original_series, growth_rate)
@@ -797,7 +808,7 @@ class TimeSeriesPlotter:
                 adjusted_series = self.apply_growth_rate(original_series, growth_rate)
 
                 # Plot the original and adjusted time series
-                axes[i].plot(original_series.index, original_series, label="Original")
+                #axes[i].plot(original_series.index, original_series, label="Original")
                 axes[i].plot(original_series.index, adjusted_series, label="Adjusted")
                 # axes[i].fill_between(original_series.index, original_series, adjusted_series, color='gray', alpha=0.5, label='Area Under Curve')
                 axes[i].set_ylabel("Value")
