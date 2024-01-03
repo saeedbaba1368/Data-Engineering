@@ -974,10 +974,11 @@ class TimeSeriesVisualizer:
             columns = self.dataframe.columns
         if years is None:
             years = self.dataframe.index
-
-        num_subplots = len(columns)
+            
+        num_columns = len(columns)
+        num_rows = 1 if num_columns == 1 else num_columns
         fig, axes = plt.subplots(
-            nrows=num_subplots, ncols=1, figsize=(10, 5 * num_subplots)
+            nrows=num_rows, ncols=1, figsize=(10, 5 * num_rows), squeeze = False
         )
 
         for i, col in enumerate(columns):
@@ -987,13 +988,13 @@ class TimeSeriesVisualizer:
                 growth_values = self.calculate_growth_values(
                     data_to_plot.values, growth_rate
                 )
-                axes[i].barh(
+                axes[i,0].barh(
                     data_to_plot.index,
                     data_to_plot,
                     color="black",
                     label="Original Series",
                 )
-                axes[i].barh(
+                axes[i,0].barh(
                     data_to_plot.index,
                     growth_values,
                     color="green",
@@ -1001,17 +1002,17 @@ class TimeSeriesVisualizer:
                     label=f"Growth Rate: {growth_rate}",
                 )
             else:
-                axes[i].barh(
+                axes[i,0].barh(
                     data_to_plot.index,
                     data_to_plot,
                     color="blue",
                     label="Original Series",
                 )
 
-            axes[i].set_xlabel("Values")
-            axes[i].set_ylabel("Time")
-            axes[i].set_title(f"Horizontal Bar Chart - {col}")
-            axes[i].legend()
+            axes[i,0].set_xlabel("Values")
+            axes[i,0].set_ylabel("Time")
+            axes[i,0].set_title(f"Horizontal Bar Chart - {col}")
+            axes[i,0].legend()
 
         plt.tight_layout()
         plt.show()
