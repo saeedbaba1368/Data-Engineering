@@ -8,7 +8,7 @@ def data_for_3d(num_years=50, num_cols=5):
     np.random.seed(42)
     year = {"Year": list(range(2010, 2010 + num_years))}
     data = {
-        "Column{}": np.random.randint(0, 100, size=num_years)
+        f"Column{i}": np.random.randint(0, 100, size=num_years)
         for i in range(0, num_cols)
     }
     data.update(year)

@@ -35,8 +35,9 @@ class ThreeDPlotter:
     plotter.plot_3d_stem(columns_to_include=['Column1', 'Column2', 'Column3'], add_average=False, scale_factor=None, show_original=True, years_subset=None, growth_rate=0.05)
     """
 
-    def __init__(self, dataframe):
+    def __init__(self, dataframe, kind = "By Column"):
         self.dataframe = dataframe
+        self.kind = kind
 
     def plot_3d_line(
         self,
@@ -90,7 +91,7 @@ class ThreeDPlotter:
                         color="green",
                     )
 
-                if growth_rate is not None:
+                if (growth_rate is not None) and (growth_rate != 0.0):
                     t = np.arange(len(years_subset))
                     growth_values = values * (1 + growth_rate) ** t
                     ax.plot(
@@ -101,7 +102,7 @@ class ThreeDPlotter:
                         color="orange",
                     )  # label=f'{column} Growth Rate'
 
-                if scale_factor is not None:
+                if (scale_factor is not None) and (scale_factor != 0.0):
                     scaled_values = values * scale_factor
                     ax.plot(
                         years_subset,
@@ -124,13 +125,18 @@ class ThreeDPlotter:
         ax.set_xlabel("Year")
         ax.set_ylabel("Columns")
         ax.set_zlabel("Values")
-        ax.set_title("3D Line Plot of Time Series Data")
+        ax.set_title(f"{self.kind}")
 
         # Set y-axis ticks and labels using column names
         ax.set_yticks(np.arange(len(columns_to_include)))
         ax.set_yticklabels(columns_to_include)
-
-        ax.legend()
+        ax.legend(
+            loc="upper left",
+            bbox_to_anchor=(3.5, 3.5),
+            bbox_transform=fig.transFigure 
+        
+        )
+        #ax.legend()
         plt.show()
 
     def plot_3d_bar(
@@ -180,7 +186,7 @@ class ThreeDPlotter:
         dx = dy = 0.4  # Adjust the width of the bars
         dz_original = values.ravel()
 
-        if growth_rate is not None:
+        if (growth_rate is not None) and (growth_rate != 0.0):
             t = np.arange(len(years_subset))
             growth_values = values * (1 + growth_rate) ** t[:, np.newaxis]
             dz_growth = growth_values.ravel()
@@ -202,7 +208,7 @@ class ThreeDPlotter:
                     label=f"{column} Growth Rate",
                 )
 
-        if scale_factor is not None:
+        if (scale_factor is not None) and (scale_factor != 0.0):
             dz_scaled = values.ravel() * scale_factor
             colors_scaled = cm.Dark2(np.linspace(0, 1, len(columns_to_include)))
 
@@ -241,7 +247,7 @@ class ThreeDPlotter:
         ax.set_xlabel("Year")
         ax.set_ylabel("Columns")
         ax.set_zlabel("Values")
-        ax.set_title("3D Bar Chart of Time Series Data")
+        ax.set_title(f"{self.kind}")
 
         ax.set_xticks(np.arange(len(years_subset)) + 0.4)
         ax.set_xticklabels(years_subset)
@@ -293,7 +299,7 @@ class ThreeDPlotter:
             if column in self.dataframe.columns:
                 values = self.dataframe[column].loc[years_subset].values
 
-                if growth_rate is not None:
+                if (growth_rate is not None) and (growth_rate != 0.0):
                     t = np.arange(len(years_subset))
                     growth_values = values * (1 + growth_rate) ** t
                     ax.stem(
@@ -317,7 +323,7 @@ class ThreeDPlotter:
                         markerfmt="o",
                     )
 
-                if scale_factor is not None:
+                if (scale_factor is not None) and (scale_factor != 0.0):
                     scaled_values = values * scale_factor
                     ax.plot(
                         years_subset,
@@ -343,7 +349,7 @@ class ThreeDPlotter:
         ax.set_xlabel("Year")
         ax.set_ylabel("Columns")
         ax.set_zlabel("Values")
-        ax.set_title("3D Stem Plot of Time Series Data")
+        ax.set_title(f"{self.kind}")
 
         # Set y-axis ticks and labels using column names
         ax.set_yticks(np.arange(len(columns_to_include)))
@@ -465,7 +471,7 @@ class TimeSeriesPlotter:
                 axs[i, 0].legend()
 
             # Apply scaling factor if specified
-            if scale_factor is not None:
+            if (scale_factor is not None) and (scale_factor != 0.0):
                 scaled_values = values * scale_factor
 
                 if plot_scaled_on_original:
@@ -481,7 +487,7 @@ class TimeSeriesPlotter:
                 axs[i, 0].legend()
 
             # Calculate and plot series with new compound growth rate on the left plot
-            if growth_rate is not None:
+            if (growth_rate is not None) and (growth_rate != 0.0):
                 # Calculate the series under the new compound growth rate
                 periods = np.arange(1, len(years_subset) + 1)
                 growth_values = values * (1 + growth_rate) ** periods
@@ -623,7 +629,7 @@ class TimeSeriesPlotter:
             plt.plot(subset_df.index, subset_df[column], label=f"{column} (Original)")
 
             # Apply growth rate if provided
-            if growth_rates and column in growth_rates:
+            if growth_rates and (column in growth_rates):
                 adjusted_series = self.apply_growth_rate(
                     subset_df[column], growth_rates[column]
                 )
