@@ -186,7 +186,36 @@ def create_site_data(years=list(range(2020, 2051))):
         "program4": np.random.choice(
             locations["program4"], size=100
         ),  # Set size to 100 for program4
-        **{f"Year_{year}": generate_pareto_array(size=100) for year in years},
+        **{f"FY{year}": generate_pareto_array(size=100) for year in years},
+    }
+
+    return pd.DataFrame(data)
+
+
+def create_prog_data(years=list(range(2020, 2051))):
+
+    np.random.seed(42)
+    # Create column names
+    locations = {
+        "program1": ["site1", "site2", "site3", "site4"],
+        "program2": [
+            "site1.1",
+            "site2.1",
+            "site3.1",
+            "site4.1",
+            "site5.1",
+            "site6.1",
+            "site7.1",
+        ]
+    }
+
+    # Create a DataFrame with random values
+    data = {
+        "program1": np.random.choice(locations["program1"], size=100),
+        "program2": np.random.choice(
+            locations["program2"], size=100
+        ), 
+        **{f"{year}": create_guassian() for year in years},
     }
 
     return pd.DataFrame(data)
