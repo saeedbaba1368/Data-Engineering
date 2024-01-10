@@ -63,15 +63,3 @@ Here are some of the API endpoints you can use:
 The computation service can be interrupted with CTRL+C or by closing your CLI , at which point it will calculate and store distribution statistics.
 
 The API includes a middleware for blocking requests from specific IPs. The list of blocked IPs can be updated by adding them to blocked_ips.txt and using the /refresh_block_list/{password} endpoint with the correct password.
-
-## Contributing
-
-Contributions are welcome! Please create an issue to discuss the changes or open a pull request.
-
-## License
-
-This project is licensed under the terms of the MIT license.
-
-## Contact
-
-If you have any questions, you can contact the author at akjroller@gmail.com.
