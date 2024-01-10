@@ -26,8 +26,10 @@ def test_solid_collect_properties_input_list():
 
 def test_collect_search_criterias():
 
-    run_conf = read_yaml('../realestate/config_pipelines/scrape_realestate.yaml')
-    search_criterias = run_conf['solids']['collect_search_criterias']['inputs']['search_criterias']
+    run_conf = read_yaml("../realestate/config_pipelines/scrape_realestate.yaml")
+    search_criterias = run_conf["solids"]["collect_search_criterias"]["inputs"][
+        "search_criterias"
+    ]
 
     result = execute_solid(
         collect_search_criterias, input_values={"search_criterias": search_criterias}

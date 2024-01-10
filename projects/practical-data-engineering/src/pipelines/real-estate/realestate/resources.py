@@ -14,12 +14,20 @@ def create_redshift_db_url(username, password, hostname, port, db_name, jdbc=Tru
         db_url = (
             "jdbc:postgresql://{hostname}:{port}/{db_name}?"
             "user={username}&password={password}".format(
-                username=username, password=password, hostname=hostname, port=port, db_name=db_name
+                username=username,
+                password=password,
+                hostname=hostname,
+                port=port,
+                db_name=db_name,
             )
         )
     else:
         db_url = "redshift+psycopg2://{username}:{password}@{hostname}:{port}/{db_name}".format(
-            username=username, password=password, hostname=hostname, port=port, db_name=db_name
+            username=username,
+            password=password,
+            hostname=hostname,
+            port=port,
+            db_name=db_name,
         )
     return db_url
 
@@ -33,12 +41,22 @@ def create_postgres_db_url(username, password, hostname, port, db_name, jdbc=Tru
         db_url = (
             "jdbc:postgresql://{hostname}:{port}/{db_name}?"
             "user={username}&password={password}".format(
-                username=username, password=password, hostname=hostname, port=port, db_name=db_name
+                username=username,
+                password=password,
+                hostname=hostname,
+                port=port,
+                db_name=db_name,
             )
         )
     else:
-        db_url = "postgresql://{username}:{password}@{hostname}:{port}/{db_name}".format(
-            username=username, password=password, hostname=hostname, port=port, db_name=db_name
+        db_url = (
+            "postgresql://{username}:{password}@{hostname}:{port}/{db_name}".format(
+                username=username,
+                password=password,
+                hostname=hostname,
+                port=port,
+                db_name=db_name,
+            )
         )
     return db_url
 
@@ -128,9 +146,9 @@ def postgres_db_info_resource(init_context):
     )
 
     def _do_load(data_frame, table_name):
-        data_frame.write.option("driver", "org.postgresql.Driver").mode("overwrite").jdbc(
-            db_url_jdbc, table_name
-        )
+        data_frame.write.option("driver", "org.postgresql.Driver").mode(
+            "overwrite"
+        ).jdbc(db_url_jdbc, table_name)
 
     return DbInfo(
         url=db_url,

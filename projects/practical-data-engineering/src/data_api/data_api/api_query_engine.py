@@ -15,7 +15,10 @@ class Query:
 
 def get_books():
     return [
-        Book(title='The Great Gatsby', author='F. Scott Fitzgerald',),
+        Book(
+            title="The Great Gatsby",
+            author="F. Scott Fitzgerald",
+        ),
     ]
 
 

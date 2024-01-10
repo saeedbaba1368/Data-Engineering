@@ -30,7 +30,9 @@ from dagster.core.types.dagster_type import create_string_type
 from .cache_file_from_s3 import cache_file_from_s3
 from .unzip_file_handle import unzip_file_handle
 
-SqlTableName = create_string_type("SqlTableName", description="The name of a database table")
+SqlTableName = create_string_type(
+    "SqlTableName", description="The name of a database table"
+)
 
 
 # Make pyspark.sql.DataFrame map to dagster_pyspark.DataFrame
@@ -47,7 +49,9 @@ def _notebook_path(name):
 
 
 # start_solids_marker_3
-def notebook_solid(name, notebook_path, input_defs, output_defs, required_resource_keys):
+def notebook_solid(
+    name, notebook_path, input_defs, output_defs, required_resource_keys
+):
     return define_dagstermill_solid(
         name,
         _notebook_path(notebook_path),
@@ -61,7 +65,9 @@ def notebook_solid(name, notebook_path, input_defs, output_defs, required_resour
 
 
 # need a sql context w a sqlalchemy engine
-def sql_solid(name, select_statement, materialization_strategy, table_name=None, input_defs=None):
+def sql_solid(
+    name, select_statement, materialization_strategy, table_name=None, input_defs=None
+):
     """Return a new solid that executes and materializes a SQL select statement.
 
     Args:
@@ -94,13 +100,17 @@ def sql_solid(name, select_statement, materialization_strategy, table_name=None,
             "Invalid materialization strategy {materialization_strategy}, must "
             "be one of {materialization_strategies}".format(
                 materialization_strategy=materialization_strategy,
-                materialization_strategies=str(list(materialization_strategy_output_types.keys())),
+                materialization_strategies=str(
+                    list(materialization_strategy_output_types.keys())
+                ),
             )
         )
 
     if materialization_strategy == "table":
         if table_name is None:
-            raise Exception("Missing table_name: required for materialization strategy 'table'")
+            raise Exception(
+                "Missing table_name: required for materialization strategy 'table'"
+            )
 
     output_description = (
         "The string name of the new table created by the solid"
@@ -116,7 +126,8 @@ def sql_solid(name, select_statement, materialization_strategy, table_name=None,
 
     # n.b., we will eventually want to make this resources key configurable
     sql_statement = (
-        "drop table if exists {table_name};\n" "create table {table_name} as {select_statement};"
+        "drop table if exists {table_name};\n"
+        "create table {table_name} as {select_statement};"
     ).format(table_name=table_name, select_statement=select_statement)
 
     # start_solids_marker_1
@@ -145,7 +156,9 @@ def sql_solid(name, select_statement, materialization_strategy, table_name=None,
                 The table name of the newly materialized SQL select statement.
         """
         context.log.info(
-            "Executing sql statement:\n{sql_statement}".format(sql_statement=sql_statement)
+            "Executing sql statement:\n{sql_statement}".format(
+                sql_statement=sql_statement
+            )
         )
         context.resources.db_info.engine.execute(text(sql_statement))
         yield Output(value=table_name, output_name="result")
@@ -174,7 +187,9 @@ def ingest_csv_file_handle_to_spark(context, csv_file_handle: FileHandle) -> Dat
     #    the implementation of copy_handle_to_local_temp to not to do this in the
     #    local fs case. Somewhat more dangerous though.
     # s3 case: downloads from s3 to local temp directory
-    temp_file_name = context.resources.file_manager.copy_handle_to_local_temp(csv_file_handle)
+    temp_file_name = context.resources.file_manager.copy_handle_to_local_temp(
+        csv_file_handle
+    )
 
     # In fact for a generic component this should really be using
     # the spark APIs to load directly from whatever object store, rather
@@ -201,7 +216,9 @@ def rename_spark_dataframe_columns(data_frame, fn):
 def do_prefix_column_names(df, prefix):
     check.inst_param(df, "df", DataFrame)
     check.str_param(prefix, "prefix")
-    return rename_spark_dataframe_columns(df, lambda c: "{prefix}{c}".format(prefix=prefix, c=c))
+    return rename_spark_dataframe_columns(
+        df, lambda c: "{prefix}{c}".format(prefix=prefix, c=c)
+    )
 
 
 @solid(required_resource_keys={"pyspark_step_launcher"})
@@ -216,7 +233,9 @@ def replace_values_spark(data_frame, old, new):
 @solid(required_resource_keys={"pyspark_step_launcher"})
 def process_sfo_weather_data(_context, sfo_weather_data: DataFrame) -> DataFrame:
     normalized_sfo_weather_data = replace_values_spark(sfo_weather_data, "M", None)
-    return rename_spark_dataframe_columns(normalized_sfo_weather_data, lambda c: c.lower())
+    return rename_spark_dataframe_columns(
+        normalized_sfo_weather_data, lambda c: c.lower()
+    )
 
 
 # start_solids_marker_0
@@ -250,7 +269,8 @@ def load_data_to_database_from_spark(context, data_frame: DataFrame):
     description="Subsample a spark dataset via the configuration option.",
     config_schema={
         "subsample_pct": Field(
-            Int, description="The integer percentage of rows to sample from the input dataset.",
+            Int,
+            description="The integer percentage of rows to sample from the input dataset.",
         )
     },
 )
@@ -276,7 +296,9 @@ def s3_to_df(s3_coordinate: S3Coordinate, archive_member: String) -> DataFrame:
 @composite_solid(
     config_fn=lambda cfg: {
         "subsample_spark_dataset": {"config": {"subsample_pct": cfg["subsample_pct"]}},
-        "load_data_to_database_from_spark": {"config": {"table_name": cfg["table_name"]}},
+        "load_data_to_database_from_spark": {
+            "config": {"table_name": cfg["table_name"]}
+        },
     },
     config_schema={"subsample_pct": int, "table_name": str},
     description="""Ingest zipped csv file from s3, load into a Spark
@@ -287,7 +309,9 @@ load it into a data warehouse.
 )
 def s3_to_dw_table(s3_coordinate: S3Coordinate, archive_member: String) -> String:
     return load_data_to_database_from_spark(
-        canonicalize_column_names(subsample_spark_dataset(s3_to_df(s3_coordinate, archive_member)))
+        canonicalize_column_names(
+            subsample_spark_dataset(s3_to_df(s3_coordinate, archive_member))
+        )
     )
 
 
@@ -492,7 +516,9 @@ delays_vs_fares_nb = notebook_solid(
     "Fares_vs_Delays.ipynb",
     input_defs=[
         InputDefinition(
-            "table_name", SqlTableName, description="The SQL table to use for calcuations."
+            "table_name",
+            SqlTableName,
+            description="The SQL table to use for calcuations.",
         )
     ],
     output_defs=[
@@ -510,7 +536,9 @@ sfo_delays_by_destination = notebook_solid(
     "SFO_Delays_by_Destination.ipynb",
     input_defs=[
         InputDefinition(
-            "table_name", SqlTableName, description="The SQL table to use for calcuations."
+            "table_name",
+            SqlTableName,
+            description="The SQL table to use for calcuations.",
         )
     ],
     output_defs=[
@@ -548,22 +576,30 @@ def join_q2_data(
     for required_column in ["DestAirportSeqID", "OriginAirportSeqID"]:
         for month, df in dfs.items():
             if required_column not in df.columns:
-                missing_things.append({"month": month, "missing_column": required_column})
+                missing_things.append(
+                    {"month": month, "missing_column": required_column}
+                )
 
     yield ExpectationResult(
         success=not bool(missing_things),
         label="airport_ids_present",
         description="Sequence IDs present in incoming monthly flight data.",
         metadata_entries=[
-            EventMetadataEntry.json(label="metadata", data={"missing_columns": missing_things})
+            EventMetadataEntry.json(
+                label="metadata", data={"missing_columns": missing_things}
+            )
         ],
     )
 
     yield ExpectationResult(
-        success=set(april_data.columns) == set(may_data.columns) == set(june_data.columns),
+        success=set(april_data.columns)
+        == set(may_data.columns)
+        == set(june_data.columns),
         label="flight_data_same_shape",
         metadata_entries=[
-            EventMetadataEntry.json(label="metadata", data={"columns": april_data.columns})
+            EventMetadataEntry.json(
+                label="metadata", data={"columns": april_data.columns}
+            )
         ],
     )
 
@@ -576,7 +612,9 @@ def join_q2_data(
     dest_prefixed_master_cord_data = do_prefix_column_names(master_cord_data, "DEST_")
     dest_prefixed_master_cord_data.createOrReplaceTempView("dest_cord_data")
 
-    origin_prefixed_master_cord_data = do_prefix_column_names(master_cord_data, "ORIGIN_")
+    origin_prefixed_master_cord_data = do_prefix_column_names(
+        master_cord_data, "ORIGIN_"
+    )
     origin_prefixed_master_cord_data.createOrReplaceTempView("origin_cord_data")
 
     full_data = context.resources.pyspark.spark_session.sql(

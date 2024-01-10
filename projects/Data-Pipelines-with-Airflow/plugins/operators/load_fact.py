@@ -2,9 +2,10 @@ from airflow.hooks.postgres_hook import PostgresHook
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 
+
 class LoadFactOperator(BaseOperator):
-    ui_color = '#F98866'
-    songplay_table_insert = ("""
+    ui_color = "#F98866"
+    songplay_table_insert = """
         INSERT INTO songplays (playid,start_time,userid,level,songid,artistid,sessionid,location,user_agent)
         SELECT Distinct
                 md5(events.ts) songplay_id,
@@ -25,18 +26,16 @@ class LoadFactOperator(BaseOperator):
                 AND events.length = songs.duration
              WHERE (songs.song_id<>'' or songs.artist_id<>'')
              AND length(events.userid)>0
-    """)
+    """
 
     @apply_defaults
-    def __init__(self,                               
-                 redshift_conn_id="",                
-                 *args, **kwargs):
+    def __init__(self, redshift_conn_id="", *args, **kwargs):
 
-        super(LoadFactOperator, self).__init__(*args, **kwargs)      
+        super(LoadFactOperator, self).__init__(*args, **kwargs)
         self.redshift_conn_id = redshift_conn_id
-       
+
     def execute(self, context):
-        self.log.info('Loading into fact table Songplay!')
+        self.log.info("Loading into fact table Songplay!")
         redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
-        facts_sql =LoadFactOperator.songplay_table_insert         
+        facts_sql = LoadFactOperator.songplay_table_insert
         redshift.run(facts_sql)

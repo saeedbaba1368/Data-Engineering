@@ -6,6 +6,8 @@ Objective: Find a scalable solution for real time entity resolution.
 
 ## Local Sensitivity Hashing
 
+- [CS246: Mining Massive Data Sets](https://snap.stanford.edu/class/cs246-2022/)
+
 ### EXAMPLES
 
 - https://github.com/Jmkernes/Locality-sensitive-hashing-tutorial

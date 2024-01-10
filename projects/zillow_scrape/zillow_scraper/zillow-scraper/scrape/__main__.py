@@ -19,17 +19,15 @@ from .zillow import get_search_page
 
 logging.basicConfig(level=logging.DEBUG)
 
-@overload
-def property_from_card(
-    card: Tag,
-    suppress_errors: Literal[False] = False
-) -> Property: ...
 
 @overload
-def property_from_card(
-    card: Tag,
-    suppress_errors: Literal[True]
-) -> Optional[Property]: ...
+def property_from_card(card: Tag, suppress_errors: Literal[False] = False) -> Property:
+    ...
+
+
+@overload
+def property_from_card(card: Tag, suppress_errors: Literal[True]) -> Optional[Property]:
+    ...
 
 
 def property_from_card(card, suppress_errors=False) -> Property:
@@ -38,7 +36,7 @@ def property_from_card(card, suppress_errors=False) -> Property:
         try:
             return property_from_card(card, suppress_errors=False)
         except Exception as exc:
-            logging.warning('Failed to parse property card.')
+            logging.warning("Failed to parse property card.")
             return None
     prop_id = card.article.attrs["id"]
     details_card = card.article.find("ul", class_="list-card-details")
@@ -77,7 +75,7 @@ def property_from_card(card, suppress_errors=False) -> Property:
         days_on_zillow=days_on_zillow,
         json=j,
     )
-    logging.info('Successfully parsed property card.')
+    logging.info("Successfully parsed property card.")
     return prop
 
 
@@ -85,7 +83,7 @@ def extract_properties(content: Union[str, bytes]) -> Iterable[Property]:
     soup = BeautifulSoup(content, "html.parser")
     potential_prop_cards = soup.find_all("ul", {"class": {"photo-cards"}})
     if len(potential_prop_cards) == 0:
-        logging.info('Found page with zero prop cards')
+        logging.info("Found page with zero prop cards")
         return []
     elif len(potential_prop_cards) > 1:
         raise ValueError("Ambiguous situation in parsing -- too many photo-cards")
@@ -97,23 +95,20 @@ def extract_properties(content: Union[str, bytes]) -> Iterable[Property]:
             property_from_card(card)
             for card in prop_cards.children
             if card.name == "li" and card.article is not None
-        )
+        ),
     )
-    logging.info('Returned generator of properties from page.')
+    logging.info("Returned generator of properties from page.")
     return result
 
 
-def get_next_property(
-    session: requests.Session,
-    max_pages: Optional[int] = None
-):
+def get_next_property(session: requests.Session, max_pages: Optional[int] = None):
     page_num = 0
     while True:
         if max_pages and page_num >= max_pages:
             break
         try:
             page = get_search_page(session=session, page_num=page_num)
-            logging.info('Successfully fetched new page.')
+            logging.info("Successfully fetched new page.")
         except HTTPError:
             # Assume we've hit the end of the results.
             break
@@ -123,10 +118,10 @@ def get_next_property(
         # Simulate normal human behavior.
         delay = 12 * random.betavariate(2, 5)
         time.sleep(delay)
-        logging.debug(f'Waited {delay} seconds')
+        logging.debug(f"Waited {delay} seconds")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     with requests.Session() as session:
         if len(sys.argv) > 1:
             max_pages: Optional[int] = int(sys.argv[1])
@@ -136,7 +131,7 @@ if __name__ == '__main__':
         # Originally I thought I could set the DF index to '_id' but it isn't
         # unique, and that breaks the .to_json() call later.
         df = pd.DataFrame(properties)
-        today = dt.date.today().strftime('%Y%m%d')
-        filename = f'raw_data/{today}.json'
+        today = dt.date.today().strftime("%Y%m%d")
+        filename = f"raw_data/{today}.json"
         df.to_json(filename)
-        logging.info(f'Wrote data to {filename}')
+        logging.info(f"Wrote data to {filename}")

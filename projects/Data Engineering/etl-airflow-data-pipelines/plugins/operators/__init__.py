@@ -5,9 +5,9 @@ from operators.data_quality import DataQualityOperator
 from operators.has_rows import HasRowsOperator
 
 __all__ = [
-    'StageToRedshiftOperator',
-    'LoadFactOperator',
-    'LoadDimensionOperator',
-    'DataQualityOperator',
-    'HasRowsOperator'
+    "StageToRedshiftOperator",
+    "LoadFactOperator",
+    "LoadDimensionOperator",
+    "DataQualityOperator",
+    "HasRowsOperator",
 ]

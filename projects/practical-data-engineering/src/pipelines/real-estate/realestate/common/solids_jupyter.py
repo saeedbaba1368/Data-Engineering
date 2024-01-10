@@ -6,12 +6,15 @@ import os
 
 def _notebook_path(name):
     return os.path.join(
-        os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'notebooks')), name
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "notebooks")),
+        name,
     )
     # os.path.join(os.path.dirname(os.path.abspath(__file__)), "notebooks", name)
 
 
-def notebook_solid(name, notebook_path, input_defs, output_defs, required_resource_keys=None):
+def notebook_solid(
+    name, notebook_path, input_defs, output_defs, required_resource_keys=None
+):
     return dm.define_dagstermill_solid(
         name,
         _notebook_path(notebook_path),
@@ -27,7 +30,9 @@ data_exploration = notebook_solid(
     "data_exploration",
     "comprehensive-real-estate-data-exploration.ipynb",
     input_defs=[
-        InputDefinition("delta_path", str, description="s3 path to the property-delta-table"),
+        InputDefinition(
+            "delta_path", str, description="s3 path to the property-delta-table"
+        ),
         InputDefinition("key", str, description="s3 key"),
         InputDefinition("secret", str, description="s3 secret"),
         InputDefinition("endpoint", str, description="s3 endpoint"),

@@ -10,7 +10,7 @@ def not_much(_):
 def parallel_pipeline():
     # example to loop through all dimension or also facts parallel e.g.
     for i in range(5):
-        not_much.alias('not_much_' + str(i))()
+        not_much.alias("not_much_" + str(i))()
 
 
 def define_parallel_pipeline():

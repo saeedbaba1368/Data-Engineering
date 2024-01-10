@@ -11,7 +11,7 @@ from realestate.common.types_realestate import JsonType
 def json_to_gzip(json_data: JsonType):
     # encoded = json_file.encode('utf-8')
     # j = json.dumps(json_data)
-    json_bytes = json_data.encode('utf-8')
+    json_bytes = json_data.encode("utf-8")
 
     return gzip.compress(json_bytes)
 

@@ -20,7 +20,10 @@ from dagster import (
 from dagster.experimental import DynamicOutput, DynamicOutputDefinition
 
 from realestate.common.solids_druid import ingest_druid
-from realestate.common.solids_scraping import list_props_immo24, cache_properies_from_rest_api
+from realestate.common.solids_scraping import (
+    list_props_immo24,
+    cache_properies_from_rest_api,
+)
 from realestate.common.resources import boto3_connection, druid_db_info_resource
 
 from dagster_aws.s3.solids import S3Coordinate
@@ -50,10 +53,10 @@ from dagster_aws.s3.system_storage import s3_plus_default_intermediate_storage_d
 local_mode = ModeDefinition(
     name="local",
     resource_defs={
-        'pyspark': pyspark_resource,
-        's3': s3_resource,
+        "pyspark": pyspark_resource,
+        "s3": s3_resource,
         # 'druid': druid_db_info_resource,
-        'boto3': boto3_connection,
+        "boto3": boto3_connection,
         # 'tempfile': tempfile_resource,
         "file_cache": fs_file_cache,
         # "db_info": postgres_db_info_resource,
@@ -78,15 +81,19 @@ local_mode = ModeDefinition(
 
 
 @composite_solid(
-    description='Downloads full dataset (JSON) from ImmoScout24, cache it, zip it and and upload it to S3',
+    description="Downloads full dataset (JSON) from ImmoScout24, cache it, zip it and and upload it to S3",
     input_defs=[InputDefinition(name="search_criteria", dagster_type=SearchCoordinate)],
     output_defs=[
-        OutputDefinition(name="properties", dagster_type=PropertyDataFrame, is_required=False),
+        OutputDefinition(
+            name="properties", dagster_type=PropertyDataFrame, is_required=False
+        ),
     ],
 )
 def list_changed_properties(search_criteria):
 
-    return get_changed_or_new_properties(list_props_immo24(searchCriteria=search_criteria))
+    return get_changed_or_new_properties(
+        list_props_immo24(searchCriteria=search_criteria)
+    )
 
 
 @composite_solid(
@@ -95,19 +102,25 @@ def list_changed_properties(search_criteria):
     From there the JSON will be flatten and merged (with schemaEvloution=True) into the Delta Table""",
     input_defs=[InputDefinition(name="properties", dagster_type=PropertyDataFrame)],
     output_defs=[
-        OutputDefinition(name="delta_coordinate", dagster_type=DeltaCoordinate, is_required=False)
+        OutputDefinition(
+            name="delta_coordinate", dagster_type=DeltaCoordinate, is_required=False
+        )
     ],
 )
 def merge_staging_to_delta_table_composite(properties):
 
     prop_s3_coordinate = upload_to_s3(cache_properies_from_rest_api(properties))
     # return assets for property
-    return merge_property_delta(input_dataframe=flatten_json(s3_to_df(prop_s3_coordinate)))
+    return merge_property_delta(
+        input_dataframe=flatten_json(s3_to_df(prop_s3_coordinate))
+    )
 
 
 @solid(
     description="""Collect a List of `PropertyDataFrame` from different cities to a single `PropertyDataFrame` List""",
-    input_defs=[InputDefinition(name="properties", dagster_type=List(PropertyDataFrame))],
+    input_defs=[
+        InputDefinition(name="properties", dagster_type=List(PropertyDataFrame))
+    ],
     output_defs=[OutputDefinition(name="properties", dagster_type=PropertyDataFrame)],
 )
 def collect_properties(properties):
@@ -116,7 +129,7 @@ def collect_properties(properties):
 
 
 @solid(
-    description='Collects Search Coordinates and spawns dynamically Pipelines downstream.',
+    description="Collects Search Coordinates and spawns dynamically Pipelines downstream.",
     input_defs=[InputDefinition("search_criterias", List[SearchCoordinate])],
     output_defs=[DynamicOutputDefinition(SearchCoordinate)],
 )
@@ -124,15 +137,21 @@ def collect_search_criterias(context, search_criterias):
     for search in search_criterias:
 
         key = (
-            '_'.join(
-                [search['city'], search['rentOrBuy'], search['propertyType'], str(search['radius'])]
+            "_".join(
+                [
+                    search["city"],
+                    search["rentOrBuy"],
+                    search["propertyType"],
+                    str(search["radius"]),
+                ]
             )
             .replace("-", "_")
             .lower()
         )
 
         yield DynamicOutput(
-            value=search, mapping_key=key,
+            value=search,
+            mapping_key=key,
         )
 
 
@@ -140,11 +159,11 @@ def collect_search_criterias(context, search_criterias):
     mode_defs=[local_mode],
     preset_defs=[
         PresetDefinition.from_files(
-            name='local',
-            mode='local',
+            name="local",
+            mode="local",
             config_files=[
-                file_relative_path(__file__, 'config_environments/local_base.yaml'),
-                file_relative_path(__file__, 'config_pipelines/scrape_realestate.yaml'),
+                file_relative_path(__file__, "config_environments/local_base.yaml"),
+                file_relative_path(__file__, "config_pipelines/scrape_realestate.yaml"),
             ],
         ),
     ],

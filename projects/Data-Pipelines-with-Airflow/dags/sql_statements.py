@@ -1,4 +1,4 @@
-#Below are the tables need to be create
+# Below are the tables need to be create
 CREATE_staging_events_TABLE_SQL = """
 CREATE TABLE IF NOT EXISTS staging_events (
 	artist varchar(256),
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 """
 
-CREATE_time_TABLE_SQL = ("""
+CREATE_time_TABLE_SQL = """
 CREATE TABLE IF NOT EXISTS time(
 start_time timestamp NOT NULL,
 hour integer,
@@ -91,10 +91,10 @@ week integer,
 month integer,
 year integer,
 dayofweek integer)
-""")
+"""
 
-#Below are the insert statements
-songplay_table_insert = ("""
+# Below are the insert statements
+songplay_table_insert = """
         SELECT Distinct
                 md5(events.start_time) songplay_id,
                 events.start_time, 
@@ -114,26 +114,26 @@ songplay_table_insert = ("""
                 AND events.length = songs.duration
             WHERE (songs.song_id<>'' or songs.artist_id<>'')
             AND length(events.userid)>0
-    """)
+    """
 
-user_table_insert = ("""
+user_table_insert = """
         SELECT distinct userid, firstname, lastname, gender, level
         FROM staging_events
         WHERE page='NextSong'
-    """)
+    """
 
-song_table_insert = ("""
+song_table_insert = """
         SELECT distinct song_id, title, artist_id, year, duration
         FROM staging_songs
-    """)
+    """
 
-artist_table_insert = ("""
+artist_table_insert = """
         SELECT distinct artist_id, artist_name, artist_location, artist_latitude, artist_longitude
         FROM staging_songs
-    """)
+    """
 
-time_table_insert = ("""
+time_table_insert = """
         SELECT start_time, extract(hour from start_time), extract(day from start_time), extract(week from start_time), 
                extract(month from start_time), extract(year from start_time), extract(dayofweek from start_time)
         FROM songplays
-    """)
+    """

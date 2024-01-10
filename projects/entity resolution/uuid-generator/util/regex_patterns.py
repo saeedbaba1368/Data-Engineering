@@ -46,11 +46,15 @@ ssn = re.compile(
     "(?!000|666|333)0*(?:[0-6][0-9][0-9]|[0-7][0-6][0-9]|[0-7][0-7][0-2])[- ](?!00)[0-9]{2}[- ](?!0000)[0-9]{4}"
 )
 
-state_code = re.compile(r'\b[a-z]{2}\b')
+state_code = re.compile(r"\b[a-z]{2}\b")
 
-state_names = re.compile(r'\b(' + '|'.join(list(STATE_CODE_MAP.values())) + r')\b', re.IGNORECASE)
+state_names = re.compile(
+    r"\b(" + "|".join(list(STATE_CODE_MAP.values())) + r")\b", re.IGNORECASE
+)
 
-phone_number = re.compile(r'(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})')
+phone_number = re.compile(
+    r"(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})"
+)
 
 regexes = {
     "dates": date,
@@ -69,9 +73,9 @@ regexes = {
     "zip_codes": zip_code,
     "po_boxes": po_box,
     "ssn_number": ssn,
-    "state_code":state_code,
+    "state_code": state_code,
     "state_names": state_names,
-    "phone_number":phone_number
+    "phone_number": phone_number,
 }
 
 
@@ -98,9 +102,9 @@ class CommonRegex(object):
             for key in list(regexes.keys()):
                 method = getattr(self, key)
                 setattr(self, key, method())
-    
-    def __getitem__(self,name):
-        return self.__dict__.get(name,"")
-    
-    def get(self,key):
-        return self.__dict__.get(key,"")
+
+    def __getitem__(self, name):
+        return self.__dict__.get(name, "")
+
+    def get(self, key):
+        return self.__dict__.get(key, "")

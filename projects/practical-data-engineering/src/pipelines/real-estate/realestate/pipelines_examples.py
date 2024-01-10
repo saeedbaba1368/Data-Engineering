@@ -11,7 +11,13 @@ from dagster_aws.s3 import (
 )
 from dagster_pyspark import pyspark_resource
 
-from dagster import ModeDefinition, PresetDefinition, composite_solid, local_file_manager, pipeline
+from dagster import (
+    ModeDefinition,
+    PresetDefinition,
+    composite_solid,
+    local_file_manager,
+    pipeline,
+)
 from dagster.core.definitions.no_step_launcher import no_step_launcher
 from dagster.core.storage.file_cache import fs_file_cache
 from dagster.core.storage.temp_file_manager import tempfile_resource
@@ -173,7 +179,9 @@ def process_delays_by_geo() -> S3FileHandle:
 def realestate_warehouse_pipeline():
     process_delays_by_geo()
 
-    outbound_delays = average_sfo_outbound_avg_delays_by_destination(q2_sfo_outbound_flights())
+    outbound_delays = average_sfo_outbound_avg_delays_by_destination(
+        q2_sfo_outbound_flights()
+    )
 
     file_handle_to_s3.alias("upload_delays_vs_fares_pdf_plots")(
         delays_vs_fares_nb.alias("fares_vs_delays")(
