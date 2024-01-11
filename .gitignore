@@ -4,7 +4,8 @@ videos/
 __pycache__/
 *.py[cod]
 *$py.class
-
+#for rust
+target/
 #
 node_modules/
 
