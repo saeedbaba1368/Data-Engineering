@@ -1,8 +1,15 @@
-<h1> {{ title }} </h1>
-
+---
+title: "{{ title }}"
+---
+<br>
 
 {%- for paragraph in paragraphs %}
 
-    {{ paragraph }} 
+<div>
+<p>
+{{ paragraph }}
+</p>
+</div>
+<br>
 
 {%- endfor %}

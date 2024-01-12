@@ -10,7 +10,7 @@ TranscriptComponent = NewType("TranscriptComponent", str)
 Transcript = NewType("Transcript", list[TranscriptComponent])
 ENVIRONMENT = Environment(loader=FileSystemLoader("templates/"))
 TEMPLATE = ENVIRONMENT.get_template("template.md")
-PATH_TO_TRANSCRIPTS = " #transcripts\\philosophy_engineered\\"
+PATH_TO_TRANSCRIPTS = "#transcripts\\philosophy_engineered\\"
 
 PATTERN = re.compile(r"^[0-9]\d{0,2}:[0-9]\d{0,2}:[0-9]\d{0,2}.[0-9]\d{0,3}$")
 
@@ -60,6 +60,7 @@ def main(subdir):
             else:
                 print(f"No need to translate {file}")
                 results = process_file(lines=transcript, paragraph_size=400)
+        title = title.replace("__"," ").replace("_"," ")
         content = TEMPLATE.render(title=title, paragraphs=results)
 
         with open(
