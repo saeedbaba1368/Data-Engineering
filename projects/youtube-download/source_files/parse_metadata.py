@@ -24,7 +24,7 @@ def main(pathtofile):
                 video_name = video_name.split("\\")[-1]
                 # You might need this code below depending on the structure
                 # of the video names
-                # 
+                #
                 # results = [
                 #     (m.start(0), m.end(0))
                 #     for m in re.finditer(r"\[(.*?)\]", video_name)
@@ -46,8 +46,8 @@ def main(pathtofile):
 
 
 if __name__ == "__main__":
-    pathtofile="data/metadata.txt"
+    pathtofile = "data/metadata.txt"
     titles_path = "data/philosophy_engineered_titles.json"
-    results = main(pathtofile = pathtofile)
+    results = main(pathtofile=pathtofile)
     with open(titles_path, "w") as f:
         json.dump(results, f)

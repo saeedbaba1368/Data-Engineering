@@ -5,7 +5,7 @@ import logging
 logging.basicConfig(filename="logs.log", encoding="utf-8", level=logging.DEBUG)
 
 
-def main(titles,subpath):
+def main(titles, subpath):
 
     for title, url in titles.items():
         try:
@@ -30,4 +30,4 @@ if __name__ == "__main__":
     with open(title_names_file) as f:
         data = json.load(f)
 
-    main(titles=data, subpath = "philosophy_engineered")
+    main(titles=data, subpath="philosophy_engineered")

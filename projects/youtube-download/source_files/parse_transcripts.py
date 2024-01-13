@@ -30,7 +30,10 @@ def process_file(lines: Transcript, paragraph_size: int = 250, translator=None) 
                     text_to_add = translator.translate(text_to_add, "English").result
                 paragraph += text_to_add + " "
         if len(paragraph) > paragraph_size:
-            if not paragraph.strip().endswith(".") and len(paragraph) < MAX_PARAGRAPH_SIZE:
+            if (
+                not paragraph.strip().endswith(".")
+                and len(paragraph) < MAX_PARAGRAPH_SIZE
+            ):
                 continue
             processed_paragraphs.append(paragraph)
             paragraph = ""
@@ -47,7 +50,7 @@ def main(subdir):
         path_to_file = f"{PATH_TO_TRANSCRIPTS}\{file}"
         if path_to_file.endswith(".json"):
             continue
-        
+
         with open(path_to_file, "r", encoding="utf8") as f:
             transcript: Transcript = f.readlines()
             language = transcript[2].split(":")[-1].strip()
@@ -60,7 +63,7 @@ def main(subdir):
             else:
                 print(f"No need to translate {file}")
                 results = process_file(lines=transcript, paragraph_size=400)
-        title = title.replace("__"," ").replace("_"," ")
+        title = title.replace("__", " ").replace("_", " ")
         content = TEMPLATE.render(title=title, paragraphs=results)
 
         with open(
@@ -70,4 +73,4 @@ def main(subdir):
 
 
 if __name__ == "__main__":
-    main(subdir = "philosophy_engineered")
+    main(subdir="philosophy_engineered")
