@@ -2,6 +2,7 @@ import argparse
 
 from rplife import __version__, patterns, views
 
+
 def get_command_line_args():
     parser = argparse.ArgumentParser(
         prog="rplife",

@@ -14,8 +14,7 @@ def load_data() -> pd.DataFrame:
 
 
 def initialize_state():
-    """Initializes all filters and counter in Streamlit Session State
-    """
+    """Initializes all filters and counter in Streamlit Session State"""
     for q in ["bill_to_tip", "size_to_time", "day"]:
         if f"{q}_query" not in st.session_state:
             st.session_state[f"{q}_query"] = set()
@@ -25,8 +24,7 @@ def initialize_state():
 
 
 def reset_state_callback():
-    """Resets all filters and increments counter in Streamlit Session State
-    """
+    """Resets all filters and increments counter in Streamlit Session State"""
     st.session_state.counter = 1 + st.session_state.counter
 
     for q in ["bill_to_tip", "size_to_time", "day"]:
@@ -92,8 +90,7 @@ def build_day_figure(df: pd.DataFrame) -> go.Figure:
 
 
 def render_preview_ui(df: pd.DataFrame):
-    """Renders an expander with content of DataFrame and Streamlit Session State
-    """
+    """Renders an expander with content of DataFrame and Streamlit Session State"""
     with st.expander("Preview"):
         l, r = st.columns(2)
         l.dataframe(
@@ -155,7 +152,7 @@ def render_plotly_ui(transformed_df: pd.DataFrame) -> Dict:
 def update_state(current_query: Dict[str, Set]):
     """Stores input dict of filters into Streamlit Session State.
 
-    If one of the input filters is different from previous value in Session State, 
+    If one of the input filters is different from previous value in Session State,
     rerun Streamlit to activate the filtering and plot updating with the new info in State.
     """
     rerun = False

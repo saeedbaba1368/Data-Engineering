@@ -16,10 +16,7 @@ df_long = df.melt(id_vars="brand", var_name="country", value_name="price")
 df_wide = df_long.pivot(index="brand", columns="country", values="price").reset_index()
 
 # Filter wide format
-st.write(df_wide[
-  (df_wide["France"]>10) & 
-  (df_wide["USA"]>10)
-])
+st.write(df_wide[(df_wide["France"] > 10) & (df_wide["USA"] > 10)])
 
 # ANOVA on wide format
 fit = MANOVA.from_formula("France + USA + Japan ~ brand", data=df_wide)

@@ -7,10 +7,7 @@ st.title("QRCode Generator")
 st.caption("Like & follow for more!")
 
 
-url = st.text_input(
-    "URL to encode:", 
-    "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-)
+url = st.text_input("URL to encode:", "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
 
 img = qrcode.make(url)

@@ -19,9 +19,7 @@ def main():
             _show_pattern(View, pattern, args)
     else:
         _show_pattern(
-            View,
-            patterns.get_pattern(name=args.pattern,size=args.size),
-            args
+            View, patterns.get_pattern(name=args.pattern, size=args.size), args
         )
 
 

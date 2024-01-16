@@ -36,4 +36,4 @@ def generate_answer():
 st.text_input("Talk to the bot", key="input_text", on_change=generate_answer)
 
 for i, chat in enumerate(st.session_state.history):
-    st_message(**chat, key=str(i)) #unpacking
+    st_message(**chat, key=str(i))  # unpacking

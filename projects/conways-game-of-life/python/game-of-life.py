@@ -9,6 +9,7 @@ from time import sleep
 # Another clean implementation
 # https://gist.github.com/ramalho/da5590bc38c973408839
 
+
 class Cell:
     def __init__(self, state):
         self._state = state
@@ -24,10 +25,10 @@ class Cell:
 
     def switch_state(self):
         self._state = not self._state
-    
+
     def update_future_state(self, new_state):
         self._future_state = new_state
-    
+
     def next_gen(self):
         self._state = self._future_state
 
@@ -147,7 +148,7 @@ class Game:
     def _update_future_states(self):
         for y in range(self._height):
             for x in range(self._width):
-                new_state = self._get_cell_next_state(y,x)
+                new_state = self._get_cell_next_state(y, x)
                 self._board.get_cell(y, x).update_future_state(new_state)
 
     def _update_next_generation(self):
@@ -156,7 +157,8 @@ class Game:
         """
         for y in range(self._height):
             for x in range(self._width):
-                self._board.get_cell(y,x).next_gen()
+                self._board.get_cell(y, x).next_gen()
+
 
 if __name__ == "__main__":
     game = Game(80, 80)

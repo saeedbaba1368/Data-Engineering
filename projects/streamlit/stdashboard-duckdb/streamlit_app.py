@@ -38,7 +38,20 @@ def load_data(path: str):
 
 
 df = load_data(uploaded_file)
-all_months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+all_months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+]
 
 with st.expander("Data Preview"):
     st.dataframe(
@@ -282,7 +295,7 @@ with top_left_column:
     with column_3:
         plot_metric("Equity Ratio", 75.38, prefix="", suffix=" %", show_graph=False)
         plot_gauge(7, "#FF2B2B", " days", "Out Stock", 31)
-        
+
     with column_4:
         plot_metric("Debt Equity", 1.10, prefix="", suffix=" %", show_graph=False)
         plot_gauge(28, "#29B09D", " days", "Delay", 31)

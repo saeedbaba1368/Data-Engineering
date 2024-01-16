@@ -36,16 +36,15 @@ if submit_button_click:
 if "counter" not in st.session_state:
     st.session_state.counter = 0
 
+
 def _send_data():
     st.session_state.counter += 1
+
 
 form = st.form(key="my_form")
 n_estimators = form.slider("Num estimators", 1, 20)
 max_depth = form.slider("Max depth", 1, 20)
-submit_button_click = st.form_submit_button(
-    label="Rerun",
-    on_click=_send_data
-)
+submit_button_click = st.form_submit_button(label="Rerun", on_click=_send_data)
 
 if submit_button_click:
     clf = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth)

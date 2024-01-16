@@ -12,7 +12,9 @@ incomes = ["Salary", "Blog", "Other Income"]
 expenses = ["Rent", "Utilities", "Groceries", "Car", "Other Expenses", "Saving"]
 currency = "USD"
 page_title = "Income and Expense Tracker"
-page_icon = ":money_with_wings:"  # emojis: https://www.webfx.com/tools/emoji-cheat-sheet/
+page_icon = (
+    ":money_with_wings:"  # emojis: https://www.webfx.com/tools/emoji-cheat-sheet/
+)
 layout = "centered"
 # --------------------------------------
 
@@ -60,17 +62,23 @@ if selected == "Data Entry":
         "---"
         with st.expander("Income"):
             for income in incomes:
-                st.number_input(f"{income}:", min_value=0, format="%i", step=10, key=income)
+                st.number_input(
+                    f"{income}:", min_value=0, format="%i", step=10, key=income
+                )
         with st.expander("Expenses"):
             for expense in expenses:
-                st.number_input(f"{expense}:", min_value=0, format="%i", step=10, key=expense)
+                st.number_input(
+                    f"{expense}:", min_value=0, format="%i", step=10, key=expense
+                )
         with st.expander("Comment"):
             comment = st.text_area("", placeholder="Enter a comment here ...")
 
         "---"
         submitted = st.form_submit_button("Save Data")
         if submitted:
-            period = str(st.session_state["year"]) + "_" + str(st.session_state["month"])
+            period = (
+                str(st.session_state["year"]) + "_" + str(st.session_state["month"])
+            )
             incomes = {income: st.session_state[income] for income in incomes}
             expenses = {expense: st.session_state[expense] for expense in expenses}
             db.insert_period(period, incomes, expenses, comment)
@@ -103,7 +111,9 @@ if selected == "Data Visualization":
             # Create sankey chart
             label = list(incomes.keys()) + ["Total Income"] + list(expenses.keys())
             source = list(range(len(incomes))) + [len(incomes)] * len(expenses)
-            target = [len(incomes)] * len(incomes) + [label.index(expense) for expense in expenses.keys()]
+            target = [len(incomes)] * len(incomes) + [
+                label.index(expense) for expense in expenses.keys()
+            ]
             value = list(incomes.values()) + list(expenses.values())
 
             # Data to dict, dict to sankey

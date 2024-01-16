@@ -12,14 +12,16 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-folder = pathlib.Path(__file__).parent 
+folder = pathlib.Path(__file__).parent
 iris_df = px.data.iris()
+
 
 @st.experimental_memo
 def get_img_as_base64(file):
     with open(file, "rb") as f:
         data = f.read()
     return base64.b64encode(data).decode()
+
 
 img = get_img_as_base64("img/tree.png")
 
@@ -62,15 +64,12 @@ c1, c2, c3 = st.columns(3)
 c1.dataframe(iris_df, height=600, use_container_width=True)
 c2.plotly_chart(
     px.scatter(
-        iris_df, 
-        x="sepal_width", 
-        y="sepal_length", 
+        iris_df,
+        x="sepal_width",
+        y="sepal_length",
         color="species",
         height=600,
     ),
     use_container_width=True,
 )
-c3.image(
-    Image.open("img/penguin.jpg"), 
-    use_column_width="always"
-)
+c3.image(Image.open("img/penguin.jpg"), use_column_width="always")

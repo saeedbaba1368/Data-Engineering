@@ -2,9 +2,9 @@ import tkinter as tk
 from tkinter import Canvas
 import random, math
 
-class game_of_life(tk.Tk):
 
-    def __init__(self, width_and_height = 400, resolution = 100):
+class game_of_life(tk.Tk):
+    def __init__(self, width_and_height=400, resolution=100):
         super().__init__()
 
         self.title("Game of life")
@@ -19,29 +19,33 @@ class game_of_life(tk.Tk):
 
         # Set up the size of the canvas.
         self.geometry(str(self.width_and_height) + "x" + str(self.width_and_height))
-        
+
         # Create the canvas widget and add it to the Tkinter application window.
-        self.canvas = Canvas(self, width=self.width_and_height, height=self.width_and_height,  bg='white')
+        self.canvas = Canvas(
+            self, width=self.width_and_height, height=self.width_and_height, bg="white"
+        )
         self.canvas.pack()
 
         # Set up an empty game grid.
-        self.grid = [[0 for x in range(self.resolution)] for x in range(self.resolution)]
+        self.grid = [
+            [0 for x in range(self.resolution)] for x in range(self.resolution)
+        ]
 
         # Fill the game grid with random data.
         for x in range(0, self.resolution):
             for y in range(0, self.resolution):
                 self.grid[x][y] = random.randint(0, 1)
-        
+
         self.generate_board()
         self.after(100, self.update_board)
-        self.canvas.bind('<Button1-Motion>', self.canvas_click_event)
-        self.canvas.bind('<Button-1>', self.canvas_click_event)
+        self.canvas.bind("<Button1-Motion>", self.canvas_click_event)
+        self.canvas.bind("<Button-1>", self.canvas_click_event)
 
     def canvas_click_event(self, event):
         # Work out where the mouse is in relation to the grid.
-        gridx = math.floor((event.y/self.width_and_height)*self.resolution)
-        gridy = math.floor((event.x/self.width_and_height)*self.resolution)
-        
+        gridx = math.floor((event.y / self.width_and_height) * self.resolution)
+        gridy = math.floor((event.x / self.width_and_height) * self.resolution)
+
         # Make that cell alive.
         self.grid[gridx][gridy] = 1
 
@@ -56,11 +60,15 @@ class game_of_life(tk.Tk):
 
     def draw_square(self, y, x, size):
         # Draw a square on the canvas.
-        self.canvas.create_rectangle(x, y, x+size, y+size, fill='black', outline='black')
+        self.canvas.create_rectangle(
+            x, y, x + size, y + size, fill="black", outline="black"
+        )
 
     def run_generation(self):
         # Generate new empty grid to populate with result of generation.
-        return_grid = [[0 for x in range(self.resolution)] for x in range(self.resolution)]
+        return_grid = [
+            [0 for x in range(self.resolution)] for x in range(self.resolution)
+        ]
 
         # Iterate over the grid.
         for x in range(0, self.resolution):
@@ -87,14 +95,14 @@ class game_of_life(tk.Tk):
     def number_neighbours(self, x, y):
         count = 0
 
-        '''
+        """
         Count the number of cells that are alive in the following coordiantes.
         -x -y | x -y | +x -y
         -x  y |      | +x  y
         -x +y | x +y | +x +y
-        '''
-        xrange = [x-1, x, x+1]
-        yrange = [y-1, y, y+1]
+        """
+        xrange = [x - 1, x, x + 1]
+        yrange = [y - 1, y, y + 1]
 
         for x1 in xrange:
             for y1 in yrange:
@@ -117,6 +125,7 @@ class game_of_life(tk.Tk):
         self.generate_board()
         # Set the next tick in the timer.
         self.after(100, self.update_board)
+
 
 if __name__ == "__main__":
     # Create the class and kick off the Tkinter loop.

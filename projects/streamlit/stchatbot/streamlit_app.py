@@ -8,16 +8,20 @@ from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationSummaryMemory
 import streamlit.components.v1 as components
 
+
 @dataclass
 class Message:
     """Class for keeping track of a chat message."""
+
     origin: Literal["human", "ai"]
     message: str
+
 
 def load_css():
     with open("static/styles.css", "r") as f:
         css = f"<style>{f.read()}</style>"
         st.markdown(css, unsafe_allow_html=True)
+
 
 def initialize_session_state():
     if "history" not in st.session_state:
@@ -28,26 +32,22 @@ def initialize_session_state():
         llm = OpenAI(
             temperature=0,
             openai_api_key=st.secrets["openai_api_key"],
-            model_name="text-davinci-003"
+            model_name="text-davinci-003",
         )
         st.session_state.conversation = ConversationChain(
             llm=llm,
             memory=ConversationSummaryMemory(llm=llm),
         )
 
+
 def on_click_callback():
     with get_openai_callback() as cb:
         human_prompt = st.session_state.human_prompt
-        llm_response = st.session_state.conversation.run(
-            human_prompt
-        )
-        st.session_state.history.append(
-            Message("human", human_prompt)
-        )
-        st.session_state.history.append(
-            Message("ai", llm_response)
-        )
+        llm_response = st.session_state.conversation.run(human_prompt)
+        st.session_state.history.append(Message("human", human_prompt))
+        st.session_state.history.append(Message("ai", llm_response))
         st.session_state.token_count += cb.total_tokens
+
 
 load_css()
 initialize_session_state()
@@ -74,7 +74,7 @@ with chat_placeholder:
 </div>
         """
         st.markdown(div, unsafe_allow_html=True)
-    
+
     for _ in range(3):
         st.markdown("")
 
@@ -88,18 +88,21 @@ with prompt_placeholder:
         key="human_prompt",
     )
     cols[1].form_submit_button(
-        "Submit", 
-        type="primary", 
-        on_click=on_click_callback, 
+        "Submit",
+        type="primary",
+        on_click=on_click_callback,
     )
 
-credit_card_placeholder.caption(f"""
+credit_card_placeholder.caption(
+    f"""
 Used {st.session_state.token_count} tokens \n
 Debug Langchain conversation: 
 {st.session_state.conversation.memory.buffer}
-""")
+"""
+)
 
-components.html("""
+components.html(
+    """
 <script>
 const streamlitDoc = window.parent.document;
 
@@ -118,7 +121,7 @@ streamlitDoc.addEventListener('keydown', function(e) {
     }
 });
 </script>
-""", 
+""",
     height=0,
     width=0,
 )

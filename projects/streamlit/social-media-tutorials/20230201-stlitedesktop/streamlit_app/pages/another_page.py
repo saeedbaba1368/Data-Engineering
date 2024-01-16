@@ -4,16 +4,19 @@ import json
 import streamlit as st
 from streamlit_lottie import st_lottie
 
+
 @st.experimental_memo
 def get_img_as_base64(file):
     with open(file, "rb") as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
+
 @st.experimental_memo
 def load_lottiefile(filepath: str):
     with open(filepath, "r") as f:
         return json.load(f)
+
 
 img = get_img_as_base64("img/tree.png")
 snow_animation = load_lottiefile("img/lottie-snow.json")

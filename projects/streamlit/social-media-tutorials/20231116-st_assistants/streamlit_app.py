@@ -60,8 +60,7 @@ if markers_state not in st.session_state:
 
 
 def update_map_state(latitude, longitude, zoom):
-    """OpenAI tool to update map in-app
-    """
+    """OpenAI tool to update map in-app"""
     st.session_state[map_state] = {
         "latitude": latitude,
         "longitude": longitude,
@@ -71,8 +70,7 @@ def update_map_state(latitude, longitude, zoom):
 
 
 def add_markers_state(latitudes, longitudes, labels):
-    """OpenAI tool to update markers in-app
-    """
+    """OpenAI tool to update markers in-app"""
     st.session_state[markers_state] = {
         "lat": latitudes,
         "lon": longitudes,
@@ -104,8 +102,7 @@ def get_run_id():
 
 
 def on_text_input(status_placeholder):
-    """Callback method for any chat_input value change
-    """
+    """Callback method for any chat_input value change"""
     if st.session_state[user_msg_input_key] == "":
         return
 

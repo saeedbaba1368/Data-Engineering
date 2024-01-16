@@ -8,6 +8,7 @@ import streamlit as st
 if "produced_images" not in st.session_state:
     st.session_state.produced_images = 0
 
+
 async def produce_image():
     while True:
         start = time.time()
@@ -20,16 +21,15 @@ async def produce_image():
         st.session_state.produced_images += 1
         image_placeholder.image(
             image,
-            caption=f"Consumed images: {st.session_state.produced_images}, {str(datetime.now())}"
+            caption=f"Consumed images: {st.session_state.produced_images}, {str(datetime.now())}",
         )
 
         time.sleep(produce_delay)
         end = time.time()
         text_placeholder.write(1 / (end - start))
 
-produce_delay = 1 / st.slider(
-    "Produce images Frequency (img / second)", 1, 100, 2
-)
+
+produce_delay = 1 / st.slider("Produce images Frequency (img / second)", 1, 100, 2)
 
 image_placeholder = st.empty()
 text_placeholder = st.empty()

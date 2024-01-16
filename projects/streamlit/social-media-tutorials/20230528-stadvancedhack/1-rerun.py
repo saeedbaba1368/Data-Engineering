@@ -10,6 +10,7 @@ start = time.time()
 if "produced_images" not in st.session_state:
     st.session_state.produced_images = 0
 
+
 def produce_image():
     SIZE_IMAGE = 512
     image = np.random.random((SIZE_IMAGE, SIZE_IMAGE)).astype(np.float32)
@@ -21,13 +22,11 @@ def produce_image():
     return image
 
 
-produce_delay = 1 / st.slider(
-    "Produce images Frequency (img / second)", 1, 100, 2
-)
+produce_delay = 1 / st.slider("Produce images Frequency (img / second)", 1, 100, 2)
 
 st.image(
     produce_image(),
-    caption=f"Consumed images: {st.session_state.produced_images}, {str(datetime.now())}"
+    caption=f"Consumed images: {st.session_state.produced_images}, {str(datetime.now())}",
 )
 
 time.sleep(produce_delay)

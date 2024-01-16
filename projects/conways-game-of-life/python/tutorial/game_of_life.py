@@ -3,7 +3,6 @@ import random
 
 
 class GameOfLife:
-
     def __init__(self, rows, cols, cell_size=10, speed=1):
         """
         This function initializes the GameOfLife object.
@@ -29,11 +28,15 @@ class GameOfLife:
         self.speed = speed
         self.grid = self.create_grid()
         self.window = tk.Tk()
-        self.canvas = tk.Canvas(self.window, width=self.cols*self.cell_size,
-                                height=self.rows*self.cell_size,  bg='white')
+        self.canvas = tk.Canvas(
+            self.window,
+            width=self.cols * self.cell_size,
+            height=self.rows * self.cell_size,
+            bg="white",
+        )
         self.canvas.pack()
         self.window.resizable(False, False)
-        self.window.title('Game of Life')
+        self.window.title("Game of Life")
 
         self.draw_grid()
         self.create_buttons()
@@ -54,17 +57,22 @@ class GameOfLife:
         None.
         """
         # Create a start button
-        self.start_button = tk.Button(
-            self.window, text='Start', command=self.run)
+        self.start_button = tk.Button(self.window, text="Start", command=self.run)
         # Create a stop button
         self.stop_button = tk.Button(
-            self.window, text='Stop', command=self.window.destroy)
+            self.window, text="Stop", command=self.window.destroy
+        )
         # Create a reset button
-        self.reset_button = tk.Button(
-            self.window, text='Reset', command=self.reset)
+        self.reset_button = tk.Button(self.window, text="Reset", command=self.reset)
         # Create a speed slider
-        self.speed_slider = tk.Scale(self.window, from_=1, to=100, orient=tk.HORIZONTAL,
-                                     label='Speed', command=self.change_speed)
+        self.speed_slider = tk.Scale(
+            self.window,
+            from_=1,
+            to=100,
+            orient=tk.HORIZONTAL,
+            label="Speed",
+            command=self.change_speed,
+        )
         self.speed_slider.set(self.speed)
 
         self.start_button.pack()
@@ -86,8 +94,7 @@ class GameOfLife:
         None.
         """
         self.generation = 0
-        self.label = tk.Label(
-            self.window, text=f'Generation: {self.generation}')
+        self.label = tk.Label(self.window, text=f"Generation: {self.generation}")
         self.label.pack()
 
     def update_generation(self):
@@ -103,7 +110,7 @@ class GameOfLife:
         -------
         None.
         """
-        self.label.config(text=f'Generation: {self.generation}')
+        self.label.config(text=f"Generation: {self.generation}")
 
     def create_grid(self):
         """
@@ -149,11 +156,13 @@ class GameOfLife:
                 # If the cell is alive
                 if self.grid[row][col] == 1:
                     self.canvas.create_rectangle(
-                        x1, y1, x2, y2, fill='orange', outline='black')
+                        x1, y1, x2, y2, fill="orange", outline="black"
+                    )
                 # If the cell is dead
                 else:
                     self.canvas.create_rectangle(
-                        x1, y1, x2, y2, fill='white', outline='black')
+                        x1, y1, x2, y2, fill="white", outline="black"
+                    )
 
     def update(self):
         """
@@ -177,10 +186,10 @@ class GameOfLife:
         # Update the grid
         self.grid = new_grid
         # Delete all the items on the canvas
-        self.canvas.delete('all')
+        self.canvas.delete("all")
         # Draw the new grid
         self.draw_grid()
-        self.window.after(500//self.speed, self.update)
+        self.window.after(500 // self.speed, self.update)
         # Update the generation
         self.generation += 1
         self.update_generation()
@@ -204,8 +213,7 @@ class GameOfLife:
             The new state of the cell.
         """
         # Get the number of neighbours
-        num_neighbours = self.get_num_neighbours(
-            row, col)
+        num_neighbours = self.get_num_neighbours(row, col)
         # If the cell is alive
         if self.grid[row][col] == 1:
             # If the cell has less than 2 neighbours
@@ -260,7 +268,12 @@ class GameOfLife:
                 # Calculate the neighbour column
                 neighbour_col = col + j
                 # If the neighbour is out of bounds
-                if neighbour_row < 0 or neighbour_row >= self.rows or neighbour_col < 0 or neighbour_col >= self.cols:
+                if (
+                    neighbour_row < 0
+                    or neighbour_row >= self.rows
+                    or neighbour_col < 0
+                    or neighbour_col >= self.cols
+                ):
                     # Skip the cell
                     continue
                 # Add the neighbour to the number of neighbours
@@ -289,14 +302,14 @@ class GameOfLife:
         Parameters
         ----------
         self : GameOfLife
-            The GameOfLife object.  
+            The GameOfLife object.
 
         Returns
         -------
         None.
         """
         self.grid = self.create_grid()
-        self.canvas.delete('all')
+        self.canvas.delete("all")
         self.draw_grid()
         # Reset the generation
         self.generation = 0
@@ -309,7 +322,7 @@ class GameOfLife:
         Parameters
         ----------
         self : GameOfLife
-            The GameOfLife object.  
+            The GameOfLife object.
         speed : int
             The speed of the game.
 
@@ -320,5 +333,5 @@ class GameOfLife:
         self.speed = int(speed)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     game = GameOfLife(25, 25, 10, 100)
