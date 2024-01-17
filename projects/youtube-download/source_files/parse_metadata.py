@@ -46,8 +46,8 @@ def main(pathtofile):
 
 
 if __name__ == "__main__":
-    pathtofile = "data/metadata.txt"
-    titles_path = "data/philosophy_engineered_titles.json"
+    pathtofile = "data/TheoreticalBullshit_metadata.txt"
+    titles_path = "data/TheoreticalBullshit_titles.json"
     results = main(pathtofile=pathtofile)
     with open(titles_path, "w") as f:
         json.dump(results, f)
