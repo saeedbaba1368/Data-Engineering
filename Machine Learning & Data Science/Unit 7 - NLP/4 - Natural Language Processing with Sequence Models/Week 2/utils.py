@@ -1,18 +1,19 @@
 import numpy as np
-import torch 
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 
+
 def get_batch(source, i):
-    '''
-        returns a batch
-    '''
+    """
+    returns a batch
+    """
     bptt = 35
     seq_len = min(bptt, len(source) - 1 - i)
-    data = source[i:i+seq_len]
-    target = source[i+1:i+1+seq_len].view(-1)
-    
+    data = source[i : i + seq_len]
+    target = source[i + 1 : i + 1 + seq_len].view(-1)
+
     return data, target
 
 
@@ -29,7 +30,7 @@ def batchify(data, bsz):
 # to detach the hidden state from the graph.
 def detach(hidden):
     """
-    This function detaches every single tensor. 
+    This function detaches every single tensor.
     """
     if isinstance(hidden, torch.Tensor):
         return hidden.detach()

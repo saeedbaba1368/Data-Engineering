@@ -4,7 +4,7 @@ import numpy as np
 
 def compute_entropy(label_array):
     """Calulate the entropy of given label list
-    
+
     :param label_array: a numpy array of labels shape = (n,)
     :return: entropy value
     """
@@ -19,7 +19,7 @@ def compute_entropy(label_array):
 
 def compute_gini(label_array):
     """Calulate the gini index of label list
-    
+
     :param label_array: a numpy array of labels shape = (n,)
     :return: gini index value
     """
@@ -46,7 +46,7 @@ def most_common_label(y):
 
 def mean_absolute_deviation_around_median(y):
     """Calulate the mean absolute deviation around the median of a given target list
-    
+
     :param y: a numpy array of targets shape = (n, 1)
     :return: mean absolute deviation from the median
     """
@@ -58,7 +58,7 @@ def mean_absolute_deviation_around_median(y):
 
 
 def pseudo_residual_L2(train_target, train_predict):
-    """Compute the pseudo-residual for half the L2 norm based on 
+    """Compute the pseudo-residual for half the L2 norm based on
     current predicted value
 
     :param train_target:
@@ -66,6 +66,7 @@ def pseudo_residual_L2(train_target, train_predict):
     :return: pseudo-residual of the l2 norm
     """
     return train_target - train_predict
+
 
 def sigmoid(x):
     """Numerically-stable sigmoid function.
@@ -78,7 +79,7 @@ def sigmoid(x):
 
 
 def pseudo_residual_logistic(train_target, train_predict):
-    """Compute the pseudo-residual for half the L2 norm based on 
+    """Compute the pseudo-residual for half the L2 norm based on
     current predicted value
 
     :param train_target:
@@ -90,7 +91,7 @@ def pseudo_residual_logistic(train_target, train_predict):
 
 def zero_one(y: np.ndarray, a: np.ndarray):
     """Computes the zero-one loss
-    
+
     :param y: output class
     :param a: predicted class
     :return: 1 if different, 0 if same
@@ -100,7 +101,7 @@ def zero_one(y: np.ndarray, a: np.ndarray):
 
 def feature_map(X, y, n_classes: int):
     """Computes the class-sensitive features
-    
+
     :param X: array-like, shape = [n_samples, n_in] or [n_in,], input features for input data
     :param y: a target class (in range 0,..,n_classes - 1)
     :param n_classes: number of target classes
@@ -124,8 +125,8 @@ def feature_map(X, y, n_classes: int):
 
 def sgd(X, y, n_out: int, subgd, eta: float = 0.1, epochs: int = 1000):
     """Runs subgradient descent, and outputs resulting parameter vector
-    
-    :param X: array-like, shape = [n_samples, n_features], input training data 
+
+    :param X: array-like, shape = [n_samples, n_features], input training data
     :param y: array-like, shape = [n_samples,], class labels
     :param n_out: number of class-sensitive features
     :param subgd: function taking x,y and giving subgradient of objective

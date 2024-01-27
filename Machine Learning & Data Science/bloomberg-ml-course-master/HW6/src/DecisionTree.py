@@ -3,7 +3,12 @@ from itertools import product
 import numpy as np
 from collections import Counter
 from sklearn.base import BaseEstimator
-from utils import compute_entropy, compute_gini, most_common_label, mean_absolute_deviation_around_median
+from utils import (
+    compute_entropy,
+    compute_gini,
+    most_common_label,
+    mean_absolute_deviation_around_median,
+)
 from sklearn.exceptions import NotFittedError
 
 
@@ -12,9 +17,9 @@ class DecisionTree(BaseEstimator):
         self,
         split_loss_function,
         leaf_value_estimator,
-        depth: int=0,
-        min_sample: int=5,
-        max_depth: int=10,
+        depth: int = 0,
+        min_sample: int = 5,
+        max_depth: int = 10,
     ):
         """Initialize the decision tree classifier
 
@@ -38,13 +43,13 @@ class DecisionTree(BaseEstimator):
         self.is_leaf
         self.split_id (the index of the feature we want to split on, if we're splitting)
         self.split_value (the corresponding value of that feature where the split is)
-        self.value (the prediction value if the tree is a leaf node).  
-        
-        If we are splitting the node, we should also init self.left and self.right to 
-        be DecisionTree objects corresponding to the left and right subtrees. These 
-        subtrees should be fit on the data that fall to the left and right, respectively, 
-        of self.split_value. This is a recursive tree building procedure. 
-        
+        self.value (the prediction value if the tree is a leaf node).
+
+        If we are splitting the node, we should also init self.left and self.right to
+        be DecisionTree objects corresponding to the left and right subtrees. These
+        subtrees should be fit on the data that fall to the left and right, respectively,
+        of self.split_value. This is a recursive tree building procedure.
+
         :param X: a numpy array of training data, shape = (n, m)
         :param y: a numpy array of labels, shape = (n,)
         :return: self
@@ -67,7 +72,9 @@ class DecisionTree(BaseEstimator):
                 y_l, y_r = sorted_labels[:i], sorted_labels[i:]
                 l_split_val = self.split_loss_function(y_l)
                 r_split_val = self.split_loss_function(y_r)
-                node_split_score = i / n_data * l_split_val + (1 - i / n_data) * r_split_val
+                node_split_score = (
+                    i / n_data * l_split_val + (1 - i / n_data) * r_split_val
+                )
 
                 if node_split_score < best_split_score:
                     best_split_score = node_split_score
@@ -115,8 +122,10 @@ class DecisionTree(BaseEstimator):
         :return: whatever is returned by leaf_value_estimator for leaf containing instance
         """
         if not self.is_fit:
-            raise NotFittedError(f"This {self.__class__.__name__} instance is not fitted yet. "
-                "Call 'fit' with appropriate arguments before using this method.") 
+            raise NotFittedError(
+                f"This {self.__class__.__name__} instance is not fitted yet. "
+                "Call 'fit' with appropriate arguments before using this method."
+            )
         elif self.is_leaf:
             return self.value
         elif instance[self.split_id] <= self.split_value:
@@ -129,7 +138,9 @@ class ClassificationTree(BaseEstimator):
 
     loss_function_dict = {"entropy": compute_entropy, "gini": compute_gini}
 
-    def __init__(self, loss_function: str="entropy", min_sample: int=5, max_depth: int=10):
+    def __init__(
+        self, loss_function: str = "entropy", min_sample: int = 5, max_depth: int = 10
+    ):
         """
         :param loss_function(str): loss function for splitting internal node
         :param min_sample: minimum number of data points in a leaf

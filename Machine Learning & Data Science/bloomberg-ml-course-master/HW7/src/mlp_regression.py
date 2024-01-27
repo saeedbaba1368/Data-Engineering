@@ -6,7 +6,7 @@ import setup_problem, nodes, graph, plot_utils
 
 
 class MLPRegression(BaseEstimator, RegressorMixin):
-    """ MLP regression with computation graph """
+    """MLP regression with computation graph"""
 
     def __init__(
         self,
@@ -32,14 +32,26 @@ class MLPRegression(BaseEstimator, RegressorMixin):
 
         f1 = nodes.AffineNode(x=self.x, W=self.W1, b=self.b1, node_name="Hidden Layer")
         a1 = nodes.TanhNode(a=f1, node_name="Hidden Activation")
-        self.prediction = nodes.VectorScalarAffineNode(x=a1, w=self.W2, b=self.b2, node_name="Output")
+        self.prediction = nodes.VectorScalarAffineNode(
+            x=a1, w=self.W2, b=self.b2, node_name="Output"
+        )
 
-        data_loss = nodes.SquaredL2DistanceNode(a=self.prediction, b=self.y, node_name="Data Loss")
-        reg_loss1 = nodes.L2NormPenaltyNode(l2_reg=self.l2_reg, w=self.W1, node_name="W1 Decay")
-        reg_loss2 = nodes.L2NormPenaltyNode(l2_reg=self.l2_reg, w=self.W2, node_name="W2 Decay")
-        total_reg_loss = nodes.SumNode(a=reg_loss1, b=reg_loss2, node_name="Regularization Loss")
+        data_loss = nodes.SquaredL2DistanceNode(
+            a=self.prediction, b=self.y, node_name="Data Loss"
+        )
+        reg_loss1 = nodes.L2NormPenaltyNode(
+            l2_reg=self.l2_reg, w=self.W1, node_name="W1 Decay"
+        )
+        reg_loss2 = nodes.L2NormPenaltyNode(
+            l2_reg=self.l2_reg, w=self.W2, node_name="W2 Decay"
+        )
+        total_reg_loss = nodes.SumNode(
+            a=reg_loss1, b=reg_loss2, node_name="Regularization Loss"
+        )
 
-        self.objective = nodes.SumNode(a=data_loss, b=total_reg_loss, node_name="Total Loss")
+        self.objective = nodes.SumNode(
+            a=data_loss, b=total_reg_loss, node_name="Total Loss"
+        )
 
         self.inputs = [self.x]
         self.outcomes = [self.y]
@@ -48,7 +60,6 @@ class MLPRegression(BaseEstimator, RegressorMixin):
         self.graph = graph.ComputationGraphFunction(
             self.inputs, self.outcomes, self.parameters, self.prediction, self.objective
         )
-
 
     def fit(self, X, y, print_every=50):
         n_instances, n_ftrs = X.shape
@@ -104,9 +115,15 @@ class MLPRegression(BaseEstimator, RegressorMixin):
 
 def main():
     lasso_data_fname = "lasso_data.pkl"
-    x_train, y_train, x_val, y_val, target_fn, coefs_true, featurize = setup_problem.load_problem(
-        lasso_data_fname
-    )
+    (
+        x_train,
+        y_train,
+        x_val,
+        y_val,
+        target_fn,
+        coefs_true,
+        featurize,
+    ) = setup_problem.load_problem(lasso_data_fname)
 
     # Generate features
     X_train = featurize(x_train)
@@ -134,7 +151,7 @@ def main():
     )
 
     # fit expects a 2-dim array
-    x_train_as_column_vector = x_train.reshape(x_train.shape[0], 1)  
+    x_train_as_column_vector = x_train.reshape(x_train.shape[0], 1)
     x_as_column_vector = x.reshape(x.shape[0], 1)  # fit expects a 2-dim array
     estimator.fit(x_train_as_column_vector, y_train, print_every=100)
     name = "MLP regression - no features"
@@ -142,9 +159,9 @@ def main():
 
     X = featurize(x)
     estimator = MLPRegression(
-        n_hidden_units=10, 
-        step_size=0.0005, 
-        init_param_scale=0.01, 
+        n_hidden_units=10,
+        step_size=0.0005,
+        init_param_scale=0.01,
         max_num_epochs=500,
         l2_reg=0.001,
     )

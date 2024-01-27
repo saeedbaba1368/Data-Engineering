@@ -1,2 +1,0 @@
-requests>=2.21.0
-singer-python>=2.1.4

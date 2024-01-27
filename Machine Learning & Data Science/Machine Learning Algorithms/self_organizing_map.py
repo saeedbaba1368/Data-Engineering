@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 
 
 class SOM(object):
-
     def __init__(self):
         self.sigma = 1
         self.lr = 0.1
@@ -12,8 +11,8 @@ class SOM(object):
         self.iterations = 10
         self.neighbors_radius = []
         radius = 4
-        for i in range(-radius, radius+1):
-            for j in range(-radius, radius+1):
+        for i in range(-radius, radius + 1):
+            for j in range(-radius, radius + 1):
                 if i * i + j * j <= radius * radius:
                     self.neighbors_radius.append((i, j))
         self.w = None
@@ -33,14 +32,24 @@ class SOM(object):
                 i, j = self.get_bmu(self.w, y)
                 # update w
                 for di, dj in self.neighbors_radius:
-                    if i + di >= 0 and i + di < self.n_size and j + di >= 0 and j + dj < self.n_size: 
-                        self.w[i + di][j + dj] += self.lr * (y - self.w[i + di][j + dj]) * np.exp(-np.square([di, dj]).sum() / 2 / sigma_sq)
+                    if (
+                        i + di >= 0
+                        and i + di < self.n_size
+                        and j + di >= 0
+                        and j + dj < self.n_size
+                    ):
+                        self.w[i + di][j + dj] += (
+                            self.lr
+                            * (y - self.w[i + di][j + dj])
+                            * np.exp(-np.square([di, dj]).sum() / 2 / sigma_sq)
+                        )
             self.lr *= np.exp(-step * self.eps)
             sigma_sq *= np.exp(-step * self.eps)
-            ax[step//5][step%5].imshow(self.w.astype(int))
-            ax[step//5][step%5].title.set_text(step)
+            ax[step // 5][step % 5].imshow(self.w.astype(int))
+            ax[step // 5][step % 5].title.set_text(step)
         plt.show()
         return self.w
+
 
 def main():
     som = SOM()

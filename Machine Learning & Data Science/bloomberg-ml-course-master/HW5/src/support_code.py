@@ -61,7 +61,9 @@ def make_plots(
         # plot likelihood on latest point
         plt.subplot(num_rows, num_cols, first_column_pos)
 
-        x_seen = xtrain[:row_num,]
+        x_seen = xtrain[
+            :row_num,
+        ]
         y_seen = ytrain[:row_num]
         likelihood_func_with_data = lambda W: likelihood_func(
             W, x_seen, y_seen, likelihood_var
@@ -184,7 +186,11 @@ def plot_predictive_distribution(get_predictive_params, post_mean, post_var):
     pred_stds = zeros(x.shape[0])
     for i in range(x.shape[0]):
         pred_means[i], pred_stds[i] = get_predictive_params(
-            x[i,].T, post_mean, post_var
+            x[
+                i,
+            ].T,
+            post_mean,
+            post_var,
         )
     pred_stds = np.sqrt(pred_stds)
     plt.plot(x[:, 1], pred_means, "b")

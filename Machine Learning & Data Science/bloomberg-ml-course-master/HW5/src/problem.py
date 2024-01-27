@@ -24,7 +24,7 @@ def likelihood_func(w, X, y_train, likelihood_var):
     return frozen.pdf(yhat)
 
 
-def get_posterior_params(X, y_train, prior, likelihood_var=0.2 ** 2):
+def get_posterior_params(X, y_train, prior, likelihood_var=0.2**2):
     """
     Implement get_posterior_params. This function returns the posterior
     mean vector \mu_p and posterior covariance matrix \Sigma_p for
@@ -53,7 +53,7 @@ def get_posterior_params(X, y_train, prior, likelihood_var=0.2 ** 2):
     return post_mean, post_var
 
 
-def get_predictive_params(X_new, post_mean, post_var, likelihood_var=0.2 ** 2):
+def get_predictive_params(X_new, post_mean, post_var, likelihood_var=0.2**2):
     """
     Implement get_predictive_params. This function returns the predictive
     distribution parameters (mean and variance) given the posterior mean
@@ -86,12 +86,12 @@ if __name__ == "__main__":
     np.random.seed(46134)
     actual_weights = np.array([0.3, 0.5])
     data_size = 40
-    noise = {"mean": 0, "var": 0.2 ** 2}
+    noise = {"mean": 0, "var": 0.2**2}
     likelihood_var = noise["var"]
     xtrain, ytrain = support_code.generate_data(data_size, noise, actual_weights)
 
     # Question (b)
-    sigmas_to_test = [1 / 2, 1 / (2 ** 5), 1 / (2 ** 10)]
+    sigmas_to_test = [1 / 2, 1 / (2**5), 1 / (2**10)]
     for variance in sigmas_to_test:
         prior = {"mean": np.zeros(2), "var": np.identity(2) * variance}
         support_code.make_plots(

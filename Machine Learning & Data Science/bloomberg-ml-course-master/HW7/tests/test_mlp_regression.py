@@ -8,7 +8,6 @@ from src import mlp_regression, nodes
 
 
 class TestNodes(unittest.TestCase):
-
     def test_AffineNode(self):
         W = nodes.ValueNode(node_name="W")
         x = nodes.ValueNode(node_name="x")

@@ -1,9 +1,9 @@
 import numpy as np
+
 # todo: update examples
 
 
 class HMM(object):
-
     def __init__(self, o_num, s_num, pi=None, A=None, B=None):
         self.o_num = o_num
         self.s_num = s_num
@@ -33,7 +33,7 @@ class HMM(object):
         obs_indicator = np.zeros((len(obs), self.o_num))
         obs_indicator[np.arange(len(obs)), obs] = 1
         error = epsilon + 1
-        while(error > epsilon and it < 100):
+        while error > epsilon and it < 100:
             alpha = self.forward(obs)
             beta = self.backward(obs)
 
@@ -42,8 +42,12 @@ class HMM(object):
             likelihood = (alpha * beta).T
             gamma = likelihood / likelihood.sum(axis=0).reshape(1, -1)
             for t in range(0, len(obs) - 1):
-                xit = alpha[
-                    t].reshape(-1, 1).dot((beta[t + 1] * self.B[:, obs[t + 1]]).reshape(1, -1)) * self.A
+                xit = (
+                    alpha[t]
+                    .reshape(-1, 1)
+                    .dot((beta[t + 1] * self.B[:, obs[t + 1]]).reshape(1, -1))
+                    * self.A
+                )
                 xi += xit / xit.sum()
 
             # M step
@@ -59,10 +63,8 @@ class HMM(object):
         v = self.pi * self.B[:, obs[0]]
         vpath = np.arange(self.s_num).reshape(-1, 1).tolist()
         for i in range(1, len(obs)):
-            prev = np.array([np.argmax(v * self.A[:, n])
-                             for n in range(self.s_num)])
-            v = v[prev] * self.A[prev,
-                                 np.arange(self.s_num)] * self.B[:, obs[i]]
+            prev = np.array([np.argmax(v * self.A[:, n]) for n in range(self.s_num)])
+            v = v[prev] * self.A[prev, np.arange(self.s_num)] * self.B[:, obs[i]]
             vpath = [vpath[prev[s]] + [s] for s in range(self.s_num)]
         return vpath[np.argmax(v)]
 
@@ -83,26 +85,28 @@ def seq_generator():
 
 def main():
     hmm = HMM(
-        o_num=3, s_num=2,
+        o_num=3,
+        s_num=2,
         pi=np.array([0.6, 0.4]),
         A=np.array([[0.7, 0.3], [0.4, 0.6]]),
-        B=np.array([[0.1, 0.4, 0.5], [0.6, 0.3, 0.1]])
+        B=np.array([[0.1, 0.4, 0.5], [0.6, 0.3, 0.1]]),
     )
     # 0, 0, 1 see example in https://en.wikipedia.org/wiki/Viterbi_algorithm
-    print('viterbi', hmm.viterbi([2, 1, 0]))
+    print("viterbi", hmm.viterbi([2, 1, 0]))
 
     # examples here https://iulg.sitehost.iu.edu/moss/hmmcalculations.pdf
     hmm = HMM(
-        o_num=2, s_num=2,
+        o_num=2,
+        s_num=2,
         pi=np.array([0.85, 0.16]),
         A=np.array([[0.3, 0.7], [0.1, 0.9]]),
-        B=np.array([[0.4, 0.6], [0.5, 0.5]])
+        B=np.array([[0.4, 0.6], [0.5, 0.5]]),
     )
     obs = np.array([0, 1, 1, 0])
     hmm.baum_welch(obs)
-    print('initial probabilities', hmm.pi)
-    print('transition matrix', hmm.A)
-    print('emission matrix', hmm.B)
+    print("initial probabilities", hmm.pi)
+    print("transition matrix", hmm.A)
+    print("emission matrix", hmm.B)
 
 
 if __name__ == "__main__":

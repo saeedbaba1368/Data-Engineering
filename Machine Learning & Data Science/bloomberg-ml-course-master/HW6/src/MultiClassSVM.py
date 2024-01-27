@@ -16,7 +16,7 @@ class MulticlassSVM(BaseEstimator, ClassifierMixin):
         psi=feature_map,
     ):
         """Creates a MulticlassSVM estimator
-        
+
         :param n_out: number of class-sensitive features produced by psi
         :param lam: l2 regularization parameter
         :param num_classes: number of classes (assumed numbered 0,..,num_classes-1)
@@ -32,7 +32,7 @@ class MulticlassSVM(BaseEstimator, ClassifierMixin):
 
     def subgradient(self, x, y, w):
         """Computes the subgradient at a given data point x,y
-        
+
         :param x: sample input
         :param y: sample class
         :param w: parameter vector
@@ -51,7 +51,7 @@ class MulticlassSVM(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y, eta=0.1, epochs=10000):
         """Fits multiclass SVM
-        
+
         :param X: array-like, shape = [num_samples,num_inFeatures], input data
         :param y: array-like, shape = [num_samples,], input classes
         :param eta: learning rate for SGD
@@ -65,19 +65,21 @@ class MulticlassSVM(BaseEstimator, ClassifierMixin):
     def decision_function(self, X):
         """Returns the score on each input for each class. Assumes
         that fit has been called.
-        
+
         :param X : array-like, shape = [n_samples, n_in]
         :return: array-like, shape = [n_samples, n_classes] giving scores for each sample,class pairing
         """
         if not self.is_fit:
-            raise NotFittedError(f"This {self.__class__.__name__} instance is not fitted yet. "
-                "Call 'fit' with appropriate arguments before using this method.")         
+            raise NotFittedError(
+                f"This {self.__class__.__name__} instance is not fitted yet. "
+                "Call 'fit' with appropriate arguments before using this method."
+            )
         W = self.coef_.reshape((self.n_classes, -1)).T
         return X @ W
 
     def predict(self, X):
         """Predict the class with the highest score.
-        
+
         :param X: array-like, shape = [n_samples, n_in], input data to predict
         :return array-like, shape = [n_samples,], class labels predicted for each data point
         """

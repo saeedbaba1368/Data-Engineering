@@ -67,10 +67,10 @@ def shooting_algo(
 def soft_threshold(x, y):
     """Returns the subgradient of the LASSO objective function
 
-    Args : 
+    Args :
         x : float
         y : float
-    
+
     Returns
         float
     """
@@ -78,8 +78,7 @@ def soft_threshold(x, y):
 
 
 def compute_square_loss(X, y, theta):
-    """ Compute the sum of squared errors
-    """
+    """Compute the sum of squared errors"""
     return np.sum(np.square(X.dot(theta) - y))
 
 

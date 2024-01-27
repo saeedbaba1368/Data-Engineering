@@ -18,7 +18,7 @@ from setup_problem import load_problem
 
 
 class RidgeRegression(BaseEstimator, RegressorMixin):
-    """ ridge regression"""
+    """ridge regression"""
 
     def __init__(self, l2reg=1):
         if l2reg < 0:
@@ -33,8 +33,8 @@ class RidgeRegression(BaseEstimator, RegressorMixin):
         def ridge_obj(w):
             predictions = np.dot(X, w)
             residual = y - predictions
-            empirical_risk = np.sum(residual ** 2) / n
-            l2_norm_squared = np.sum(w ** 2)
+            empirical_risk = np.sum(residual**2) / n
+            l2_norm_squared = np.sum(w**2)
             objective = empirical_risk + self.l2reg * l2_norm_squared
             return objective
 

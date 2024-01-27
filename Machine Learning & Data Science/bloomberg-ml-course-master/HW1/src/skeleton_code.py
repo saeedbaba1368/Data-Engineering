@@ -214,7 +214,7 @@ def batch_grad_descent(
     else:
         stepsize_hist = alpha * ones(num_iter)
         for i in range(0, num_iter):
-            curr_theta = theta_hist[i,:]
+            curr_theta = theta_hist[i, :]
             dtheta = compute_square_loss_gradient(X, y, curr_theta)
             theta_hist[i + 1, :] = curr_theta - alpha * dtheta
             loss_hist[i + 1] = compute_square_loss(X, y, theta_hist[i + 1, :])
@@ -297,8 +297,10 @@ def regularized_grad_descent(
                     t *= b
     else:
         for i in range(0, num_iter):
-            curr_theta = theta_hist[i, :] 
-            dtheta = compute_regularized_square_loss_gradient(X, y, curr_theta, lambda_reg)
+            curr_theta = theta_hist[i, :]
+            dtheta = compute_regularized_square_loss_gradient(
+                X, y, curr_theta, lambda_reg
+            )
             theta_hist[i + 1, :] = curr_theta - alpha * dtheta
             loss_hist[i + 1] = compute_square_loss(X, y, theta_hist[i + 1, :])
 
@@ -357,7 +359,7 @@ def stochastic_grad_descent(X, y, alpha=0.1, lambda_reg=1, num_iter=1000):
             a = alpha_func(cnt)
             ypred = np.dot(theta, X[index, :])
             r = ypred - y[index]
-            sgd_step = 2* a * (r * X[index, :] + lambda_reg * theta)
+            sgd_step = 2 * a * (r * X[index, :] + lambda_reg * theta)
 
             theta -= sgd_step
             theta_hist[i, j, :] = theta

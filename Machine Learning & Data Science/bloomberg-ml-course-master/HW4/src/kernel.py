@@ -42,7 +42,7 @@ def linear_kernel(X1, X2):
 
 def RBF_kernel(X1, X2, sigma):
     """
-    Computes the RBF kernel between two sets of vectors   
+    Computes the RBF kernel between two sets of vectors
     Args:
         X1 - an n1xd matrix with vectors x1_1,...,x1_n1 in the rows
         X2 - an n2xd matrix with vectors x2_1,...,x2_n2 in the rows
@@ -54,7 +54,7 @@ def RBF_kernel(X1, X2, sigma):
     squaredMagnitudes2 = np.sum(np.square(X2), axis=1, keepdims=True)
     distMat = squaredMagnitudes1 + squaredMagnitudes2.T - 2 * linear_kernel(X1, X2)
 
-    return np.exp(-distMat / (2 * sigma ** 2))
+    return np.exp(-distMat / (2 * sigma**2))
 
 
 def polynomial_kernel(X1, X2, offset, degree):

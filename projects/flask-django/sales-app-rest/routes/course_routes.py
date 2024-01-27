@@ -5,7 +5,7 @@ from app import db
 from models.course import Course
 
 
-@app.route('/courses')
+@app.route("/courses")
 def courses():
     """
     Get a list of courses filtered by course name.
@@ -20,26 +20,27 @@ def courses():
       200:
         description: List of courses matching the filter.
     """
-    search_query = request.args.get('search', '')
+    search_query = request.args.get("search", "")
 
     if search_query:
         # Query the database for courses matching the search query
-        course_recs = db.session. \
-            query(Course). \
-            filter(Course.course_name.ilike(f"%{search_query}%")). \
-            all()
+        course_recs = (
+            db.session.query(Course)
+            .filter(Course.course_name.ilike(f"%{search_query}%"))
+            .all()
+        )
     else:
         # Query the database for all courses
         course_recs = db.session.query(Course).all()
 
     courses = []
     for course in course_recs:
-        course.__dict__.pop('_sa_instance_state')
+        course.__dict__.pop("_sa_instance_state")
         courses.append(course.__dict__)
     return jsonify(courses), 200
 
 
-@app.route('/course', methods=['GET'])
+@app.route("/course", methods=["GET"])
 def get_course():
     """
     Get course details.
@@ -54,14 +55,14 @@ def get_course():
       200:
         description: Course details.
     """
-    course_id = request.args.get('course_id')
+    course_id = request.args.get("course_id")
     if course_id:
         course = Course.query.get(course_id)
-        course.__dict__.pop('_sa_instance_state')
+        course.__dict__.pop("_sa_instance_state")
         return jsonify(course.__dict__), 200
 
 
-@app.route('/course', methods=['POST'])
+@app.route("/course", methods=["POST"])
 def create_or_update_course():
     """
     Create or update a course.
@@ -93,17 +94,17 @@ def create_or_update_course():
       201:
         description: Course added successfully.
     """
-    course_id = request.form['course_id']
-    course_name = request.form['course_name']
-    course_author = request.form['course_author']
-    course_endpoint = request.form['course_endpoint']
+    course_id = request.form["course_id"]
+    course_name = request.form["course_name"]
+    course_author = request.form["course_author"]
+    course_endpoint = request.form["course_endpoint"]
     if course_id:
         course = Course.query.get(course_id)
         course.course_name = course_name
         course.course_author = course_author
         course.course_endpoint = course_endpoint
         db.session.commit()
-        return jsonify({'message': 'Course updated successfully...'}), 200
+        return jsonify({"message": "Course updated successfully..."}), 200
     else:
         course = Course(
             course_name=course_name,
@@ -112,10 +113,10 @@ def create_or_update_course():
         )
         db.session.add(course)
         db.session.commit()
-        return jsonify({'message': 'Course added successfully...'}), 201
+        return jsonify({"message": "Course added successfully..."}), 201
 
 
-@app.route('/course', methods=['DELETE'])
+@app.route("/course", methods=["DELETE"])
 def delete_course():
     """
     Delete a course.
@@ -130,9 +131,9 @@ def delete_course():
       200:
         description: Course deleted successfully.
     """
-    course_id = request.args.get('course_id')
+    course_id = request.args.get("course_id")
     if course_id:
         course = Course.query.get(course_id)
         db.session.delete(course)
         db.session.commit()
-        return jsonify({'message': 'Course deleted successfully...'}), 200
+        return jsonify({"message": "Course deleted successfully..."}), 200

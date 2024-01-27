@@ -7,7 +7,7 @@ import setup_problem, nodes, graph, plot_utils
 
 
 class LinearRegression(BaseEstimator, RegressorMixin):
-    """Linear regression with computation graph """
+    """Linear regression with computation graph"""
 
     def __init__(self, step_size=0.005, max_num_epochs=5000):
         self.max_num_epochs = max_num_epochs
@@ -81,9 +81,15 @@ class LinearRegression(BaseEstimator, RegressorMixin):
 
 def main():
     lasso_data_fname = "lasso_data.pkl"
-    x_train, y_train, x_val, y_val, target_fn, coefs_true, featurize = setup_problem.load_problem(
-        lasso_data_fname
-    )
+    (
+        x_train,
+        y_train,
+        x_val,
+        y_val,
+        target_fn,
+        coefs_true,
+        featurize,
+    ) = setup_problem.load_problem(lasso_data_fname)
 
     # Generate features
     X_train = featurize(x_train)
@@ -113,6 +119,7 @@ def main():
     os.makedirs("img", exist_ok=True)
     plt.savefig(os.path.join("img", "linear_regression.png"))
     plt.show()
+
 
 if __name__ == "__main__":
     main()

@@ -29,7 +29,7 @@ import numpy as np
 
 class ComputationGraphFunction:
     def __init__(self, inputs, outcomes, parameters, prediction, objective):
-        """ 
+        """
         :param inputs: list of ValueNode objects containing inputs (in the ML sense)
         :param outcomes: list of ValueNode objects containing outcomes (in the ML sense)
         :param parameters: list of ValueNode objects containing values we will optimize over
@@ -77,9 +77,7 @@ class ComputationGraphFunction:
 
     def get_gradients(self, input_values, outcome_values):
         # need forward pass anyway
-        obj = self.get_objective(
-            input_values, outcome_values
-        ) 
+        obj = self.get_objective(input_values, outcome_values)
         backward_graph(self.objective, node_list=self.objective_node_list_backward)
         parameter_gradients = {}
         for node in self.parameters:
@@ -92,6 +90,7 @@ class ComputationGraphFunction:
             self.prediction, node_list=self.prediction_node_list_forward
         )
         return pred
+
 
 ###### Computation graph utilities
 def sort_topological(sink):

@@ -1,5 +1,6 @@
 import numpy as np
 from minimax import MiniMax, RandomMove  # for testing purpose
+
 # implements Monte Carlo tree search for Tic Tac Toe / Gomoku
 
 
@@ -13,16 +14,20 @@ def is_done(board):
         x_end = x + n_connect
         x_rev_end = x - n_connect
         y_end = y + n_connect
-        if (  # -
-                x_end <= n_size and abs(board[y, x:x_end].sum()) == n_connect
-        ) or (  # |
-                y_end <= n_size and abs(board[y:y_end, x].sum()) == n_connect
-        ) or (  # \
-                x_end <= n_size and y_end <= n_size and abs(
-                    board[range(y, y_end), range(x, x_end)].sum()) == n_connect
-        ) or (  # /
-                x_rev_end >= -1 and y_end <= n_size and abs(
-                    board[range(y, y_end), range(x, x_rev_end, -1)].sum()) == n_connect
+        if (
+            (x_end <= n_size and abs(board[y, x:x_end].sum()) == n_connect)  # -
+            or (y_end <= n_size and abs(board[y:y_end, x].sum()) == n_connect)  # |
+            or (  # \
+                x_end <= n_size
+                and y_end <= n_size
+                and abs(board[range(y, y_end), range(x, x_end)].sum()) == n_connect
+            )
+            or (  # /
+                x_rev_end >= -1
+                and y_end <= n_size
+                and abs(board[range(y, y_end), range(x, x_rev_end, -1)].sum())
+                == n_connect
+            )
         ):
             return board[y, x]
     return 0
@@ -59,27 +64,29 @@ def test(agents):
 
 
 class MCTSNode(object):
-
     def __init__(self, board):
         self.board = board
         self.simulations = [0, 0, 0]  # lose/draw/win
         self.n_visit = 0
         self.children = {}
         self.score = 0
-        self.done = np.abs(board).sum() == board.shape[
-            0] or is_done(board.reshape(n_size, n_size)) != 0
+        self.done = (
+            np.abs(board).sum() == board.shape[0]
+            or is_done(board.reshape(n_size, n_size)) != 0
+        )
 
     def update(self, result):
         self.simulations[result + 1] += 1  # -1/0/1 -> lose/draw/win (0,1,2)
         self.n_visit += 1
-        self.score = (self.simulations[2] + 0.5 * self.simulations[1]) / self.n_visit  # 1 for draw
+        self.score = (
+            self.simulations[2] + 0.5 * self.simulations[1]
+        ) / self.n_visit  # 1 for draw
 
 
 class MCTS(object):
-
     def __init__(self):
         init_board = np.zeros(n_size * n_size).astype(int)
-        init_board_str = ''.join([str(i) for i in init_board])
+        init_board_str = "".join([str(i) for i in init_board])
         self.cache = {init_board_str: MCTSNode(init_board)}
         self.rm = RandomMove()
         self.n_iteration = 4 * n_size * n_size
@@ -92,8 +99,9 @@ class MCTS(object):
         next_moves = []
         for move in self.legal_moves(node.board):
             score = node.children[move].score if move in node.children else 0
-            child_visits = node.children[
-                move].n_visit if move in node.children else 1e-4
+            child_visits = (
+                node.children[move].n_visit if move in node.children else 1e-4
+            )
             this_uct = score + np.sqrt(2 * np.log(node.n_visit) / child_visits)
             if max_uct < this_uct:
                 next_moves = [move]
@@ -121,7 +129,7 @@ class MCTS(object):
                 if next_move not in node.children:  # expansion
                     child_board = node.board.copy()
                     child_board[next_move] = -(node.board.sum() * 2 + 1)
-                    child_board_str = ''.join([str(i) for i in child_board])
+                    child_board_str = "".join([str(i) for i in child_board])
                     if child_board_str not in self.cache:
                         self.cache[child_board_str] = MCTSNode(child_board)
                     node.children[next_move] = self.cache[child_board_str]
@@ -131,21 +139,23 @@ class MCTS(object):
             # simulation
             result = self.simulation(node.board.copy(), node.board.sum() * 2 + 1)
             # backpropagation
-            while step >= 0:  
+            while step >= 0:
                 # only updating one branch might affect uct as the n_visit of parent is no longer cnosistent
-                board_state = (record > 0) * (1-2*(record%2))
-                board_str = ''.join([str(i) for i in board_state])
-                this_player = 1-2*(step%2)
-                record = (record!=step) * record
+                board_state = (record > 0) * (1 - 2 * (record % 2))
+                board_str = "".join([str(i) for i in board_state])
+                this_player = 1 - 2 * (step % 2)
+                record = (record != step) * record
                 step -= 1
                 self.cache[board_str].update(result * this_player)
 
     def act(self, board, index_board, player):
-        board_str = ''.join([str(int(i)) for i in board])
+        board_str = "".join([str(int(i)) for i in board])
         node = self.cache[board_str]
         self.search(node, index_board)
         v_max = np.amax([c.score for m, c in node.children.items()])
-        return np.random.choice([m for m, c in node.children.items() if c.score == v_max])
+        return np.random.choice(
+            [m for m, c in node.children.items() if c.score == v_max]
+        )
 
 
 def main():
@@ -153,12 +163,13 @@ def main():
     mcts = MCTS()
     random = RandomMove()
     test([mcts, mcts])
-    print('\t\t\t\twin/draw/lose')
-    print('mcts vs. mcts', test([mcts, mcts]))
-    print('random vs. mcts', test([random, mcts]))
-    print('mcts vs. random', test([mcts, random]))
-    print('minimax vs. mcts', test([minimax, mcts]))
-    print('mcts vs. minimax', test([mcts, minimax]))
+    print("\t\t\t\twin/draw/lose")
+    print("mcts vs. mcts", test([mcts, mcts]))
+    print("random vs. mcts", test([random, mcts]))
+    print("mcts vs. random", test([mcts, random]))
+    print("minimax vs. mcts", test([minimax, mcts]))
+    print("mcts vs. minimax", test([mcts, minimax]))
+
 
 if __name__ == "__main__":
     main()

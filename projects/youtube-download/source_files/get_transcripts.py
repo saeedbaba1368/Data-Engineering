@@ -24,6 +24,7 @@ def get_transcripts(titles, subpath):
             logging.error(f"Could not run subprocess on -> {title}:{url}")
             continue
 
+
 def get_audio(titles, subpath):
     """Get mp3 files.
     Use this in the event there are no subtitles for a video

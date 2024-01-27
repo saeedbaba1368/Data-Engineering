@@ -24,9 +24,9 @@ def folder_list(path, label):
 
 def read_data(file):
     """
-    Read each file into a list of strings. 
+    Read each file into a list of strings.
     Example:
-    ["it's", 'a', 'curious', 'thing', "i've", 'found', 'that', 'when', 'willis', 'is', 'not', 'called', 'on', 
+    ["it's", 'a', 'curious', 'thing', "i've", 'found', 'that', 'when', 'willis', 'is', 'not', 'called', 'on',
     ...'to', 'carry', 'the', 'whole', 'movie', "he's", 'much', 'better', 'and', 'so', 'is', 'the', 'movie']
     """
     f = open(file)

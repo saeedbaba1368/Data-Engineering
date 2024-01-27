@@ -96,9 +96,7 @@ def generate_problem(
     write_problem=False,
     file_name="lasso_data.pickle",
 ):
-    target_fn, coefs_true, featurize = get_target_and_featurizer(
-        n_basis_fns, n_nonzero
-    )
+    target_fn, coefs_true, featurize = get_target_and_featurizer(n_basis_fns, n_nonzero)
     x, y = generate_data(target_fn, n, noise_scale, tdof)
     x_train, y_train, x_test, y_test = get_data_splits(x, y, test_frac)
 
@@ -148,7 +146,15 @@ def main():
         n_nonzero = 10
         noise_scale = 0.25  # scale factor on noise
         tdof = 6  # degrees of freedom of t-distribution generating noise
-        x_train, y_train, x_val, y_val, target_fn, coefs_true, featurize = generate_problem(
+        (
+            x_train,
+            y_train,
+            x_val,
+            y_val,
+            target_fn,
+            coefs_true,
+            featurize,
+        ) = generate_problem(
             n=n,
             n_basis_fns=n_basis_fns,
             n_nonzero=n_nonzero,

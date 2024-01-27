@@ -5,7 +5,7 @@ from app import db
 from models.user import User
 
 
-@app.route('/users')
+@app.route("/users")
 def users():
     """
     Get a list of users filtered by email.
@@ -30,67 +30,74 @@ def users():
       200:
         description: List of users matching the filter.
     """
-    page_token = int(request.args.get('pageToken')) if request.args.get('pageToken') else None
-    search_email = request.args.get('email', '')
-    page_size = int(request.args.get('pageSize')) \
-      if request.args.get('pageSize') and int(request.args.get('pageSize')) <= 100 \
-      else 25
+    page_token = (
+        int(request.args.get("pageToken")) if request.args.get("pageToken") else None
+    )
+    search_email = request.args.get("email", "")
+    page_size = (
+        int(request.args.get("pageSize"))
+        if request.args.get("pageSize") and int(request.args.get("pageSize")) <= 100
+        else 25
+    )
     # logic_on_true if cond else logic_on_false
     if search_email:
         # Query the database and filter users based on the pattern match
         if page_token:
-            user_recs = db.session.query(User). \
-                filter(User.email.like(f'{search_email.lower()}%')). \
-                filter(User.id > page_token). \
-                order_by(User.id). \
-                limit(page_size). \
-                all()
+            user_recs = (
+                db.session.query(User)
+                .filter(User.email.like(f"{search_email.lower()}%"))
+                .filter(User.id > page_token)
+                .order_by(User.id)
+                .limit(page_size)
+                .all()
+            )
         else:
-            user_recs = db.session.query(User). \
-                filter(User.email.like(f'{search_email.lower()}%')). \
-                order_by(User.id). \
-                limit(page_size). \
-                all()
+            user_recs = (
+                db.session.query(User)
+                .filter(User.email.like(f"{search_email.lower()}%"))
+                .order_by(User.id)
+                .limit(page_size)
+                .all()
+            )
     else:
         # Retrieve all users if no search query is provided
         if page_token:
-            user_recs = db.session.query(User). \
-                filter(User.id > page_token). \
-                order_by(User.id). \
-                limit(page_size). \
-                all()
+            user_recs = (
+                db.session.query(User)
+                .filter(User.id > page_token)
+                .order_by(User.id)
+                .limit(page_size)
+                .all()
+            )
         else:
-            user_recs = db.session.query(User). \
-                order_by(User.id). \
-                limit(page_size). \
-                all()
+            user_recs = db.session.query(User).order_by(User.id).limit(page_size).all()
 
     users = []
     for user in user_recs:
-        user.__dict__.pop('_sa_instance_state')
+        user.__dict__.pop("_sa_instance_state")
         users.append(user.__dict__)
 
     payload = {
-        'records': users,
-        'recordCount': len(users),
-        'pageToken': users[-1]['id'] if len(users) == page_size else None
+        "records": users,
+        "recordCount": len(users),
+        "pageToken": users[-1]["id"] if len(users) == page_size else None,
     }
 
     return jsonify(payload), 200
 
 
-@app.route('/users', methods=['POST'])
+@app.route("/users", methods=["POST"])
 def add_users():
-    users = json.loads(request.form['users'])
+    users = json.loads(request.form["users"])
     users_ = []
     for user in users:
         users_.append(User(**user))
     db.session.add_all(users_)
     db.session.commit()
-    return jsonify({'message': 'Users added successfully...'}), 201
+    return jsonify({"message": "Users added successfully..."}), 201
 
 
-@app.route('/user', methods=['GET'])
+@app.route("/user", methods=["GET"])
 def get_user():
     """
     Get user details.
@@ -105,14 +112,14 @@ def get_user():
       200:
         description: User details.
     """
-    id = request.args.get('id')
+    id = request.args.get("id")
     if id:
         user = User.query.get(id)
-        user.__dict__.pop('_sa_instance_state')
+        user.__dict__.pop("_sa_instance_state")
         return jsonify(user.__dict__), 200
 
 
-@app.route('/user', methods=['POST'])
+@app.route("/user", methods=["POST"])
 def create_or_update_user():
     """
     Create or update a user.
@@ -149,11 +156,11 @@ def create_or_update_user():
       200:
         description: User updated successfully.
     """
-    id = request.form['id']
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    username = request.form['username']
-    email = request.form['email']
+    id = request.form["id"]
+    first_name = request.form["first_name"]
+    last_name = request.form["last_name"]
+    username = request.form["username"]
+    email = request.form["email"]
     if id:
         user = User.query.get(id)
         user.first_name = first_name
@@ -161,20 +168,17 @@ def create_or_update_user():
         user.username = username
         user.email = email
         db.session.commit()
-        return jsonify({'message': 'User updated successfully...'}), 200
+        return jsonify({"message": "User updated successfully..."}), 200
     else:
         user = User(
-            first_name=first_name,
-            last_name=last_name,
-            username=username,
-            email=email
+            first_name=first_name, last_name=last_name, username=username, email=email
         )
         db.session.add(user)
         db.session.commit()
-        return jsonify({'message': 'User added successfully...'}), 201
+        return jsonify({"message": "User added successfully..."}), 201
 
 
-@app.route('/user', methods=['DELETE'])
+@app.route("/user", methods=["DELETE"])
 def delete_user():
     """
     Delete a user.
@@ -189,9 +193,9 @@ def delete_user():
       204:
         description: User deleted successfully.
     """
-    id = request.args.get('id')
+    id = request.args.get("id")
     if id:
         user = User.query.get(id)
         db.session.delete(user)
         db.session.commit()
-        return jsonify({'message': 'User deleted successfully...'}), 204
+        return jsonify({"message": "User deleted successfully..."}), 204

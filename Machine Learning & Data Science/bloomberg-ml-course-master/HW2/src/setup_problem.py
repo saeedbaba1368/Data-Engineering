@@ -147,7 +147,15 @@ def main():
         num_nonzero = 10
         noise_scale = 0.25  # scale factor on noise
         tdof = 6  # degrees of freedom of t-distribution generating noise
-        x_train, y_train, x_val, y_val, target_fn, coefs_true, featurize = generate_problem(
+        (
+            x_train,
+            y_train,
+            x_val,
+            y_val,
+            target_fn,
+            coefs_true,
+            featurize,
+        ) = generate_problem(
             n=n,
             num_basis_fns=num_basis_fns,
             num_nonzero=num_nonzero,

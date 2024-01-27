@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.datasets import load_digits
+
 # a simpler implementation of multilayer perceptron with backpropagation training
 # 2 hidden layers, with 100 and 50 perceptrons
 # this one use sigmoid in hiddn layer and softmax in output
@@ -17,13 +18,12 @@ def softmax(x):
 
 
 class MLP(object):
-
     def __init__(self, n_features, n_labels):
-        '''
+        """
         D_in is input dimension;
-        H is hidden dimension; 
+        H is hidden dimension;
         D_out is output dimension.
-        '''
+        """
         self.D_in, self.H1, self.H2, self.D_out = n_features, 100, 50, n_labels
         self.epochs, self.batch_size = 200, 32
         self.learning_rate = 1e-2
@@ -57,7 +57,8 @@ class MLP(object):
         for epoch in range(self.epochs):
             # mini batch
             permut = np.random.permutation(
-                train_num // self.batch_size * self.batch_size).reshape(-1, self.batch_size)
+                train_num // self.batch_size * self.batch_size
+            ).reshape(-1, self.batch_size)
             for b_idx in range(permut.shape[0]):
                 x, y = x_train[permut[b_idx, :]], y_train[permut[b_idx, :]]
 
@@ -85,8 +86,7 @@ class MLP(object):
                 self.b2 -= self.learning_rate * bvec.dot(grad_a2)
                 self.w3 -= self.learning_rate * grad_w3
                 self.b3 -= self.learning_rate * bvec.dot(grad_out)
-            print('epoch {}, loss: {}'.format(
-                epoch, self.loss(x_train, y_train)))
+            print("epoch {}, loss: {}".format(epoch, self.loss(x_train, y_train)))
 
 
 def main():
@@ -100,10 +100,8 @@ def main():
 
     mlp = MLP(train_x.shape[1], len(np.unique(data.target)))
     mlp.fit(train_x, train_y)
-    print(sum(np.argmax(mlp.predict(train_x), axis=1)
-              == train_y) / train_y.shape[0])
-    print(sum(np.argmax(mlp.predict(test_x), axis=1)
-              == test_y) / test_y.shape[0])
+    print(sum(np.argmax(mlp.predict(train_x), axis=1) == train_y) / train_y.shape[0])
+    print(sum(np.argmax(mlp.predict(test_x), axis=1) == test_y) / test_y.shape[0])
 
 
 if __name__ == "__main__":

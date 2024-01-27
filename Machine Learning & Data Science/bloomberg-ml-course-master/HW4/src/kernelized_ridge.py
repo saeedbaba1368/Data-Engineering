@@ -49,6 +49,6 @@ class KernelRidgeRegression(BaseEstimator, RegressorMixin):
         return self.kernel_machine_.predict(X)
 
     def score(self, X, y=None):
-        """ get the average square error"""
+        """get the average square error"""
         residual = self.predict(X) - y
         return (np.square(residual)).mean()

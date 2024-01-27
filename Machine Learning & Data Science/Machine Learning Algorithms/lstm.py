@@ -6,6 +6,7 @@ import re
 # example output "'Oh, I BEL yourt!' Saic 'Alice thing seemst,'
 # Alice reminused all cranged at the end of everying and bring rause
 
+
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
@@ -33,7 +34,6 @@ def cross_entropy(pred, y):
 
 
 class LSTM(object):
-
     def __init__(self, n_input, n_hidden, n_label, n_t):
         self.loss = cross_entropy
         self.n_hidden, self.n_label = n_hidden, n_label
@@ -41,19 +41,35 @@ class LSTM(object):
         self.eps = 1e-20
         self.n_t = n_t
 
-        self.w_f, self.w_i, self.w_c, self.w_o = [np.random.randn(
-            n_input, self.n_hidden) / n_input for _ in range(4)]
-        self.u_f, self.u_i, self.u_c, self.u_o = [np.random.randn(
-            self.n_hidden, self.n_hidden) / self.n_hidden for _ in range(4)]
+        self.w_f, self.w_i, self.w_c, self.w_o = [
+            np.random.randn(n_input, self.n_hidden) / n_input for _ in range(4)
+        ]
+        self.u_f, self.u_i, self.u_c, self.u_o = [
+            np.random.randn(self.n_hidden, self.n_hidden) / self.n_hidden
+            for _ in range(4)
+        ]
         self.b_f, self.b_i, self.b_c, self.b_o = [
-            np.random.randn(1, self.n_hidden) for _ in range(4)]
+            np.random.randn(1, self.n_hidden) for _ in range(4)
+        ]
         self.u_v, self.b_v = np.random.randn(
-            self.n_hidden, self.n_label) / self.n_hidden, np.random.randn(1, self.n_label)
+            self.n_hidden, self.n_label
+        ) / self.n_hidden, np.random.randn(1, self.n_label)
 
         self.param_list = [
-            self.w_f, self.w_i, self.w_c, self.w_o,
-            self.u_f, self.u_i, self.u_c, self.u_o, self.u_v,
-            self.b_f, self.b_i, self.b_c, self.b_o, self.b_v
+            self.w_f,
+            self.w_i,
+            self.w_c,
+            self.w_o,
+            self.u_f,
+            self.u_i,
+            self.u_c,
+            self.u_o,
+            self.u_v,
+            self.b_f,
+            self.b_i,
+            self.b_c,
+            self.b_o,
+            self.b_v,
         ]
         self.mom_list = [np.zeros_like(param) for param in self.param_list]
         self.cache_list = [np.zeros_like(param) for param in self.param_list]
@@ -67,12 +83,12 @@ class LSTM(object):
         constant = np.ones((1, self.batch_size * n_t))
 
         for epoch in range(self.epochs):
-            permut = np.random.permutation(
-                n_data // b_size * b_size).reshape(-1, b_size)
+            permut = np.random.permutation(n_data // b_size * b_size).reshape(
+                -1, b_size
+            )
             for b_idx in range(permut.shape[0]):
                 x_batch = x[:, permut[b_idx, :]].reshape(n_t * b_size, n_input)
-                y_batch = y[:, permut[b_idx, :]].reshape(
-                    n_t * b_size, self.n_label)
+                y_batch = y[:, permut[b_idx, :]].reshape(n_t * b_size, self.n_label)
                 h, f, i, c, o, c_bar, grad_f, grad_i, grad_o, grad_c, grad_c_bar = [
                     np.zeros((n_t * b_size, self.n_hidden)) for _ in range(11)
                 ]
@@ -84,12 +100,19 @@ class LSTM(object):
 
                     xt_batch, ht_prev = x_batch[t_idx], h[t_idx_prev]
 
-                    f[t_idx] = sigmoid(xt_batch @ self.w_f + ht_prev @ self.u_f + self.b_f)
-                    i[t_idx] = sigmoid(xt_batch @ self.w_i + ht_prev @ self.u_i + self.b_i)
-                    o[t_idx] = sigmoid(xt_batch @ self.w_o + ht_prev @ self.u_o + self.b_o)
-                    c_bar[t_idx] = tanh(xt_batch @ self.w_c + ht_prev @ self.u_c + self.b_c)
-                    c[t_idx] = f[t_idx] * c[t_idx_prev] + \
-                        i[t_idx] * c_bar[t_idx]
+                    f[t_idx] = sigmoid(
+                        xt_batch @ self.w_f + ht_prev @ self.u_f + self.b_f
+                    )
+                    i[t_idx] = sigmoid(
+                        xt_batch @ self.w_i + ht_prev @ self.u_i + self.b_i
+                    )
+                    o[t_idx] = sigmoid(
+                        xt_batch @ self.w_o + ht_prev @ self.u_o + self.b_o
+                    )
+                    c_bar[t_idx] = tanh(
+                        xt_batch @ self.w_c + ht_prev @ self.u_c + self.b_c
+                    )
+                    c[t_idx] = f[t_idx] * c[t_idx_prev] + i[t_idx] * c_bar[t_idx]
                     h[t_idx] = o[t_idx] * tanh(c[t_idx])
 
                 c_prev = np.zeros(c.shape)
@@ -105,14 +128,15 @@ class LSTM(object):
                     t_idx = np.arange(t * b_size, (t + 1) * b_size)
                     t_idx_next = t_idx + b_size if t < n_t - 1 else t_idx
                     grad_h[t_idx] += (
-                        dsigmoid(grad_f[t_idx_next], f[t_idx_next]) @ self.u_f.T +
-                        dsigmoid(grad_i[t_idx_next], i[t_idx_next]) @ self.u_i.T +
-                        dsigmoid(grad_o[t_idx_next], o[t_idx_next]) @ self.u_o.T +
-                        dtanh(grad_c_bar[t_idx_next], c_bar[t_idx_next]) @ self.u_c.T
+                        dsigmoid(grad_f[t_idx_next], f[t_idx_next]) @ self.u_f.T
+                        + dsigmoid(grad_i[t_idx_next], i[t_idx_next]) @ self.u_i.T
+                        + dsigmoid(grad_o[t_idx_next], o[t_idx_next]) @ self.u_o.T
+                        + dtanh(grad_c_bar[t_idx_next], c_bar[t_idx_next]) @ self.u_c.T
                     )
-                    grad_c[t_idx] = o[t_idx] * grad_h[t_idx] * \
-                        (1 - np.square(np.tanh(c[t_idx]))) + \
-                        f[t_idx_next] * grad_c[t_idx_next]
+                    grad_c[t_idx] = (
+                        o[t_idx] * grad_h[t_idx] * (1 - np.square(np.tanh(c[t_idx])))
+                        + f[t_idx_next] * grad_c[t_idx_next]
+                    )
                     grad_f[t_idx] = grad_c[t_idx] * c_prev[t_idx]
                     grad_i[t_idx] = grad_c[t_idx] * c_bar[t_idx]
                     grad_o[t_idx] = grad_h[t_idx] * tanh(c[t_idx])
@@ -120,16 +144,37 @@ class LSTM(object):
 
                 self.adam(
                     grad_list=[
-                        x_batch.T @ dsigmoid(grad_f, f), x_batch.T @ dsigmoid(grad_i, i), x_batch.T @ dtanh(grad_c_bar, c_bar), x_batch.T @ dsigmoid(grad_o, o),
-                        h_prev.T @ dsigmoid(grad_f, f), h_prev.T @ dsigmoid(grad_i, i), h_prev.T @ dtanh(grad_c_bar, c_bar), h_prev.T @ dsigmoid(grad_o, o), h.T @ grad_v,
-                        constant @ dsigmoid(grad_f, f), constant @ dsigmoid(grad_i, i), constant @ dtanh(grad_c_bar, c_bar), constant @ dsigmoid(grad_o, o), constant @ grad_v
+                        x_batch.T @ dsigmoid(grad_f, f),
+                        x_batch.T @ dsigmoid(grad_i, i),
+                        x_batch.T @ dtanh(grad_c_bar, c_bar),
+                        x_batch.T @ dsigmoid(grad_o, o),
+                        h_prev.T @ dsigmoid(grad_f, f),
+                        h_prev.T @ dsigmoid(grad_i, i),
+                        h_prev.T @ dtanh(grad_c_bar, c_bar),
+                        h_prev.T @ dsigmoid(grad_o, o),
+                        h.T @ grad_v,
+                        constant @ dsigmoid(grad_f, f),
+                        constant @ dsigmoid(grad_i, i),
+                        constant @ dtanh(grad_c_bar, c_bar),
+                        constant @ dsigmoid(grad_o, o),
+                        constant @ grad_v,
                     ]
                 )
                 self.regularization()
-            print(self.sample(np.random.randint(n_input), np.random.randn(
-                1, self.n_hidden), np.random.randn(1, self.n_hidden), n_t * 4))
-            print(self.loss(self.predict(x).reshape(n_t * n_data,
-                                                    self.n_label), y.reshape(n_t * n_data, self.n_label)))
+            print(
+                self.sample(
+                    np.random.randint(n_input),
+                    np.random.randn(1, self.n_hidden),
+                    np.random.randn(1, self.n_hidden),
+                    n_t * 4,
+                )
+            )
+            print(
+                self.loss(
+                    self.predict(x).reshape(n_t * n_data, self.n_label),
+                    y.reshape(n_t * n_data, self.n_label),
+                )
+            )
 
     def sgd(self, grad_list):
         alpha = self.lr / self.batch_size / self.n_t
@@ -141,7 +186,7 @@ class LSTM(object):
         beta2 = 0.999
         alpha = self.lr / self.batch_size / self.n_t
         for params, grads, mom, cache in zip(
-                self.param_list, grad_list, self.mom_list, self.cache_list
+            self.param_list, grad_list, self.mom_list, self.cache_list
         ):
             mom += (beta1 - 1) * mom + (1 - beta1) * grads
             cache += (beta2 - 1) * cache + (1 - beta2) * np.square(grads)
@@ -154,8 +199,7 @@ class LSTM(object):
 
     def predict(self, x):
         n_t, n_data, n_input = x.shape
-        h, f, i, c, o = [np.zeros((n_t * n_data, self.n_hidden))
-                         for _ in range(5)]
+        h, f, i, c, o = [np.zeros((n_t * n_data, self.n_hidden)) for _ in range(5)]
         # forward pass
         for t in range(n_t):
             t_idx = np.arange(t * n_data, (t + 1) * n_data)
@@ -163,7 +207,9 @@ class LSTM(object):
             f[t_idx] = sigmoid(x[t] @ self.w_f + h[t_idx_prev] @ self.u_f + self.b_f)
             i[t_idx] = sigmoid(x[t] @ self.w_i + h[t_idx_prev] @ self.u_i + self.b_i)
             o[t_idx] = sigmoid(x[t] @ self.w_o + h[t_idx_prev] @ self.u_o + self.b_o)
-            c[t_idx] = f[t_idx] * c[t_idx_prev] + i[t_idx] * tanh(x[t] @ self.w_c + h[t_idx_prev] @ self.u_c + self.b_c)
+            c[t_idx] = f[t_idx] * c[t_idx_prev] + i[t_idx] * tanh(
+                x[t] @ self.w_c + h[t_idx_prev] @ self.u_c + self.b_c
+            )
             h[t_idx] = o[t_idx] * tanh(c[t_idx])
         return softmax(h @ self.u_v + self.b_v).reshape(n_t, n_data, self.n_label)
 
@@ -181,19 +227,18 @@ class LSTM(object):
             h = o * tanh(c)
             y = softmax(h @ self.u_v + self.b_v)
             seq.append(np.random.choice(range(n_input), p=y.flatten()))
-        return ''.join(np.vectorize(self.ix_to_word.get)(np.array(seq)).tolist())
+        return "".join(np.vectorize(self.ix_to_word.get)(np.array(seq)).tolist())
 
 
 def text_generation(use_word=True):
-    text = requests.get('http://www.gutenberg.org/cache/epub/11/pg11.txt').text
+    text = requests.get("http://www.gutenberg.org/cache/epub/11/pg11.txt").text
     if use_word:
-        text = [
-            word + ' ' for word in re.sub("[^a-zA-Z]", " ", text).lower().split()]
+        text = [word + " " for word in re.sub("[^a-zA-Z]", " ", text).lower().split()]
 
     words = sorted(list(set(text)))
     text_size, vocab_size = len(text), len(words)
 
-    print(f'text has {text_size} characters, {vocab_size} unique.')
+    print(f"text has {text_size} characters, {vocab_size} unique.")
     word_to_ix = {word: i for i, word in enumerate(words)}
     ix_to_word = {i: word for i, word in enumerate(words)}
 
@@ -202,24 +247,34 @@ def text_generation(use_word=True):
     data = np.zeros((text_size, vocab_size))
     data[np.arange(text_size), indices] = 1
     n_text = (text_size - 1) // seq_length
-    x = data[
-        :n_text * seq_length].reshape(n_text, seq_length, vocab_size).transpose(1, 0, 2)
-    y = indices[1: n_text * seq_length + 1].reshape(n_text, seq_length).T
+    x = (
+        data[: n_text * seq_length]
+        .reshape(n_text, seq_length, vocab_size)
+        .transpose(1, 0, 2)
+    )
+    y = indices[1 : n_text * seq_length + 1].reshape(n_text, seq_length).T
 
     test_ratio = 0.2
     test_split = np.random.uniform(0, 1, x.shape[1])
-    train_x, test_x = x[:, test_split >= test_ratio, :], x[
-        :, test_split < test_ratio, :]
-    train_y, test_y = y[:, test_split >= test_ratio], y[
-        :, test_split < test_ratio]
+    train_x, test_x = (
+        x[:, test_split >= test_ratio, :],
+        x[:, test_split < test_ratio, :],
+    )
+    train_y, test_y = y[:, test_split >= test_ratio], y[:, test_split < test_ratio]
 
     lstm = LSTM(vocab_size, 500, vocab_size, seq_length)
     lstm.ix_to_word = ix_to_word
     lstm.fit(train_x, train_y)
-    print('train loss', (np.argmax(lstm.predict(train_x), axis=2)
-                         == train_y).sum() / (train_y.shape[0] * train_y.shape[1]))
-    print('test loss', (np.argmax(lstm.predict(test_x), axis=2)
-                        == test_y).sum() / (test_y.shape[0] * test_y.shape[1]))
+    print(
+        "train loss",
+        (np.argmax(lstm.predict(train_x), axis=2) == train_y).sum()
+        / (train_y.shape[0] * train_y.shape[1]),
+    )
+    print(
+        "test loss",
+        (np.argmax(lstm.predict(test_x), axis=2) == test_y).sum()
+        / (test_y.shape[0] * test_y.shape[1]),
+    )
 
 
 def main():

@@ -7,7 +7,7 @@ import setup_problem, nodes, graph, plot_utils
 
 
 class RidgeRegression(BaseEstimator, RegressorMixin):
-    """ Ridge regression with computation graph """
+    """Ridge regression with computation graph"""
 
     def __init__(self, l2_reg=1, step_size=0.005, max_num_epochs=5000):
         self.l2_reg = l2_reg
@@ -27,9 +27,13 @@ class RidgeRegression(BaseEstimator, RegressorMixin):
             a=self.prediction, b=self.y, node_name="square loss"
         )
 
-        reg_loss = nodes.L2NormPenaltyNode(l2_reg=self.l2_reg, w=self.w, node_name="l2_penalty")
-        self.objective = nodes.SumNode(a=data_loss, b=reg_loss, node_name="ridge_objective")
-    
+        reg_loss = nodes.L2NormPenaltyNode(
+            l2_reg=self.l2_reg, w=self.w, node_name="l2_penalty"
+        )
+        self.objective = nodes.SumNode(
+            a=data_loss, b=reg_loss, node_name="ridge_objective"
+        )
+
         # Group nodes into types to construct computation graph function
         self.inputs = [self.x]
         self.outcomes = [self.y]
@@ -63,9 +67,13 @@ class RidgeRegression(BaseEstimator, RegressorMixin):
             if epoch % print_every == 0:
                 y_hat = self.predict(X, y)
                 resid = y - y_hat
-                train_loss = sum(resid ** 2) / n_instances
+                train_loss = sum(resid**2) / n_instances
                 print(f"Epoch {epoch}:", end=" ", flush=True)
-                print(f"Avg objective={epoch_obj_tot / n_instances:.4f}", end=" ", flush=True)
+                print(
+                    f"Avg objective={epoch_obj_tot / n_instances:.4f}",
+                    end=" ",
+                    flush=True,
+                )
                 print(f"Avg training loss: {train_loss:.4f}", flush=True)
 
     def predict(self, X, y=None):
@@ -86,9 +94,15 @@ class RidgeRegression(BaseEstimator, RegressorMixin):
 
 def main():
     lasso_data_fname = "lasso_data.pkl"
-    x_train, y_train, x_val, y_val, target_fn, coefs_true, featurize = setup_problem.load_problem(
-        lasso_data_fname
-    )
+    (
+        x_train,
+        y_train,
+        x_val,
+        y_val,
+        target_fn,
+        coefs_true,
+        featurize,
+    ) = setup_problem.load_problem(lasso_data_fname)
 
     # Generate features
     X_train = featurize(x_train)
@@ -127,7 +141,6 @@ def main():
     os.makedirs("img", exist_ok=True)
     plt.savefig(os.path.join("img", "ridge_regression.png"))
     plt.show()
-
 
 
 if __name__ == "__main__":

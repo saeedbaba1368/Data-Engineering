@@ -54,7 +54,7 @@ def linear_combination(scale1, d1, scale2, d2):
 
 def bag_of_words(word_list):
     """
-    Converts an example (e.g. a list of words) into a sparse 
+    Converts an example (e.g. a list of words) into a sparse
     bag-of-words representation.
 
     @param list word_list: words (with multiplicity) that appear in
@@ -73,7 +73,7 @@ def svm_loss(X, y, w, lambda_reg):
     @param float lambda_reg: regularization strength. Larger means more regularization
     @return float
     """
-    reg_loss = sum(v ** 2 for _, v in w.items())
+    reg_loss = sum(v**2 for _, v in w.items())
     data_loss = 1 / len(X) * sum(hinge_loss(x, label, w) for x, label in zip(X, y))
 
     return data_loss + lambda_reg / 2 * reg_loss
@@ -86,7 +86,7 @@ def hinge_loss(x, y, w):
     @param list x: feature vector
     @param list y: corresponding ground truth label
     @param dict w: sparse representaiton of parameter vector
-    @return float 
+    @return float
     """
 
     return max([0, 1 - y * dot_product(w, x)])

@@ -5,7 +5,7 @@ from collections import defaultdict
 
 def sigmoid(z):
     # sigmoid function
-    return 1.0/(1.0+np.exp(-z))
+    return 1.0 / (1.0 + np.exp(-z))
 
 
 def get_idx(words, word2Ind):
@@ -35,14 +35,14 @@ def get_vectors(data, word2Ind, V, C):
         x = np.zeros(V)
         center_word = data[i]
         y[word2Ind[center_word]] = 1
-        context_words = data[(i - C):i] + data[(i+1):(i+C+1)]
+        context_words = data[(i - C) : i] + data[(i + 1) : (i + C + 1)]
         num_ctx_words = len(context_words)
         for idx, freq in pack_idx_with_frequency(context_words, word2Ind):
-            x[idx] = freq/num_ctx_words
+            x[idx] = freq / num_ctx_words
         yield x, y
         i += 1
         if i >= len(data):
-            print('i is being set to 0')
+            print("i is being set to 0")
             i = 0
 
 
@@ -60,10 +60,10 @@ def get_batches(data, word2Ind, V, C, batch_size):
 
 def compute_pca(data, n_components=2):
     """
-    Input: 
+    Input:
         data: of dimension (m,n) where each row corresponds to a word vector
         n_components: Number of components you want to keep.
-    Output: 
+    Output:
         X_reduced: data transformed in 2 dims/columns + regenerated original data
     pass in: data as 2D NumPy array
     """
@@ -105,7 +105,7 @@ def get_dict(data):
         Ind2Word: returns dictionary mapping the index to its word
     """
     #
-#     words = nltk.word_tokenize(data)
+    #     words = nltk.word_tokenize(data)
     words = sorted(list(set(data)))
     n = len(words)
     idx = 0

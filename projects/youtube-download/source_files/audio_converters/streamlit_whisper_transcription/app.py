@@ -68,7 +68,7 @@ def main():
     with tab2:
         audio_file = st.file_uploader("Upload Audio", type=["mp3", "mp4", "wav", "m4a"])
         if audio_file:
-            file_extension = audio_file.type.split('/')[1]
+            file_extension = audio_file.type.split("/")[1]
             save_audio_file(audio_file.read(), file_extension)
 
     # Transcribe button action

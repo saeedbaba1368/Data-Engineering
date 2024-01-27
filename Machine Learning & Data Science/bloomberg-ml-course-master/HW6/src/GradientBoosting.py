@@ -19,7 +19,7 @@ class GradientBoosting(BaseEstimator):
         max_depth: int = 3,
     ):
         """Initialize gradient boosting class
-        
+
         :param n_estimator: number of estimators (i.e. number of rounds of gradient boosting)
         :pseudo_residual_func: function used for computing pseudo-residual
         :param learning_rate: step size of gradient descent
@@ -89,7 +89,7 @@ class BaseLearner(BaseEstimator):
         """Predict the mean
 
         :param X: 2d numpy array of training data
-        :return: 
+        :return:
         """
         if not hasattr(self, "_mean_y"):
             raise NotFittedError(

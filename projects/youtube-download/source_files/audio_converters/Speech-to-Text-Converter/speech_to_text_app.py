@@ -14,11 +14,14 @@ CIANO = "\033[36;1m"
 RESET = "\033[0;0m"
 
 # Setting the logging configurations
-logging.basicConfig(format='%(asctime)s - audiototxt.py - %(message)s', level=logging.DEBUG)
+logging.basicConfig(
+    format="%(asctime)s - audiototxt.py - %(message)s", level=logging.DEBUG
+)
 
 # Get start time
 starttime = timeit.default_timer()
-logging.debug(f'⏱ {GREEN}Start time: {starttime}{RESET}')
+logging.debug(f"⏱ {GREEN}Start time: {starttime}{RESET}")
+
 
 def save_audio_file(audio_bytes, filename):
     """
@@ -35,6 +38,7 @@ def save_audio_file(audio_bytes, filename):
 
     return file_name
 
+
 def create_wav_files(audio_file):
 
     # Audio files
@@ -46,7 +50,7 @@ def create_wav_files(audio_file):
     audio = AudioSegment.from_mp3(AUDIO_SRC)
     audio.export(AUDIO_DST, format="wav")
 
-    audio = AudioSegment.from_file(AUDIO_DST, 'wav')
+    audio = AudioSegment.from_file(AUDIO_DST, "wav")
     segment_size = 30000
 
     logging.debug(f"{GREEN}Segmenting audio file.{RESET}")
@@ -57,9 +61,10 @@ def create_wav_files(audio_file):
     for i, part in enumerate(part):
         part_name = f"part{i}.wav"
         part_audio.append(part_name)
-        part.export(part_name, format='wav')
+        part.export(part_name, format="wav")
         logging.debug(f"Audio segment created: {part_name}")
     return part_audio
+
 
 def transcript_audio(name_audio):
     """This function trascript the audio file
@@ -74,26 +79,27 @@ def transcript_audio(name_audio):
     # Select the audio file
     r = sr.Recognizer()
     with sr.AudioFile(name_audio) as source:
-        audio = r.record(source) # Reading audio file
+        audio = r.record(source)  # Reading audio file
 
     try:
         logging.debug(f"Google Speech Recognition: Transcript {name_audio}")
-        text = r.recognize_google(audio,language='en')
+        text = r.recognize_google(audio, language="en")
     except Exception as e:
-        raise(e)
+        raise (e)
     return text
 
-def convert_files(parts,filename):
+
+def convert_files(parts, filename):
     # Trascription of audios segments
-    text = ''
-    with alive_bar(len(parts), dual_line=True, title='Transcription') as bar:
+    text = ""
+    with alive_bar(len(parts), dual_line=True, title="Transcription") as bar:
         progress_text = "File Chunk {}. Please wait."
         my_bar = st.progress(0, text=progress_text)
-        for file_chunk,part in enumerate(parts):
+        for file_chunk, part in enumerate(parts):
             text = f"{text} {transcript_audio(part)}"
             bar()
             my_bar.progress(file_chunk + 1, text=progress_text.format(file_chunk))
-    logging.debug(f'{RED}Transcript of the audio file:{RESET}')
+    logging.debug(f"{RED}Transcript of the audio file:{RESET}")
 
     directory = "transcripts"
     if not os.path.exists(directory):
@@ -102,15 +108,16 @@ def convert_files(parts,filename):
     with open(f"{directory}\\{filename}.txt", "w") as file:
         file.write(text)
     logging.debug(f"📝 {GREEN}Created audio.txt file{RESET}")
-     
+
     # Cleaning segment audios
     logging.debug(f"🗑 {GREEN} Cleaning segment audios.{RESET}")
     os.system("del -f part*")
     os.system("del /S *.mp3")
     os.system("del /S *.wav")
-    
+
     # Show the the time of script
-    logging.debug(f'⏱ {GREEN}End time: {timeit.default_timer() - starttime}{RESET}')
+    logging.debug(f"⏱ {GREEN}End time: {timeit.default_timer() - starttime}{RESET}")
+
 
 def main():
     st.title("Speech to Text Converter")
@@ -123,15 +130,16 @@ def main():
         st.write(file_details)
 
         file_saved = save_audio_file(
-            uploaded_file.read(), 
-            filename = uploaded_file.name, 
+            uploaded_file.read(),
+            filename=uploaded_file.name,
         )
     if file_saved:
         parts = create_wav_files(uploaded_file.name)
         with st.spinner("converting files...."):
-            convert_files(parts = parts, filename = uploaded_file.name)
-    
+            convert_files(parts=parts, filename=uploaded_file.name)
+
             st.balloons()
+
 
 if __name__ == "__main__":
     main()

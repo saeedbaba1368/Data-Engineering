@@ -55,7 +55,9 @@ class TestNodes(unittest.TestCase):
             "x": np.random.randn(n_ftrs),
             "b": np.array(np.random.randn()),
         }
-        max_rel_err = test_utils.test_node_backward(self.affine_node, init_vals, delta=1e-7)
+        max_rel_err = test_utils.test_node_backward(
+            self.affine_node, init_vals, delta=1e-7
+        )
         self.assertTrue(max_rel_err < self.max_allowed_rel_err)
 
     def test_linear_regression_gradient(self):

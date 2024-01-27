@@ -9,3 +9,4 @@ aiohttp
 PyYAML
 python-dotenv
 numpy
+pinecone-client
