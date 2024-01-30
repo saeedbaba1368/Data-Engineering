@@ -5,6 +5,14 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores.chroma import Chroma
 import os
 import shutil
+from dotenv import load_dotenv, find_dotenv
+import warnings
+warnings.filterwarnings("ignore")
+
+load_dotenv(find_dotenv(), override=True)
+
+
+#https://pypi.org/project/unstructured/
 
 CHROMA_PATH = "chroma"
 DATA_PATH = "data/books"

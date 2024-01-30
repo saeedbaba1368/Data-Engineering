@@ -1,6 +1,7 @@
 const yargs = require('yargs')
 const notes = require('./notes.js')
-
+// You can also use the global object "process.argv" to extract any arguments
+// Yargs is like pythons argparse
 // Create add command
 yargs.command({
   command: 'add',

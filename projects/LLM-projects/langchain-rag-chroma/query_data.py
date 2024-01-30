@@ -4,6 +4,11 @@ from langchain.vectorstores.chroma import Chroma
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
+from dotenv import load_dotenv, find_dotenv
+import warnings
+warnings.filterwarnings("ignore")
+
+load_dotenv(find_dotenv(), override=True)
 
 CHROMA_PATH = "chroma"
 
