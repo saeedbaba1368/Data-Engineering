@@ -11,11 +11,5 @@ RUN apt-get update && \
     apt-get remove -y wget && \
     apt-get clean
 
-# Copy the entrypoint script into the container
-COPY entrypoint.sh .
-
-# Set entrypoint script as executable
-RUN chmod +x entrypoint.sh
-
-# Define the command to run the entrypoint script
-ENTRYPOINT ["./entrypoint.sh"]
+# Set entry point to an interactive shell
+ENTRYPOINT ["/bin/bash"]
