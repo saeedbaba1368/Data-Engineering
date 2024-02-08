@@ -7,7 +7,7 @@ WORKDIR /app
 # Download Pdf2Dom JAR file
 RUN apt-get update && \
     apt-get install -y wget && \
-    wget https://downloads.sourceforge.net/project/cssbox/Pdf2DOM/2.0.0/PDFToHTML.jar -O pdf2dom.jar && \
+    wget --no-check-certificate https://downloads.sourceforge.net/project/cssbox/Pdf2DOM/2.0.0/PDFToHTML.jar -O pdf2dom.jar && \
     apt-get remove -y wget && \
     apt-get clean
 
