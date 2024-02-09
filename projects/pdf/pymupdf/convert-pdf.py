@@ -1,43 +1,31 @@
-from pdfix import Pdfix
-from pdfix.models import HtmlSaveOptions
+#https://github.com/pdfix/pdfix_sdk_example_python/blob/master/src/ConvertToHtml.py
 
-def convert_pdf_to_html(pdf_path, html_path):
-    pdfix = Pdfix()
+# ConvertToHtml.py
+# Example how to convert PDF to HTML.
 
-    # Initialize PDFix
-    if pdfix == None or not pdfix.Init():
-        print("Failed to initialize PDFix SDK")
-        return
+# import utils to load required shared libraries
+from Utils import inputPath, outputPath
+from pdfixsdk.Pdfix import *
 
-    try:
-        # Open the PDF document
-        doc = pdfix.OpenDoc(pdf_path)
-        if doc == None:
-            print("Failed to open the PDF document")
-            return
-        
-        try:
-            # Initialize HTML save options
-            save_options = HtmlSaveOptions()
-            save_options.flags = HtmlSaveOptions.kHtmlNoExternalCSS | HtmlSaveOptions.kHtmlNoExternalJS
+pdfix  = GetPdfix()
+if pdfix is None:
+    raise Exception('Pdfix Initialization fail')
 
-            # Save the PDF document as HTML
-            if not doc.SaveAsHtml(html_path, save_options):
-                print("Failed to save the PDF document as HTML")
-                return
-        finally:
-            # Close the PDF document
-            doc.Close()
-    finally:
-        # Destroy PDFix object
-        pdfix.Destroy()
+doc = pdfix.OpenDoc(inputPath + "/test.pdf", "")
+if doc is None:
+    raise Exception('Unable to open pdf : ' + pdfix.GetError())
 
-if __name__ == "__main__":
-    # Specify the input PDF file path
-    input_pdf_path = "input.pdf"
+htmlConv = doc.CreateHtmlConversion()
+if htmlConv is None:
+    raise Exception('Unable to open html doc : ' + pdfix.GetError())   
+
+# convert all pages at once
+htmlParams=PdfHtmlParams()
+htmlParams.flags = kHtmlNoExternalCSS | kHtmlNoExternalJS | kHtmlNoExternalIMG
+if not htmlConv.SetParams(htmlParams):
+    raise Exception('Unable to set params : ' + pdfix.GetError())    
+if not htmlConv.Save(outputPath + "/index.html", 0, None):
+    raise Exception('Unable to open html doc : ' + pdfix.GetError())    
     
-    # Specify the output HTML file path
-    output_html_path = "output.html"
-    
-    # Convert PDF to HTML
-    convert_pdf_to_html(input_pdf_path, output_html_path)
+htmlConv.Destroy()
+doc.Close()
