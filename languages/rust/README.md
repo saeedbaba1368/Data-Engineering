@@ -12,3 +12,11 @@
 8. [awesome-rust](https://github.com/rust-unofficial/awesome-rust)
 9. [Rust Crash Course 🦀](https://youtube.com/playlist?list=PL6yRaaP0WPkWRsXJgdnw9lj1vchAaKwfS&si=HZtpORbSTJGM40xA)
 10. [Rust 101 Crash Course: Learn Rust (6 HOURS!) + 19 Practice Exercises | Zero To Mastery](https://youtu.be/lzKeecy4OmQ?si=ilDsg2uJmzGUAFT0)
+11. [The Rust Programming Language](https://doc.rust-lang.org/book/title-page.html)
+12. [The Cargo Book](https://doc.rust-lang.org/cargo/index.html)
+
+## Dynamic Programming in Rust
+
+- I am implementing the popular youtube playlist in Rust
+
+1. https://github.com/andreygrehov/dp
