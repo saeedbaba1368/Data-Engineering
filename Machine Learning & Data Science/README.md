@@ -1,17 +1,27 @@
 # Comprehensive Introduction to Machine Learning
 
-- [Glossary of Artificial Intelligence](https://en.wikipedia.org/wiki/Glossary_of_artificial_intelligence)
-- [Outline of Artificial Intelligence](https://en.wikipedia.org/wiki/Outline_of_artificial_intelligence)
-- [Artificial Intelligence Category](https://en.wikipedia.org/wiki/Category:Artificial_intelligence)
-- [Machine Learning Glossary](https://ml-cheatsheet.readthedocs.io/en/latest/index.html)
-- [Data Science Cheatsheet](https://github.com/aaronwangy/Data-Science-Cheatsheet)
-- [Data Science](https://github.com/khuyentran1401/Data-science)
-- [Awesome Python Data Science](https://github.com/krzjoa/awesome-python-data-science)
-- [datascience](https://github.com/r0f1/datascience)
-- [Data Science Interviews](https://github.com/alexeygrigorev/data-science-interviews)
-- [Learn Data Science For Free](https://github.com/therealsreehari/Learn-Data-Science-For-Free)
-- [ML Course Notes](https://github.com/dair-ai/ML-Course-Notes)
-- [awesome-datascience](https://github.com/academic/awesome-datascience)
+- This represents a self contained comprehensive introduction to all of the fundamentals related to statistical learning and deep learning. Over the course of 5 years or so, I've compiled resources from online courses I've taken. I've filled gaps by finding resources on github, adding them to this repository. 
+
+1. Unit 1 - Introductory Concepts
+	* This contains lessons that are more data science oriented. Very basic concepts to get started with topics like data manipulation model evaluation concepts. 
+2. Unit 2 - Statistical Methods
+	* As the name implies, this is oriented towards basic statistical concepts such as bayesian inference.
+3. Unit 3 - Basic Algorithms
+	* ML is computationally intensive, more so than classical statistical inference. Therefore you need a basic grasp of the algorithms used for things like classification.
+4. Unit 4 - Advanced Algorithms
+	* This contains more difficult algorithms
+5. Unit 5 - Deep Learning
+	* This serves as an introduction to the fundamentals of deep learning. This is a coursera class. 
+6. Unit 6 - Sequence Models
+	* This focuses on deep learning for sequence data, such as time series and decision problems found in reinforcement learning.
+7. Unit 7 - NLP
+	* Intended to be a comprehensive introduction to NLP methods
+8. Data-Viz
+	* Being a data scientist means understanding data visualization. This contains a ton of resources for that including examples of complex vizualizations.
+9. Bloomberg-ML-course-master
+	* This is the coursework for a machine learning class I audited while at bloomberg. I found this to be very helpful. 
+
+## Useful Libraries
 
 1. [ISLR-python](https://github.com/JWarmenhoven/ISLR-python)
 2. [Elements of Statistical Learning](https://github.com/empathy87/The-Elements-of-Statistical-Learning-Python-Notebooks)
