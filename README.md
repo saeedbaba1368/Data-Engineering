@@ -1,6 +1,14 @@
 # Resources
 
 - [Data Engineer Handbook](https://github.com/DataEngineer-io/data-engineer-handbook)
+- [Netflix Tech Blog Data Engineering](https://netflixtechblog.com/tagged/data-engineering)
+- [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)
+- [Cloudflare Blog](https://blog.cloudflare.com/)
+- [Meta Engineering Blog](https://engineering.fb.com/)
+- [Linkedin Engineering](https://www.linkedin.com/blog/engineering)
+- [AWS Architecture Blog](https://aws.amazon.com/blogs/architecture/)
+- [Slack Engineering Blog](https://slack.engineering/)
+- [Stripe Engineering Blog](https://stripe.com/blog/engineering)
 
 <details><summary><h1>Design Guides</h1></summary>
 
