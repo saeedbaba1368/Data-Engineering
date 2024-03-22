@@ -1,5 +1,8 @@
 # LLM Resources for Building Tools
 
+**"Courses"** folder contains learning materials from Udemy courses
+- [Udemy Course: LangChain- Develop LLM powered applications with LangChain](https://github.com/emarco177/ice_breaker)
+
 - [HuggingFace](https://huggingface.co/) (LLM Leaderboard)(https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)
 - [LangChain Website](https://www.langchain.com/) and [github](https://github.com/langchain-ai/langchain)
 - [open-llms](https://github.com/eugeneyan/open-llms)
