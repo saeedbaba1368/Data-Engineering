@@ -64,6 +64,7 @@
 50. [awesome-system-design](https://github.com/madd86/awesome-system-design)
 51. [awesome-software-architecture](https://github.com/mehdihadeli/awesome-software-architecture)
 52. [Google Site Reliabilty Engineering](https://sre.google/sre-book/table-of-contents/)
+53. [Microservice API Patterns](https://microservice-api-patterns.org/)
 
 </details>
 
