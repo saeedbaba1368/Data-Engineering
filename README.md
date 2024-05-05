@@ -1,5 +1,8 @@
 # Resources
 
+<details><summary><h1>Design Guides</h1></summary>
+
+- [The Data Engineering Cookbook](https://cookbook.learndataengineering.com/)
 - [Data Engineer Handbook](https://github.com/DataEngineer-io/data-engineer-handbook)
 - [Netflix Tech Blog Data Engineering](https://netflixtechblog.com/tagged/data-engineering)
 - [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)
@@ -9,8 +12,6 @@
 - [AWS Architecture Blog](https://aws.amazon.com/blogs/architecture/)
 - [Slack Engineering Blog](https://slack.engineering/)
 - [Stripe Engineering Blog](https://stripe.com/blog/engineering)
-
-<details><summary><h1>Design Guides</h1></summary>
 
 1. [Design Patterns in the Real World](https://holub.com/patterns/)
 2. [Design Patterns](https://sourcemaking.com/)
@@ -65,52 +66,8 @@
 51. [awesome-software-architecture](https://github.com/mehdihadeli/awesome-software-architecture)
 52. [Google Site Reliabilty Engineering](https://sre.google/sre-book/table-of-contents/)
 53. [Microservice API Patterns](https://microservice-api-patterns.org/)
-
-</details>
-
-<details><summary><h1><a href="https://andrewrgoss.com/resources/">Resources for Data Engineering</a></h1></summary>
-
-1. [Awesome ETL](https://github.com/pawl/awesome-etl)
-2. [Big Data](https://github.com/0xnr/awesome-bigdata)
-3. [CookBook](https://github.com/andkret/Cookbook)
-4. [Tech Interview ](https://github.com/yangshun/tech-interview-handbook)
-5. [Python Resources](https://github.com/vinta/awesome-python)
-6. [awesome - Jupyter](https://github.com/markusschanta/awesome-jupyter)
-7. [System Design](https://github.com/donnemartin/system-design-primer)
-8. [Awesome Data Engineering](https://github.com/igorbarinov/awesome-data-engineering)
-9. [Data Engineering Cookbook](https://cookbook.learndataengineering.com/docs/01-Introduction/)
-10. [The Algorithms: Python](https://github.com/TheAlgorithms/Python)
-11. [Applied-ML](https://github.com/eugeneyan/applied-ml)
-12. [understanding-the-python-ecosystem](https://github.com/brunocampos01/understanding-the-python-ecosystem)
-13. [pyspark-examples](https://github.com/spark-examples/pyspark-examples)
-14. [Awesome Process Mining](https://github.com/TheWoops/awesome-processmining)
-15. [Learn Amazon Sagemaker](https://github.com/PacktPublishing/Learn-Amazon-SageMaker)
-16. [pm4py-core](https://github.com/pm4py/pm4py-core)
-17. [awesome-markdown](https://github.com/mundimark/awesome-markdown)
-18. [Practitioners Guide to Graph Data](https://github.com/datastax/graph-book)
-19. [Graph Data Notebooks](https://github.com/aws/graph-notebook)
-20. [Versatile Data Kit](https://github.com/vmware/versatile-data-kit)
-21. [Pyspark Project Example](https://github.com/AlexIoannides/pyspark-example-project)
-22. [Datalake ETL Pipeline Example](https://github.com/vim89/datalake-etl-pipeline)
-23. [Streamify](https://github.com/ankurchavda/streamify)
-24. [Data Algorithms with Spark](https://github.com/mahmoudparsian/data-algorithms-with-spark)
-25. [Spark with Python](https://github.com/tirthajyoti/Spark-with-Python)
-26. [vaex](https://github.com/vaexio/vaex)
-27. [duckdb](https://github.com/duckdb/duckdb)
-28. [python-project-blueprint](https://github.com/MartinHeinz/python-project-blueprint)
-29. [python blueprint](https://github.com/johnthagen/python-blueprint)
-30. [Data Analysis With Polars](https://github.com/braaannigan/data-analysis-with-polars)
-31. [rust by example](https://github.com/rust-lang/rust-by-example)
-32. [Goodreads ETL Pipeline](https://github.com/san089/goodreads_etl_pipeline)
-33. [Data-Engineering-HowTo](https://github.com/adilkhash/Data-Engineering-HowTo)
-34. [awesome-apache-airflow](https://github.com/jghoman/awesome-apache-airflow)
-35. [DataEngineeringProject](https://github.com/damklis/DataEngineeringProject)
-36. [python-ddd](https://github.com/pgorecki/python-ddd)
-37. [data-pipelines-with-apache-airflow](https://github.com/BasPH/data-pipelines-with-apache-airflow)
-38. [Python Data Analysis](https://github.com/hnawaz007/pythondataanalysis)
-39. [Data Engineering on GCP](https://github.com/itversity/data-engineering-on-gcp)
-40. [GPT Engineer](https://github.com/AntonOsika/gpt-engineer)
-41. [microservices-demo](https://github.com/GoogleCloudPlatform/microservices-demo)
+54. [python-ddd](https://github.com/pgorecki/python-ddd)
+55. [Awesome ETL](https://github.com/pawl/awesome-etl)
 
 </details>
 
@@ -171,108 +128,6 @@
 53. [climate-ai](https://github.com/EcZachly/climate-ai)
 54. [little-book-of-pipelines](https://github.com/EcZachly/little-book-of-pipelines)
 55. [Microbatch Hourly Deduped Tutorial](https://github.com/EcZachly/microbatch-hourly-deduped-tutorial)
-
-</details>
-
-<details><summary><h2>Software Engineering Resources</h2></summary>
-
-# Reading
-
-1. [Microservices](https://en.wikipedia.org/wiki/Microservices)
-2. [Architectural_pattern_](https://en.wikipedia.org/wiki/Category:Architectural_pattern_(computer_science))
-3. [Software_architecture](https://en.wikipedia.org/wiki/Category:Software_architecture)
-4. [Software_design](https://en.wikipedia.org/wiki/Category:Software_design)
-5. [Engineering_disciplines](https://en.wikipedia.org/wiki/Category:Engineering_disciplines)
-6. [Systems_architecture](https://en.wikipedia.org/wiki/Systems_architecture)
-7. [Systems_engineering](https://en.wikipedia.org/wiki/Category:Systems_engineering)
-8. [Systems_science](https://en.wikipedia.org/wiki/Category:Systems_science)
-9. [Systems_theory](https://en.wikipedia.org/wiki/Category:Systems_theory)
-10. [Software_engineering](https://en.wikipedia.org/wiki/Category:Software_engineering)
-11. [Software_design_patterns](https://en.wikipedia.org/wiki/Category:Software_design_patterns)
-12. [Service-oriented](https://en.wikipedia.org/wiki/Category:Service-oriented_(business_computing))
-13. [Programming_paradigms](https://en.wikipedia.org/wiki/Category:Programming_paradigms)
-14. [Software_requirements](https://en.wikipedia.org/wiki/Category:Software_requirements)
-15. [Software_development](https://en.wikipedia.org/wiki/Software_development)
-16. [Requirements_analysis](https://en.wikipedia.org/wiki/Requirements_analysis)
-17. [Systems_analysis](https://en.wikipedia.org/wiki/Systems_analysis)
-18. [Agile_software_development](https://en.wikipedia.org/wiki/Category:Agile_software_development)
-19. [High_availability](https://en.wikipedia.org/wiki/High_availability)
-20. [Infrastructure_as_code](https://en.wikipedia.org/wiki/Infrastructure_as_code)
-21. [Content_delivery_network](https://en.wikipedia.org/wiki/Content_delivery_network)
-22. [Loose_coupling](https://en.wikipedia.org/wiki/Loose_coupling)
-23. [Programming_principles](https://en.wikipedia.org/wiki/Category:Programming_principles)
-24. [Message_queue](https://en.wikipedia.org/wiki/Message_queue)
-24. [Software_design_pattern)](https://en.wikipedia.org/wiki/Software_design_pattern)
-25. [Software_quality](https://en.wikipedia.org/wiki/Category:Software_quality)
-26. [Computer_programming](https://en.wikipedia.org/wiki/Category:Computer_programming)
-27. [Enterprise_application_integration](https://en.wikipedia.org/wiki/Category:Enterprise_application_integration)
-28. [Object Oriented](https://en.wikipedia.org/wiki/Category:Object-oriented_programming)
-29. [Artificial Intelligence](https://artint.info/2e/html/ArtInt2e.html)
-30. [Programming_language_concepts](https://en.wikipedia.org/wiki/Category:Programming_language_concepts)
-31. [Software_development_philosophies](https://en.wikipedia.org/wiki/Category:Software_development_philosophies)
-32. [Programming Paradigms](https://en.wikipedia.org/wiki/Category:Programming_paradigms)
-33. [Software Design Patterns](https://en.wikipedia.org/wiki/Category:Software_design_patterns)
-34. [Scope Creep](https://en.wikipedia.org/wiki/Scope_creep)
-35. [Data Structures](https://en.wikipedia.org/wiki/Category:Data_structures)
-36. [Algorithms](https://en.wikipedia.org/wiki/Category:Algorithms)
-37. [Software_testing](https://en.wikipedia.org/wiki/Category:Software_testing)
-
-## Videos
-1. [Software Engineering Institute | Carnegie Mellon University](https://www.youtube.com/user/TheSEICMU)
-2. [Domain-Driven Design Europe](https://www.youtube.com/channel/UC3PGn-hQdbtRiqxZK9XBGqQ)
-3. [Barry Smith: Engineering Ontology](https://www.youtube.com/user/hxo3nql)
-4. [AI ML and Data Engineering](https://www.youtube.com/playlist?list=PLndbWGuLoHeYsZk6VpCEj_SSd9IFgjJ-2)
-5. [Software Architecture](https://www.youtube.com/playlist?list=PLndbWGuLoHeYTBaqFu31Nac-19qsdUl_V)
-6. [DevOps](https://www.youtube.com/playlist?list=PLndbWGuLoHeZiNKBDtDjw7_rYG7P7gaHN)
-7. [Design Patterns in Object Oriented Programming](https://www.youtube.com/playlist?list=PLrhzvIcii6GNjpARdnO4ueTUAVR9eMBpc)
-8. [Software Design in Python](https://www.youtube.com/playlist?list=PLC0nd42SBTaNuP4iB4L6SJlMaHE71FG6N)
-9. [Dynamic Programming](https://www.youtube.com/watch?v=oBt53YbR9Kk)
-10. [Graph Algorithms](https://www.youtube.com/watch?v=tWVWeAqZ0WU)
-11. [Dynamic Programming Playlist](https://www.youtube.com/playlist?list=PLVrpF4r7WIhTT1hJqZmjP10nxsmrbRvlf)
-12. [Data Structures](https://www.youtube.com/watch?v=RBSGKlAvoiM)
-13. [Graph Theory](https://www.youtube.com/watch?v=09_LlHjoEiY)
-14. [Networking Fundamentals](https://www.youtube.com/playlist?list=PLDQaRcbiSnqF5U8ffMgZzS7fq1rHUI3Q8)
-15. [Theory of Computation](https://www.youtube.com/playlist?list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev)
-16. [Theoretical Computer Science](https://www.youtube.com/playlist?list=PLUl4u3cNGP60_JNv2MmK3wkOt9syvfQWY)
-17. [Practical Networking](https://www.youtube.com/c/PracticalNetworking)
-18. [Artificial Intelligence Principles](https://www.youtube.com/playlist?list=PLoROMvodv4rO1NB9TD4iUZ3qghGEGtqNX)
-19. [Deep Learning](https://www.youtube.com/playlist?list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI)
-20. [Operating Systems](https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O)
-21. [Computer Networks](https://www.youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx)
-22. [Software Design Python](https://www.youtube.com/playlist?list=PLC0nd42SBTaNuP4iB4L6SJlMaHE71FG6N)
-
-## Design Patterns
-1. [Abstract_factory_pattern](https://en.wikipedia.org/wiki/Abstract_factory_pattern)
-2. [Builder_pattern](https://en.wikipedia.org/wiki/Builder_pattern)
-3. [Singleton_pattern](https://en.wikipedia.org/wiki/Singleton_pattern)
-4. [Prototype_pattern](https://en.wikipedia.org/wiki/Prototype_pattern)
-5. [Object_pool_pattern](https://en.wikipedia.org/wiki/Object_pool_pattern)
-6. [Facade_pattern](https://en.wikipedia.org/wiki/Facade_pattern)
-7. [Chain of Responsibility Pattern](https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern)
-8. [Flyweight Pattern](https://en.wikipedia.org/wiki/Flyweight_pattern)
-9. [Design Factory Patterns](http://coding-geek.com/design-pattern-factory-patterns/)
-10. [Composite Pattern](https://en.wikipedia.org/wiki/Composite_pattern)
-11. [Bridge Pattern](https://en.wikipedia.org/wiki/Bridge_pattern)
-12. [Mediator Pattern](https://en.wikipedia.org/wiki/Mediator_pattern)
-13. [Visitor Pattern](https://en.wikipedia.org/wiki/Visitor_pattern)
-14. [Adapter Pattern](https://en.wikipedia.org/wiki/Adapter_pattern)
-
-
-## Concepts
-1. [Futures_and_promises](https://en.wikipedia.org/wiki/Futures_and_promises)
-2. [Asynchronous_method_invocation](https://en.wikipedia.org/wiki/Asynchronous_method_invocation)
-3. [Asynchronous_I/O](https://en.wikipedia.org/wiki/Asynchronous_I/O)
-4. [Async/await](https://en.wikipedia.org/wiki/Async/await)
-5. [Asynchrony](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming))
-6. [Concurrent_computing](https://en.wikipedia.org/wiki/Concurrent_computing)
-7. [Thread](https://en.wikipedia.org/wiki/Thread_(computing))
-8. [Parallel_computing](https://en.wikipedia.org/wiki/Parallel_computing)
-9. [Birthday_problem](https://en.wikipedia.org/wiki/Birthday_problem)
-10. [SHA 1](https://en.wikipedia.org/wiki/SHA-1)
-11. [Avalanche_effect](https://en.wikipedia.org/wiki/Avalanche_effect)
-12. [Hash_collision](https://en.wikipedia.org/wiki/Hash_collision)
-13. [Lazy_evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation)
-14. [Relational_algebra](https://en.wikipedia.org/wiki/Category:Relational_algebra)
 
 </details>
 
@@ -420,8 +275,8 @@
 47. [mako](https://github.com/sqlalchemy/mako)
 48. [jinjasql](https://github.com/sripathikrishnan/jinjasql)
 49. [data engineering on gcp](https://github.com/Nunie123/data_engineering_on_gcp_book)
-50. [polars Dataframes](https://github.com/pola-rs/polars)
-51. [Vaex Dataframes](https://github.com/vaexio/vaex)
+50. [polars](https://github.com/pola-rs/polars)
+51. [Vaex](https://github.com/vaexio/vaex)
 52. [Fugure: Distributed Computation](https://github.com/fugue-project/fugue)
 53. [Funcy](https://github.com/Suor/funcy)
 54. [Singer](https://github.com/singer-io/getting-started)
@@ -436,6 +291,7 @@
 63. [wemake-python-package](https://github.com/wemake-services/wemake-python-package)
 64. [pyscaffold](https://github.com/pyscaffold/pyscaffold)
 65. [xmltodict](https://github.com/martinblech/xmltodict)
+66. [duckdb](https://github.com/duckdb/duckdb)
 
 </details>
 
